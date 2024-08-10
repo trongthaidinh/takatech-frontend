@@ -36,10 +36,10 @@ const Tophead = () => {
                     <Link to="https://www.facebook.com/takatechsoft">
                         <FontAwesomeIcon icon={faFacebookF} />
                     </Link>
-                    <Link to="https://twitter.com">
+                    <Link to="https://x.com/takatech_bmt">
                         <FontAwesomeIcon icon={faTwitter} />
                     </Link>
-                    <Link to="https://instagram.com">
+                    <Link to="https://www.instagram.com/dinhtuan.le/">
                         <FontAwesomeIcon icon={faInstagram} />
                     </Link>
                     <Link to="https://linkedin.com">
