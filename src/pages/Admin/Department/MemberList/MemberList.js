@@ -103,10 +103,10 @@ const MemberList = () => {
                                         <img src={member.image} alt={member.name} className={styles.memberImage} />
                                     </td>
                                     <td>{member.name}</td>
-                                    <td>{member.position === 0 ? 'Ban lãnh đạo' : 'Đội công trình'}</td>
+                                    <td>{member.position === 0 ? 'Ban giám đốc' : 'Nhân viên'}</td>
                                     <td>{member.yearOfBirth}</td>
                                     <td>{member.qualification}</td>
-                                    <td>{member.seniority} năm</td> {/* Hiển thị năm kinh nghiệm */}
+                                    <td>{member.seniority} năm</td>
                                     <td>
                                         <Link
                                             to={`/admin/update-member/${member._id}/${member.departmentId}`}

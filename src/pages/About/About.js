@@ -10,47 +10,38 @@ const About = () => (
     <article className={cx('wrapper')}>
         <Helmet>
             <title>Giới thiệu | TAKATECH</title>
-            <meta name="description" content={'Thông tin về trang giới thiệu của VNETC.'} />
+            <meta name="description" content={'Thông tin về trang giới thiệu của Takatech.'} />
             <meta name="keywords" content="giới thiệu, VNETC, thông tin công ty" />
-            <meta name="author" content="CÔNG TY CỔ PHẦN THÍ NGHIỆM CƠ ĐIỆN VIỆT NAM - VNETC" />
+            <meta name="author" content="CÔNG TY TNHH CÔNG NGHỆ TAKATECH" />
         </Helmet>
         <div className={cx('inner')}>
-            <Title text="Tổng quan về VNETC" />
+            <Title text="Tổng quan về TakaTech" />
             <div className={cx('content')}>
                 <img
-                    src="https://res.cloudinary.com/ddmzboxzu/image/upload/v1721325167/iwo1jihkzk8jskxr6j7o.png"
+                    src="https://res.cloudinary.com/ddmzboxzu/image/upload/v1723285559/txmno0zljctzftory1rn.jpg"
                     alt="Trụ sở công ty VNETC"
                 />
                 <p>
-                    <strong>1. Trụ sở chính: </strong> Số 22 Trần Hữu Dực – Tổ DP 5 – P. Tân Lợi – Tp Buôn Ma Thuột –
-                    tỉnh Đăk Lăk – Việt Nam.
+                    <strong>Công ty TNHH Công nghệ TakaTech, hoạt động trong các lĩnh vực: </strong>
                 </p>
                 <ul>
-                    <li>Tel/Fax: +84-262-3 97.71.71</li>
-                    <li>Hotline: +84-968.17.47.47/+84-905.174.001</li>
-                    <li>Website: vietnametc.com </li>
-                    <li>Email: vietnam.etc.ltd@gmail.com</li>
+                    <li>Xây dựng, phát triển phần mềm, ứng dụng di động - mobile app</li>
+                    <li>Thiết kế, xây dựng Cổng thông tin điện tử, Trang thông tin điện tử</li>
+                    <li>Tư vấn, triển khai các giải pháp chuyển đổi số cho Tổ chức - Doanh nghiệp</li>
                 </ul>
                 <p>
-                    <strong>2. Văn phòng đại diện tại Quảng Ngãi: </strong> 303 Phan Đình Phùng, P. Chánh Lộ, TP. Quảng
-                    Ngãi, T. Quảng Ngãi.
+                    Qua một chặng đường xây dựng và phát triển, TakaTech đã khẳng định được vị trí của mình trong ngành
+                    công nghệ thông tin. Chúng tôi không ngừng nỗ lực phát triển với sứ mệnh cung cấp những giải pháp
+                    công nghệ thông tin, phần mềm, sản phẩm tốt nhất tới tay khách hàng.
                 </p>
-                <ul>
-                    <li>Trưởng VP: Ông Nguyễn Vân Hải </li>
-                    <li>ĐT: 0942503822 </li>
-                    <li>Website: vietnametc.com </li>
-                    <li>Email: vanhai09031993@gmail.com</li>
-                </ul>
                 <p>
-                    <strong>3. Chi nhánh Đà Nẵng: </strong> 20 Đa Phước 2, Phường Khuê Mỹ, Quận Ngũ Hành Sơn, TP Đà
-                    Nẵng.
+                    TakaTech quy tụ đội ngũ chuyên gia giàu kinh nghiệm luôn cập nhật các xu hướng công nghệ mới nhất
+                    trên thế giới.
                 </p>
-                <ul>
-                    <li>Giám đốc: Ông Phùng Như Thuỷ </li>
-                    <li>ĐT: 0905061997</li>
-                    <li>Website: vietnametc.com </li>
-                    <li>Email: nhuthuyant@gmail.com</li>
-                </ul>
+                <p>
+                    Đến với TakaTech, quý khách hàng không chỉ yên tâm về sản phẩm mà còn cảm nhận được sự nhiệt huyết
+                    đam mê công nghệ của đội ngũ nhân viên có trình độ và giàu kinh nghiệm.
+                </p>
             </div>
         </div>
     </article>

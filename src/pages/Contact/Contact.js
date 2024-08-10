@@ -8,17 +8,19 @@ import {
     faEnvelope,
     faMapMarkerAlt,
     faPhone,
-    faMobileAlt,
-    faWrench,
-    faCogs,
-    faChartLine,
-    faFileAlt,
+    // faMobileAlt,
+    // faWrench,
+    // faCogs,
+    // faChartLine,
+    // faFileAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import Button from '~/components/Button';
 import { createMessage } from '~/services/contactService';
 import PushNotification from '~/components/PushNotification';
 import { Helmet } from 'react-helmet';
 import styles from './Contact.module.scss';
+import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -58,20 +60,20 @@ const ContactPage = () => {
                 <title>Liên Hệ | TAKATECH</title>
                 <meta
                     name="description"
-                    content="Trang Liên Hệ của VNETC. Hãy gửi tin nhắn cho chúng tôi nếu bạn có bất kỳ câu hỏi nào."
+                    content="Trang Liên Hệ của TAKATECH. Hãy gửi tin nhắn cho chúng tôi nếu bạn có bất kỳ câu hỏi nào."
                 />
-                <meta name="keywords" content="liên hệ, VNETC, gửi tin nhắn" />
-                <meta name="author" content="CÔNG TY CỔ PHẦN THÍ NGHIỆM CƠ ĐIỆN VIỆT NAM - VNETC" />
+                <meta name="keywords" content="liên hệ, TakaTech, gửi tin nhắn" />
+                <meta name="author" content="CÔNG TY TNHH CÔNG NGHỆ TAKATECH" />
             </Helmet>
             <div className={cx('mapContainer')}>
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243.27342674958496!2d108.052657970545!3d12.688940890483984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3171f7d7415f7d55%3A0x5a3cd6dc81a8de0d!2sVietnam%20Electromechanical%20Testing%20Joint%20Stock%20Company!5e0!3m2!1sen!2s!4v1721701975769!5m2!1sen!2s"
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31137.243125385394!2d108.061915!3d12.703279!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3171f75d27c44c3b%3A0x4b9780df3cd87c5c!2zQ8O0bmcgdHkgQ8O0bmcgbmdo4buHIFRha2FUZWNo!5e0!3m2!1sen!2sus!4v1723283471077!5m2!1sen!2sus"
                     width="100%"
-                    height="600"
+                    height="450"
                     style={{ border: 0 }}
-                    allowFullScreen=""
+                    allowfullscreen=""
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerpolicy="no-referrer-when-downgrade"
                 ></iframe>
             </div>
             <div className={cx('inner')}>
@@ -85,10 +87,10 @@ const ContactPage = () => {
                             <div className={cx('infoItem')}>
                                 <FontAwesomeIcon icon={faPhone} className={cx('icon')} />
                                 <a href="tel:02623977171">
-                                    Số điện thoại: <span>026 2397 7171</span> (Văn phòng công ty)
+                                    Số điện thoại: <span>0914 586 999</span>
                                 </a>
                             </div>
-                            <div className={cx('infoItem')}>
+                            {/* <div className={cx('infoItem')}>
                                 <span>
                                     <FontAwesomeIcon icon={faMobileAlt} className={cx('icon')} />
                                     Hotline theo mảng phụ trách:
@@ -129,17 +131,26 @@ const ContactPage = () => {
                                         </li>
                                     </ul>
                                 </span>
-                            </div>
+                            </div> */}
                             <div className={cx('infoItem')}>
                                 <FontAwesomeIcon icon={faEnvelope} className={cx('icon')} />
-                                <a href="mailto:vietnam.etc.ltd@gmail.com">Email: vietnam.etc.ltd@gmail.com</a>
+                                <a href="mailto:vietnam.etc.ltd@gmail.com">Email: taka.techsoft@gmail.com</a>
                             </div>
                             <div className={cx('infoItem')}>
                                 <FontAwesomeIcon icon={faMapMarkerAlt} className={cx('icon')} />
-                                <span>
-                                    Địa chỉ: 22 Trần Hữu Dực, Tân Lợi, Thành phố Buôn Ma Thuột, Đắk Lắk, Vietnam
-                                </span>
+                                <span>Địa chỉ: 200 Hà Huy Tập, Phường Tân Lợi, Tp. Buôn Ma Thuột, Tỉnh Đắk Lắk</span>
                             </div>
+                        </div>
+                        <div className={cx('socialLinks')}>
+                            <Link to="https://www.facebook.com/takatechsoft/">
+                                <FontAwesomeIcon icon={faFacebook} className={cx('socialIcon')} />
+                            </Link>
+                            <Link to="https://www.instagram.com/dinhtuan.le/">
+                                <FontAwesomeIcon icon={faInstagram} className={cx('socialIcon')} />
+                            </Link>
+                            <Link to="https://x.com/takatech_bmt">
+                                <FontAwesomeIcon icon={faTwitter} className={cx('socialIcon')} />
+                            </Link>
                         </div>
                     </div>
                     <div className={cx('contactForm')}>
