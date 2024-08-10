@@ -46,7 +46,7 @@ const ProjectDetail = () => {
     return (
         <article className={cx('wrapper')}>
             <Helmet>
-                <title>{`${projectDetail.name} | VNETC`}</title>
+                <title>{`${projectDetail.name} | TAKATECH`}</title>
                 <meta name="description" content={projectDetail.summary || 'Chi tiết dự án của chúng tôi.'} />
                 <meta name="keywords" content={`${projectDetail.name}, dự án, VNETC`} />
             </Helmet>

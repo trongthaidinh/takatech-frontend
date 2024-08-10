@@ -55,7 +55,7 @@ const ContactPage = () => {
     return (
         <div className={cx('contactPage')}>
             <Helmet>
-                <title>Liên Hệ | VNETC</title>
+                <title>Liên Hệ | TAKATECH</title>
                 <meta
                     name="description"
                     content="Trang Liên Hệ của VNETC. Hãy gửi tin nhắn cho chúng tôi nếu bạn có bất kỳ câu hỏi nào."

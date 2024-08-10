@@ -45,7 +45,7 @@ const ServiceDetail = () => {
     return (
         <article className={cx('wrapper')}>
             <Helmet>
-                <title>{`${serviceDetail.name} | VNETC`}</title>
+                <title>{`${serviceDetail.name} | TAKATECH`}</title>
                 <meta name="description" content={serviceDetail.summary} />
                 <meta name="keywords" content={`dịch vụ, ${serviceDetail.name}, VNETC`} />
             </Helmet>

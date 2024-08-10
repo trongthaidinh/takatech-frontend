@@ -14,17 +14,17 @@ function Overview() {
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('content')}>
-                    <h2 className={cx('title')}>CÔNG TY CỔ PHẦN THÍ NGHIỆM CƠ ĐIỆN VIỆT NAM</h2>
+                    <h2 className={cx('title')}>CÔNG TY TNHH CÔNG NGHỆ TAKATECH</h2>
                     <p className={cx('text')}>
-                        VNETC nổ lực phát triển bền vững và hướng đến trở thành một doanh nghiệp lớn phát triển mạnh mẽ
-                        trên 4 trụ cột chiến lược là Sản xuất thiết bị điện; Kiểm định – Hiệu chuẩn – Thử nghiệm thiết
-                        bị điện; Công nghệ thông tin; An toàn thông tin trên môi trường mạng.
+                        Công ty TNHH Công nghệ Taka Tech hoạt động trong lĩnh vực: xây dựng phần mềm và ứng dụng di
+                        động, thiết kế cổng thông tin điện tử và trang thông tin điện tử, cùng với tư vấn và triển khai
+                        các giải pháp chuyển đổi số cho tổ chức và doanh nghiệp.
                     </p>
                     <p className={cx('text')}>
-                        Không ngừng sáng tạo, nâng cao uy tín chất lượng của mình và đảm bảo sự hài lòng và an toàn của
-                        Khách hàng và đối tác. Mỗi thành viên của VNETC có cơ hội và điều kiện để phát triển năng lực,
-                        được tiếp cận công nghệ trình độ để hoàn thiện bản thân và nâng cao đời sống gia đình góp phần
-                        cho cuộc sống tốt đẹp hơn.
+                        TakaTech đã khẳng định vị thế trong ngành công nghệ thông tin và cam kết cung cấp những giải
+                        pháp tốt nhất cho khách hàng. Với đội ngũ chuyên gia giàu kinh nghiệm và luôn cập nhật các xu
+                        hướng công nghệ mới nhất, TakaTech mang lại không chỉ sản phẩm chất lượng mà còn sự nhiệt huyết
+                        và đam mê công nghệ.
                     </p>
                     <Link to={routes.about}>
                         <Button className={cx('button')} primary rightIcon={<FontAwesomeIcon icon={faArrowRight} />}>

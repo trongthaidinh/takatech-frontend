@@ -1,5 +1,5 @@
 const images = {
-    logo: './logo_vnetc.png',
+    logo: './takateach-logo.png',
 };
 
 export default images;

@@ -117,7 +117,7 @@ function Products() {
     return (
         <div className={cx('container')}>
             <Helmet>
-                <title>Sản Phẩm: {categoryName} | VNETC</title>
+                <title>Sản Phẩm: {categoryName} | TAKATECH</title>
                 <meta name="description" content={`Khám phá các sản phẩm trong danh mục ${categoryName} tại VNETC.`} />
                 <meta name="keywords" content={`sản phẩm, ${categoryName}, VNETC`} />
             </Helmet>

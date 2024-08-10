@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { getNavigationLinks } from '~/services/navigationService';
 import styles from './Navigation.module.scss';
 import Search from '~/layouts/components/Search';
@@ -8,6 +8,7 @@ import PushNotification from '~/components/PushNotification';
 import LoadingScreen from '~/components/LoadingScreen';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes, faChevronRight, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import logo from '~/assets/images/takatech-logo.png';
 
 const cx = classNames.bind(styles);
 
@@ -67,6 +68,9 @@ function Navigation({ isFixed }) {
                 <div className={cx('mobile-menu-icon')} onClick={toggleMenu}>
                     <FontAwesomeIcon icon={isMenuOpen ? faTimes : faBars} />
                 </div>
+                <Link to="/">
+                    <img src={logo} alt="Logo" className={cx('logo')} />
+                </Link>
                 <ul className={cx('navigation-links', { open: isMenuOpen })}>
                     <li onClick={handleLinkClick}>
                         <NavLink end to="/" className={({ isActive }) => cx({ 'active-link': isActive })}>

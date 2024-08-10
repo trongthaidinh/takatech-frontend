@@ -77,7 +77,7 @@ const ProductDetail = () => {
     return (
         <article className={cx('wrapper')}>
             <Helmet>
-                <title>{productDetail.name} | VNETC</title>
+                <title>{productDetail.name} | TAKATECH</title>
                 <meta name="description" content={`Chi tiết về sản phẩm: ${productDetail.name}.`} />
                 <meta name="keywords" content={`sản phẩm, ${productDetail.name}, VNETC`} />
             </Helmet>

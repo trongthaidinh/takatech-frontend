@@ -53,7 +53,7 @@ const Introduction = () => {
     return (
         <article className={cx('wrapper')}>
             <Helmet>
-                <title>{pageContent.name} | VNETC</title>
+                <title>{pageContent.name} | TAKATECH</title>
                 <meta
                     name="description"
                     content={pageContent.description || 'Thông tin về trang giới thiệu của VNETC.'}

@@ -97,7 +97,7 @@ function Project() {
     return (
         <article className={cx('wrapper')}>
             <Helmet>
-                <title>Dự án và Năng lực | VNETC</title>
+                <title>Dự án và Năng lực | TAKATECH</title>
                 <meta name="description" content="Khám phá các dự án và năng lực của chúng tôi." />
             </Helmet>
             <div className={cx('project-section')}>

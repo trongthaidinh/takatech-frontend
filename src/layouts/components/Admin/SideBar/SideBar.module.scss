@@ -16,6 +16,7 @@
         }
 
         .logo {
+            margin-top: 8px;
             max-width: 60px;
         }
 
@@ -49,6 +50,10 @@
     padding: 10px 20px;
     background-color: var(--white);
     font-size: 1.6rem;
+
+    .logo {
+        width: 200px;
+    }
 
     span {
         color: var(--primary);

@@ -97,7 +97,7 @@ const Service = () => {
     return (
         <article className={cx('wrapper')}>
             <Helmet>
-                <title>Dịch vụ | VNETC</title>
+                <title>Dịch vụ | TAKATECH</title>
                 <meta name="description" content="Khám phá các dịch vụ mà chúng tôi cung cấp tại VNETC." />
                 <meta name="keywords" content="dịch vụ, VNETC" />
             </Helmet>

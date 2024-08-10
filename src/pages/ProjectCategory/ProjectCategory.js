@@ -113,7 +113,7 @@ function ProjectCategory() {
     return (
         <div className={cx('container')}>
             <Helmet>
-                <title>{`${categoryName} | VNETC`}</title>
+                <title>{`${categoryName} | TAKATECH`}</title>
                 <meta name="description" content={`Khám phá các dự án trong danh mục ${categoryName}.`} />
             </Helmet>
             <Title text={categoryName} />

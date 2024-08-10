@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 const About = () => (
     <article className={cx('wrapper')}>
         <Helmet>
-            <title>Giới thiệu | VNETC</title>
+            <title>Giới thiệu | TAKATECH</title>
             <meta name="description" content={'Thông tin về trang giới thiệu của VNETC.'} />
             <meta name="keywords" content="giới thiệu, VNETC, thông tin công ty" />
             <meta name="author" content="CÔNG TY CỔ PHẦN THÍ NGHIỆM CƠ ĐIỆN VIỆT NAM - VNETC" />

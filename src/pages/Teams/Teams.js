@@ -56,7 +56,7 @@ const TeamPage = () => {
     return (
         <div className={cx('teamPage')}>
             <Helmet>
-                <title>Đội Ngũ | VNETC</title>
+                <title>Đội Ngũ | TAKATECH</title>
                 <meta
                     name="description"
                     content="Tìm hiểu về đội ngũ của chúng tôi và những thành viên trong các phòng ban."

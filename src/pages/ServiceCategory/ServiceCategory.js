@@ -113,7 +113,7 @@ function ServiceCategory() {
     return (
         <div className={cx('container')}>
             <Helmet>
-                <title>{`${categoryName} | VNETC`}</title>
+                <title>{`${categoryName} | TAKATECH`}</title>
                 <meta
                     name="description"
                     content={`Khám phá dịch vụ ${categoryName} mà chúng tôi cung cấp tại VNETC.`}

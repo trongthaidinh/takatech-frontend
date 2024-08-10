@@ -59,11 +59,13 @@ const Banner = () => {
                         <SwiperSlide key={index} className={cx('slide')}>
                             <div className={cx('image-card')}>
                                 <img src={slide.image_url} alt={slide.title} className={cx('image')} />
-                                <div className={cx('contentContainer', slide.position)}>
-                                    <div className={cx('textWrapper')}>
-                                        <span className={cx('text')}>{slide.title}</span>
+                                {slide.title && (
+                                    <div className={cx('contentContainer', slide.position)}>
+                                        <div className={cx('textWrapper')}>
+                                            <span className={cx('text')}>{slide.title}</span>
+                                        </div>
                                     </div>
-                                </div>
+                                )}
                             </div>
                         </SwiperSlide>
                     ))}

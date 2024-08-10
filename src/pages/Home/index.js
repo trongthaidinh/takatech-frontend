@@ -12,7 +12,7 @@ import Partners from './Partners';
 const Home = () => (
     <article>
         <Helmet>
-            <title>Trang Chủ | VNETC </title>
+            <title>Trang Chủ | TAKATECH </title>
             <meta
                 name="description"
                 content="VNETC cung cấp sản phẩm, dịch vụ cơ điện chất lượng hàng đầu và tin tức mới nhất ngành điện lực."

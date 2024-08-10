@@ -70,7 +70,7 @@ const Products = () => {
     return (
         <article className={cx('wrapper')}>
             <Helmet>
-                <title>Sản Phẩm | VNETC</title>
+                <title>Sản Phẩm | TAKATECH</title>
                 <meta name="description" content="Xem các sản phẩm điện lực chất lượng cao tại VNETC." />
                 <meta name="keywords" content="sản phẩm điện lực, kiểm thử, VNETC, chất lượng cao" />
             </Helmet>

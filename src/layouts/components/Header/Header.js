@@ -12,11 +12,10 @@ function Header() {
     useEffect(() => {
         const handleScroll = () => {
             const topHeight = document.querySelector('.tophead-wrapper')?.offsetHeight || 0;
-            const bannerHeight = document.querySelector('.banner')?.offsetHeight || 0;
             const navHeight = document.querySelector('.navigation-wrapper')?.offsetHeight || 0;
             const extraScroll = 100;
 
-            const totalHeight = topHeight + bannerHeight + navHeight + extraScroll;
+            const totalHeight = topHeight + navHeight + extraScroll;
 
             if (window.scrollY >= totalHeight) {
                 setIsFixed(true);
@@ -36,7 +35,6 @@ function Header() {
             <div className="tophead-wrapper">
                 <Tophead />
             </div>
-            <div className={cx('banner')}></div>
             <div className="navigation-wrapper">
                 <Navigation isFixed={isFixed} />
             </div>

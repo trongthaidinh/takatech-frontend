@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope, faChevronRight, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookF, faTwitter, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
-import companyLogo from '~/assets/images/logo_vnetc.png';
+import companyLogo from '~/assets/images/takatech-logo.png';
 import styles from './Footer.module.scss';
 import classNames from 'classnames/bind';
 import io from 'socket.io-client';
@@ -41,8 +41,8 @@ const Footer = () => {
                     <Link to="/">
                         <img src={companyLogo} alt="Company Logo" className={cx('logo')} />
                     </Link>
-                    <h5>CÔNG TY CỔ PHẦN THÍ NGHIỆM CƠ ĐIỆN VIỆT NAM</h5>
-                    <p>Số 22 Trần Hữu Dực, tổ 5, Phường Tân Lợi, TP. Buôn Ma Thuột, Tỉnh Đắk Lắk, Việt Nam</p>
+                    <h5>CÔNG TY TNHH CÔNG NGHỆ TAKATECH</h5>
+                    <p>200 Hà Huy Tập, Phường Tân Lợi, Tp. Buôn Ma Thuột, Tỉnh Đắk Lắk</p>
                     <div className={cx('onlineStatus')}>
                         <span>
                             <FontAwesomeIcon className={cx('footer-icon-dot')} icon={faCircle} />
@@ -57,15 +57,15 @@ const Footer = () => {
                     <div className={cx('contactInfo')}>
                         <div className={cx('contactItem')}>
                             <FontAwesomeIcon icon={faPhone} />
-                            <span>+84 262 397 7171</span>
+                            <span>+84 914 586 999</span>
                         </div>
                         <div className={cx('contactItem')}>
                             <FontAwesomeIcon icon={faEnvelope} />
-                            <span>vietnam.etc.ltd@gmail.com</span>
+                            <span>taka.techsoft@gmail.com</span>
                         </div>
                     </div>
                     <div className={cx('socialIcons')}>
-                        <Link to="https://www.facebook.com/thinghiemcodien.vnetc/">
+                        <Link to="https://www.facebook.com/takatechsoft">
                             <FontAwesomeIcon icon={faFacebookF} />
                         </Link>
                         <Link to="https://twitter.com">
@@ -85,7 +85,7 @@ const Footer = () => {
                         <li>
                             <Link to={routes.about}>
                                 <FontAwesomeIcon className={cx('footer-chevon-icon')} icon={faChevronRight} />
-                                Tổng quan về VNETC
+                                Tổng quan về TakaTech
                             </Link>
                         </li>
                         <li>
@@ -162,12 +162,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className={cx('bottomBar')}>
-                <p>
-                    &copy; Copyright Công Ty Cổ Phần Thí Nghiệm Cơ Điện Việt Nam. All Rights Reserved. Thiết kế bởi{' '}
-                    <a href="https://www.takatech.com.vn/" target="_blank" rel="noopener noreferrer">
-                        Takatech
-                    </a>
-                </p>
+                <p>&copy; Copyright Công Ty TNHH Công Nghệ TakaTech. All Rights Reserved</p>
             </div>
         </footer>
     );

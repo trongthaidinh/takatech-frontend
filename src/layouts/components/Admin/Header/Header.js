@@ -85,7 +85,7 @@ const Header = () => {
 
     return (
         <div className={styles.header}>
-            <div className={styles.companyName}>CÔNG TY CỔ PHẦN THÍ NGHIỆM CƠ ĐIỆN VIỆT NAM - VNETC</div>
+            <div className={styles.companyName}>CÔNG TY TNHH CÔNG NGHỆ TAKATECH</div>
             <div
                 className={styles.iconWrapper}
                 ref={emailDropdownRef}
