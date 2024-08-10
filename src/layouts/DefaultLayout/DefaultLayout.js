@@ -22,16 +22,16 @@ function DefaultLayout({ children, baseRoute, categoryType }) {
                 </div>
                 <Footer />
                 <div className={cx('contact-buttons')}>
-                    <div className={cx('button', 'hotline')} onClick={() => (window.location.href = 'tel:0905174001')}>
+                    <div className={cx('button', 'hotline')} onClick={() => (window.location.href = 'tel:0914586999')}>
                         <FontAwesomeIcon icon={faPhone} />
                     </div>
                     <div
                         className={cx('button', 'zalo')}
-                        onClick={() => (window.location.href = 'https://zalo.me/0905174001')}
+                        onClick={() => (window.location.href = 'https://zalo.me/0914586999')}
                     ></div>
                     <div
                         className={cx('button', 'facebook')}
-                        onClick={() => (window.location.href = 'https://www.facebook.com/thinghiemcodien.vnetc/')}
+                        onClick={() => (window.location.href = 'https://www.facebook.com/takatechsoft')}
                     >
                         <FontAwesomeIcon icon={faFacebookF} />
                     </div>
