@@ -16,6 +16,7 @@ const EditNavigation = () => {
     const [navigation, setNavigation] = useState(null);
     const [title, setTitle] = useState('');
     const [type, setType] = useState(2);
+    const [position, setPosition] = useState(0);
     const [loading, setLoading] = useState(false);
     const [notificationMessage, setNotificationMessage] = useState('');
     const [isError, setIsError] = useState(false);
@@ -28,6 +29,7 @@ const EditNavigation = () => {
                 setNavigation(data);
                 setTitle(data.title);
                 setType(data.parentNavId ? 1 : 2);
+                setPosition(data.position);
             } catch (error) {
                 setIsError(true);
                 setNotificationMessage('Có lỗi xảy ra khi tải dữ liệu!');
@@ -60,7 +62,7 @@ const EditNavigation = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            await updateNavigationLink(id, { title, type });
+            await updateNavigationLink(id, { title, type, position });
             setIsError(false);
             setTimeout(() => {
                 navigate(routes.navigationList);
@@ -98,6 +100,17 @@ const EditNavigation = () => {
                         type="text"
                         value={type === 2 ? 'Navigation Chính' : 'Navigation Phụ'}
                         readOnly
+                        className={styles.inputField}
+                    />
+                </div>
+                <div className={styles.formGroup}>
+                    <label htmlFor="position">Vị trí</label>
+                    <input
+                        type="number"
+                        id="position"
+                        value={position}
+                        onChange={(e) => setPosition(parseInt(e.target.value, 10))}
+                        required
                         className={styles.inputField}
                     />
                 </div>

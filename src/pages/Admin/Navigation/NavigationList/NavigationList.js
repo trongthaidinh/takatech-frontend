@@ -13,7 +13,7 @@ const NavigationList = () => {
     const [notification, setNotification] = useState({ message: '', type: '' });
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(10); // Default items per page
+    const [itemsPerPage, setItemsPerPage] = useState(10);
 
     const fetchNavigations = async () => {
         try {
@@ -32,7 +32,7 @@ const NavigationList = () => {
         if (window.confirm('Are you sure you want to delete this navigation?')) {
             try {
                 await deleteNavigationLink(type, id);
-                await fetchNavigations(); // Re-fetch the navigations after deletion
+                await fetchNavigations();
                 setNotification({ message: 'Navigation đã xóa thành công', type: 'success' });
             } catch (error) {
                 console.error('Error deleting navigation:', error);

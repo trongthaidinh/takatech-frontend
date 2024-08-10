@@ -45,7 +45,7 @@
     width: 50%;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 24px;
 
     @include respond-to(lg) {
         width: 100%;

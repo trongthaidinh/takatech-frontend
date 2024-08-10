@@ -27,12 +27,14 @@ const AddNavigation = () => {
         title: '',
         type: '',
         parentNavId: '',
+        position: '',
     };
 
     const validationSchema = Yup.object({
         title: Yup.string().required('Vui lòng nhập tiêu đề!'),
         type: Yup.number().required('Vui lòng chọn loại Navigation!').oneOf([1, 2], 'Chọn loại không hợp lệ!'),
         parentNavId: Yup.string(),
+        position: Yup.number().required('Vui lòng nhập vị trí!').integer().min(0, 'Vị trí không hợp lệ!'),
     });
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
@@ -104,6 +106,12 @@ const AddNavigation = () => {
                                     <ErrorMessage name="parentNavId" component="div" className={styles.errorMessage} />
                                 </div>
                             )}
+
+                            <div className={styles.formItem}>
+                                <label htmlFor="position">Vị trí</label>
+                                <Field name="position" type="number" />
+                                <ErrorMessage name="position" component="div" className={styles.errorMessage} />
+                            </div>
 
                             <div className={styles.buttonContainer}>
                                 <button type="submit" disabled={isSubmitting} className={styles.submitButton}>
