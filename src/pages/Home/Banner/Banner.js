@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { getConfiguration } from '~/services/configurationService';
+import { getConfiguration, getConfigurationMobile } from '~/services/configurationService';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -18,7 +18,8 @@ const Banner = () => {
 
     const fetchSlides = useCallback(async () => {
         try {
-            const configData = await getConfiguration();
+            const isMobile = window.innerWidth < 768;
+            const configData = isMobile ? await getConfigurationMobile() : await getConfiguration();
             const sliderData = JSON.parse(configData.homepage_slider);
             setSlides(sliderData);
         } catch (error) {
@@ -28,6 +29,10 @@ const Banner = () => {
 
     useEffect(() => {
         fetchSlides();
+        window.addEventListener('resize', fetchSlides);
+        return () => {
+            window.removeEventListener('resize', fetchSlides);
+        };
     }, [fetchSlides]);
 
     if (slides.length === 0) {
