@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
@@ -6,10 +6,35 @@ import classNames from 'classnames/bind';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import styles from './OnlyHeaderLayout.module.scss';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
 function OnlyHeaderLayout({ children }) {
+    const [isVisible, setIsVisible] = useState(false);
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 300) {
+                setIsVisible(true);
+            } else {
+                setIsVisible(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
         <div className={cx('wrapper')}>
             <Header />
@@ -32,6 +57,11 @@ function OnlyHeaderLayout({ children }) {
                     <FontAwesomeIcon icon={faFacebookF} />
                 </div>
             </div>
+            {isVisible && (
+                <div className={cx('scroll-to-top')} onClick={scrollToTop}>
+                    <FontAwesomeIcon icon={faChevronUp} className={cx('icon')} />
+                </div>
+            )}
         </div>
     );
 }

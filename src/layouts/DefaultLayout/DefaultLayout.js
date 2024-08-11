@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import Header from '../components/Header';
 import SideBar from '../components/SideBar';
@@ -8,10 +8,35 @@ import { BaseRouteProvider } from '~/context/BaseRouteContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
 function DefaultLayout({ children, baseRoute, categoryType }) {
+    const [isVisible, setIsVisible] = useState(false);
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 300) {
+                setIsVisible(true);
+            } else {
+                setIsVisible(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
         <BaseRouteProvider baseRoute={baseRoute}>
             <div className={cx('wrapper')}>
@@ -36,6 +61,12 @@ function DefaultLayout({ children, baseRoute, categoryType }) {
                         <FontAwesomeIcon icon={faFacebookF} />
                     </div>
                 </div>
+
+                {isVisible && (
+                    <div className={cx('scroll-to-top')} onClick={scrollToTop}>
+                        <FontAwesomeIcon icon={faChevronUp} className={cx('icon')} />
+                    </div>
+                )}
             </div>
         </BaseRouteProvider>
     );

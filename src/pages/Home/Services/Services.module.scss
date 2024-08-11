@@ -21,6 +21,20 @@
 }
 
 .slide-wrapper {
+    width: 100%;
+}
+
+.swiper-container {
+    width: 100%;
+}
+
+.slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide-wrapper {
     margin-top: 40px;
 }
 
@@ -33,12 +47,7 @@
 .service-item {
     display: flex;
     flex-direction: column;
-
     margin-bottom: 20px;
-
-    @include respond-to(lg) {
-        height: 500px;
-    }
 }
 
 .image-container {
@@ -56,4 +65,40 @@
     text-align: center;
     margin-top: 12px;
     text-transform: uppercase;
+}
+
+.service-layout {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap: 20px;
+
+    .service-image {
+        flex: 1;
+        margin-right: 20px;
+        margin-bottom: 40px;
+
+        img {
+            width: 100%;
+            border-radius: 8px;
+        }
+    }
+
+    .service-content {
+        flex: 2;
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        p {
+            font-size: 1.6rem;
+            line-height: 1.5;
+            color: var(--text-color);
+            margin-top: 20px;
+            margin-bottom: 40px;
+            text-align: justify;
+            line-height: 2.2;
+        }
+    }
 }

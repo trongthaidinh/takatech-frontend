@@ -106,16 +106,25 @@ function Teams() {
                             spaceBetween={20}
                             slidesPerView={slidesPerView}
                             breakpoints={{
-                                1280: { slidesPerView: 4 },
-                                1024: { slidesPerView: 3 },
+                                1280: { slidesPerView: 3 },
+                                1024: { slidesPerView: 2 },
                                 768: { slidesPerView: 2 },
                                 0: { slidesPerView: 1 },
                             }}
+                            centeredSlides={true}
                             loop={true}
                             modules={[Autoplay]}
                             autoplay={{
                                 delay: 2000,
                                 disableOnInteraction: false,
+                            }}
+                            onSlideChange={(swiper) => {
+                                const slides = swiper.slides;
+                                slides.forEach((slide, index) => {
+                                    const isActive = index === swiper.activeIndex;
+                                    slide.style.transform = isActive ? 'scale(1.1)' : 'scale(0.9)';
+                                    slide.style.opacity = isActive ? '1' : '0.5';
+                                });
                             }}
                         >
                             {teamsArr[currentDepartment]?.map((team, index) => (

@@ -34,15 +34,10 @@ function DateTime({ timestamp, views = 0, showDate = true, showTime = true, show
         <div className={cx('info')}>
             <FontAwesomeIcon icon={faCalendarCheck} className={cx('icon')} />
             <span>
+                {showViews && <span className={cx('views')}>Tech News</span>}
+                {showViews && `| `}
                 {showTime && time && `${time} `}
                 {showDate && date && `| ${date} `}
-                {showViews && `| `}
-                {showViews && (
-                    <span className={cx('views')}>
-                        <span className={cx('views-number')}>{views}</span>
-                        <span> người đã đọc</span>
-                    </span>
-                )}
             </span>
         </div>
     );

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styles from './Partners.module.scss';
 import classNames from 'classnames/bind';
 import { getPartners } from '~/services/partnerService';
-import Title from '~/components/Title';
 import PushNotification from '~/components/PushNotification';
 import LoadingScreen from '~/components/LoadingScreen';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -44,7 +43,6 @@ function Partners() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Title text="Đối tác" />
                 <Swiper
                     spaceBetween={20}
                     slidesPerView={4}

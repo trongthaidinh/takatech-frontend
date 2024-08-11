@@ -2,11 +2,11 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import styles from './Overview.module.scss';
-import CardItem from './CardItem';
 import Button from '~/components/Button';
-import images from '~/assets/images/overview-card';
 import { Link } from 'react-router-dom';
 import routes from '~/config/routes';
+import overviewGif from '~/assets/images/overview';
+
 const cx = classNames.bind(styles);
 
 function Overview() {
@@ -32,16 +32,8 @@ function Overview() {
                         </Button>
                     </Link>
                 </div>
-                <div className={cx('cards')}>
-                    {images.map((image, index) => (
-                        <CardItem
-                            title={image.title}
-                            key={index}
-                            image={image.imgURL}
-                            alt={image.imgAlt}
-                            link={image.path}
-                        />
-                    ))}
+                <div className={cx('sticker-container')}>
+                    <img className={cx('sticker')} src={overviewGif.gif} alt="Animated Sticker" />
                 </div>
             </div>
         </div>

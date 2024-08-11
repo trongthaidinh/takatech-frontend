@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import Overview from './Overview';
 import Products from './Products';
 import Services from './Services';
-import Projects from './Projects';
+// import Projects from './Projects';
 import NewsLibrary from './NewsLibrary';
 import Banner from './Banner';
 import Teams from './Teams';
@@ -22,11 +22,11 @@ const Home = () => (
         </Helmet>
         <Banner />
         <Overview />
-        <Services />
         <Products />
-        <Projects />
-        <NewsLibrary />
+        <Services />
+        {/* <Projects /> */}
         <Teams />
+        <NewsLibrary />
         <Partners />
     </article>
 );

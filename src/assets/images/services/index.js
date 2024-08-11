@@ -1,6 +1,6 @@
 import routes from '~/config/routes';
 
-const services = [
+export const services = [
     {
         imgURL: require('~/assets/images/services/1.png'),
         imgAlt: 'logo image',
@@ -33,4 +33,9 @@ const services = [
     },
 ];
 
-export default services;
+export const developImg = [
+    {
+        imgURL: require('~/assets/images/services/develop.png'),
+        imgAlt: 'image develop',
+    },
+];

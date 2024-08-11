@@ -21,8 +21,16 @@
         margin: 0 8px 3px 0;
     }
 
-    .views-number {
-        color: var(--secondary);
-        font-weight: 500;
+    .views {
+        padding: 2px 4px;
+        border: 1px solid rgb(57, 126, 149);
+        border-radius: 20px;
+        color: transparent;
+        margin-right: 4px;
+        background: white;
+        overflow: hidden;
+        background: linear-gradient(90deg, rgb(57, 126, 149) 0%, rgba(255, 165, 0, 1) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
     }
 }

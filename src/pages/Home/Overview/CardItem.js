@@ -5,13 +5,10 @@ import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function CardItem({ image, title, link, alt }) {
+function CardItem({ image, link, alt }) {
     return (
         <Link to={link} className={cx('card-item')}>
             <img className={cx('card-item-image')} src={image} alt={alt} />
-            <div className={cx('card-item-overlay')}>
-                <span className={cx('card-item-title')}>{title}</span>
-            </div>
         </Link>
     );
 }

@@ -2,14 +2,21 @@
 @import '../../styles/variables';
 
 .card {
-    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 2px 4px 12px #00000014;
     margin: 0 8px;
+
+    &:hover {
+        .card_image {
+            transform: scale(1.1);
+        }
+    }
 }
 
 .card_image-wrapper {
     overflow: hidden;
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
 }
 
 .card_image {
@@ -17,10 +24,7 @@
     height: 220px;
     display: block;
     object-fit: cover;
-    transition: transform 0.3s;
-    &:hover {
-        transform: scale(1.1);
-    }
+    transition: all 0.3s ease-in-out;
 
     @include respond-to(lg) {
         height: 280px;
@@ -35,7 +39,7 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    padding: 1.6rem;
+    padding: 1.6rem 0;
     background-color: #fff;
     color: var(--text-color);
     font-size: 1.6rem;
