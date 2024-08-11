@@ -20,7 +20,6 @@ function Title({ text, showSeeAll = false, slug, categoryId }) {
                     <button className={cx('see-all')}>Xem tất cả</button>
                 </Link>
             )}
-            <div className={cx('line')} />
         </div>
     );
 }

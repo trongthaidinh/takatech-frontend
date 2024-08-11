@@ -95,13 +95,16 @@ const EditNavigation = () => {
                     />
                 </div>
                 <div className={styles.formGroup}>
-                    <label>Loại Navigation</label>
-                    <input
-                        type="text"
-                        value={type === 2 ? 'Navigation Chính' : 'Navigation Phụ'}
-                        readOnly
+                    <label htmlFor="type">Loại Navigation</label>
+                    <select
+                        id="type"
+                        value={type}
+                        onChange={(e) => setType(parseInt(e.target.value, 10))}
                         className={styles.inputField}
-                    />
+                    >
+                        <option value={2}>Navigation chính</option>
+                        <option value={1}>Navigation phụ</option>
+                    </select>
                 </div>
                 <div className={styles.formGroup}>
                     <label htmlFor="position">Vị trí</label>
