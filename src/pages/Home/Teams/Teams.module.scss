@@ -46,6 +46,10 @@
         &:hover {
             transform: scale(1.05);
         }
+
+        @include respond-to(sm) {
+            margin-top: 40px;
+        }
     }
 
     .team-card {

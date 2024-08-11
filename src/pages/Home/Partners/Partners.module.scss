@@ -29,7 +29,9 @@
     text-align: center;
     padding: 10px;
     transition: transform 0.3s ease-in-out;
-
+    @include respond-to(lg) {
+        margin: 20px;
+    }
     &:hover {
         transform: translateY(-5px);
     }

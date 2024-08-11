@@ -4,12 +4,18 @@
 .button-group {
     display: flex;
     gap: 10px;
+
+    @include respond-to(sm) {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 .button {
     min-width: 120px;
     padding: 8px 16px;
     border: none;
+    font-size: 1.6rem;
     border-top: 1px solid rgb(84, 168, 197);
     border-bottom: 1px solid rgb(84, 168, 197);
     border-width: 100%;
@@ -24,8 +30,10 @@
     cursor: pointer;
 
     @include respond-to(sm) {
-        padding: 6px 10px;
-        min-width: 70px;
+        padding: 6px 4px;
+        font-size: 1.2rem;
+        min-height: 40px;
+        min-width: 20px;
     }
 
     &.active {
