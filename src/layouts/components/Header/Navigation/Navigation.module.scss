@@ -271,6 +271,12 @@
 
                 &.open {
                     display: flex;
+                    max-height: 100vh;
+                    overflow-y: auto;
+                    transition: max-height 0.3s ease;
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
                 }
             }
 

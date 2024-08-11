@@ -141,7 +141,7 @@ function Navigation({ isFixed }) {
                                                     className={({ isActive }) => cx({ 'active-link': isActive })}
                                                     onClick={toggleMenu}
                                                 >
-                                                    {childLink.title} {/* Không hiển thị icon cho các mục con */}
+                                                    {childLink.title}
                                                 </NavLink>
                                             </li>
                                         ))}
