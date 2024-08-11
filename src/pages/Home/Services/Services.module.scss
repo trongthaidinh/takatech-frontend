@@ -72,14 +72,28 @@
     grid-template-columns: 40% 60%;
     gap: 20px;
 
+    @include respond-to(lg) {
+        grid-template-columns: 100%;
+    }
+
     .service-image {
         flex: 1;
         margin-right: 20px;
         margin-bottom: 40px;
 
+        @include respond-to(lg) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0px;
+        }
+
         img {
             width: 100%;
             border-radius: 8px;
+            @include respond-to(lg) {
+                width: 60%;
+            }
         }
     }
 
@@ -89,6 +103,10 @@
             font-size: 2.2rem;
             margin-bottom: 20px;
             text-align: left;
+            @include respond-to(lg) {
+                margin-top: 40px;
+                font-size: 3.2rem;
+            }
         }
 
         p {
