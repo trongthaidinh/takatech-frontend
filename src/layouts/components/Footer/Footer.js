@@ -162,7 +162,13 @@ const Footer = () => {
                 </div>
             </div>
             <div className={cx('bottomBar')}>
-                <p>&copy; Copyright Công Ty TNHH Công Nghệ TakaTech. All Rights Reserved</p>
+                <p>
+                    Copyright 2024 &copy;{' '}
+                    <a href="https://www.takatech.com.vn/" className={cx('company-name')}>
+                        TakaTech
+                    </a>
+                    . All Rights Reserved.
+                </p>
             </div>
         </footer>
     );

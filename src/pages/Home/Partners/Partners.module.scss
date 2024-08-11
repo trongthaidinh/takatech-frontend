@@ -2,7 +2,11 @@
 @import '../../../styles/variables';
 
 .wrapper {
-    padding: 20px;
+    margin: 60px 0 0 0;
+    background: url('../../../assets/images/background-section.png');
+    background-repeat: no-repeat;
+    background-clip: border-box;
+    background-size: cover;
 }
 
 .inner {
@@ -14,8 +18,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 80px;
-    margin-bottom: 20px;
+    padding: 80px 0;
 }
 
 .partner-card {

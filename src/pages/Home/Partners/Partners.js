@@ -63,9 +63,6 @@ function Partners() {
                         <SwiperSlide key={index} className={cx('slide')}>
                             <div className={cx('partner-card')}>
                                 <img src={partner.logo} alt={`Partner ${index}`} className={cx('partner-image')} />
-                                <div className={cx('partner-info')}>
-                                    <p className={cx('partner-position')}>{partner.position}</p>
-                                </div>
                             </div>
                         </SwiperSlide>
                     ))}
