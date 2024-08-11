@@ -63,7 +63,7 @@ function Navigation({ isFixed }) {
         setIsMenuOpen(!isMenuOpen);
     };
 
-    const handleLinkClick = () => {
+    const handleLinkClick = (id) => {
         if (isMenuOpen) {
             toggleMenu();
         }
@@ -115,7 +115,7 @@ function Navigation({ isFixed }) {
                                         end
                                         to={`/${link.slug}`}
                                         className={({ isActive }) => cx({ 'active-link': isActive })}
-                                        onClick={handleLinkClick}
+                                        onClick={() => toggleSubMenu(link._id)}
                                     >
                                         <div className={cx('item-icon')}>
                                             {iconData && (
