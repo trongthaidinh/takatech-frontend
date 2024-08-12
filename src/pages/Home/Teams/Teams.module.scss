@@ -3,11 +3,6 @@
 
 .wrapper {
     margin-top: 60px;
-    background: url('../../../assets/images/background-section.png');
-    background-repeat: no-repeat;
-    background-clip: border-box;
-    background-size: cover;
-    padding: 100px 20px;
 
     @include respond-to(sm) {
         padding: 40px 20px;
