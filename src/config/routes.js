@@ -56,7 +56,7 @@ const routes = {
     services: '/dich-vu',
     serviceDetail: '/dich-vu/:category/:id',
     servicesCategory: `/dich-vu/:slug`,
-    teams: '/doi-ngu',
+    recruitment: '/tuyen-dung',
     error404: '/404',
     contact: '/lien-he',
 };

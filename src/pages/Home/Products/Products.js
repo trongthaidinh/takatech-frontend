@@ -7,7 +7,7 @@ import Title from '~/components/Title';
 import LoadingScreen from '~/components/LoadingScreen';
 import PushNotification from '~/components/PushNotification';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -62,11 +62,12 @@ function Products() {
                     }}
                     loop={true}
                     centeredSlides={true}
-                    modules={[Autoplay]}
+                    modules={[Autoplay, Pagination]}
                     autoplay={{
                         delay: 5000,
                         disableOnInteraction: false,
                     }}
+                    pagination
                     className={cx('swiper-container')}
                     onSlideChange={(swiper) => {
                         const slides = swiper.slides;

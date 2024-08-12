@@ -8,7 +8,7 @@ import LoadingScreen from '~/components/LoadingScreen';
 import ButtonGroup from '~/components/ButtonGroup';
 import TeamModal from '~/components/TeamModal';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 
@@ -113,11 +113,12 @@ function Teams() {
                             }}
                             centeredSlides={true}
                             loop={true}
-                            modules={[Autoplay]}
+                            modules={[Autoplay, Pagination]}
                             autoplay={{
                                 delay: 2000,
                                 disableOnInteraction: false,
                             }}
+                            pagination
                             onSlideChange={(swiper) => {
                                 const slides = swiper.slides;
                                 slides.forEach((slide, index) => {

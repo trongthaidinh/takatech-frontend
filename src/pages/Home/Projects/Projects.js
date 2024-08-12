@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import { getProjects } from '~/services/projectService';
 import { getCategoriesByType } from '~/services/categoryService';
-import CardContent from '~/components/CardContent';
 import Title from '~/components/Title';
 import PushNotification from '~/components/PushNotification';
 import LoadingScreen from '~/components/LoadingScreen';
 import { Link } from 'react-router-dom';
 import routes from '~/config/routes';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import styles from './Projects.module.scss';
@@ -55,34 +54,44 @@ function Projects() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Title text="Dự án và năng lực" showSeeAll={true} slug={`${routes.projects}`} />
+                <Title text="Dự án" showSeeAll={true} slug={`${routes.projects}`} />
                 <Swiper
                     spaceBetween={10}
-                    slidesPerView={3}
                     breakpoints={{
-                        1280: { slidesPerView: 3 },
-                        1024: { slidesPerView: 3 },
-                        768: { slidesPerView: 2 },
+                        1280: { slidesPerView: 1 },
+                        1024: { slidesPerView: 1 },
+                        768: { slidesPerView: 1 },
                         0: { slidesPerView: 1 },
                     }}
                     loop={true}
-                    modules={[Autoplay]}
+                    centeredSlides={true}
+                    modules={[Autoplay, Pagination]}
                     autoplay={{
-                        delay: 2000,
+                        delay: 5000,
                         disableOnInteraction: false,
+                    }}
+                    pagination
+                    className={cx('swiper-container')}
+                    onSlideChange={(swiper) => {
+                        const slides = swiper.slides;
+                        slides.forEach((slide, index) => {
+                            const isActive = index === swiper.activeIndex;
+                            slide.style.transform = isActive ? 'scale(1.1)' : 'scale(0.9)';
+                            slide.style.opacity = isActive ? '1' : '0.5';
+                        });
                     }}
                 >
                     {projects.map((project, index) => (
                         <SwiperSlide key={index} className={cx('slide')}>
-                            <Link to={`${routes.projects}/${getCategorySlug(project)}/${project._id}`}>
-                                <CardContent
-                                    title={project.name}
-                                    summary={project.summary}
-                                    image={project.image}
-                                    createdAt={project.createdAt}
-                                    views={project.views}
-                                />
-                            </Link>
+                            <div className={cx('project')}>
+                                <Link to={`${routes.projects}/${getCategorySlug(project)}/${project._id}`}>
+                                    <h3 className={cx('project-name')}>{project.name}</h3>
+                                    <img src={project.image} alt={project.name} className={cx('project-image')} />
+                                    <p className={cx('project-des')}>
+                                        {project.summary || 'No description available.'}
+                                    </p>
+                                </Link>
+                            </div>
                         </SwiperSlide>
                     ))}
                 </Swiper>

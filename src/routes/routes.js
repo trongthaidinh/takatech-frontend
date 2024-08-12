@@ -15,7 +15,7 @@ import Products from '~/pages/Products';
 import Error404 from '~/pages/Error404';
 import ProjectCategory from '~/pages/ProjectCategory';
 import Contact from '~/pages/Contact';
-import Teams from '~/pages/Teams';
+import Recruitment from '~/pages/Recruitment';
 import IndustryNews from '~/pages/IndustryNews';
 import NewsDetail from '~/pages/NewsDetail';
 import ProductDetail from '~/pages/ProductDetail';
@@ -126,8 +126,8 @@ const publicRoutes = [
     { path: config.routes.error404, component: Error404, layout: NothingLayout },
     { path: config.routes.contact, component: Contact, layout: OnlyHeaderLayout },
     {
-        path: config.routes.teams,
-        component: Teams,
+        path: config.routes.recruitment,
+        component: Recruitment,
         layout: OnlyHeaderLayout,
     },
 ];
