@@ -5,7 +5,7 @@ import { getDepartmentMembers, getDepartments } from '~/services/teamService';
 import Title from '~/components/Title';
 import PushNotification from '~/components/PushNotification';
 import LoadingScreen from '~/components/LoadingScreen';
-import ButtonGroup from '~/components/ButtonGroup';
+// import ButtonGroup from '~/components/ButtonGroup';
 import TeamModal from '~/components/TeamModal';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
@@ -15,7 +15,7 @@ import 'swiper/css/autoplay';
 const cx = classNames.bind(styles);
 
 function Teams() {
-    const [departments, setDepartments] = useState([]);
+    // const [departments, setDepartments] = useState([]);
     const [teamsArr, setTeams] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -28,7 +28,7 @@ function Teams() {
             setLoading(true);
             try {
                 const departments = await getDepartments();
-                setDepartments(departments);
+                // setDepartments(departments);
 
                 const allTeams = {};
                 for (const department of departments) {
@@ -88,19 +88,19 @@ function Teams() {
         setSelectedTeam(null);
     };
 
-    const handleButtonClick = (departmentId) => {
-        setCurrentDepartment(departmentId);
-    };
+    // const handleButtonClick = (departmentId) => {
+    //     setCurrentDepartment(departmentId);
+    // };
 
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <Title text="Đội ngũ" />
                 <div className={cx('slide-wrapper')}>
-                    <ButtonGroup
+                    {/* <ButtonGroup
                         buttons={departments.map((department) => department.name)}
                         onButtonClick={(index) => handleButtonClick(departments[index]._id)}
-                    />
+                    /> */}
                     {currentDepartment && (
                         <Swiper
                             spaceBetween={20}

@@ -8,7 +8,6 @@ import NewsLibrary from './NewsLibrary';
 import Banner from './Banner';
 import Teams from './Teams';
 import Partners from './Partners';
-import Projects from './Projects';
 
 const Home = () => (
     <article>
@@ -25,7 +24,7 @@ const Home = () => (
         <Overview />
         <Products />
         <Services />
-        <Projects />
+        {/* <Projects /> */}
         <NewsLibrary />
         <Teams />
         <Partners />
