@@ -137,6 +137,19 @@
                     .dropdown {
                         display: none;
                     }
+
+                    &:hover .dropdown {
+                        display: flex;
+                        flex-direction: column;
+                        background-color: var(--primary);
+                        transform: translateY(-12px);
+                        opacity: 0;
+                        animation: slideDown 0.3s forwards ease-in-out;
+
+                        @include respond-to(lg) {
+                            display: none;
+                        }
+                    }
                 }
 
                 a {
@@ -193,16 +206,14 @@
                         }
                     }
 
-                    &.open {
-                        // Dành cho màn hình nhỏ hơn lg
-                        @media (max-width: 1280px) {
+                    @include respond-to(lg) {
+                        &.open {
                             display: flex;
                             flex-direction: column;
                             width: 100%;
                             position: static;
                             box-shadow: none;
                             background-color: none;
-
                             li {
                                 background-color: var(--primary);
                                 height: auto;
@@ -217,15 +228,6 @@
                                     font-size: 14px;
                                 }
                             }
-                        }
-
-                        @media (min-width: 1280px) {
-                            display: flex;
-                            flex-direction: column;
-                            background-color: var(--primary);
-                            transform: translateY(-12px);
-                            opacity: 0;
-                            animation: slideDown 0.3s forwards ease-in-out;
                         }
                     }
                 }
