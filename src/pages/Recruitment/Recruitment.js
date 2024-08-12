@@ -37,11 +37,14 @@ const Recruitment = () => {
 
                 await Promise.all(
                     categoriesData.map(async (category) => {
-                        const recruitmentData = await getRecruitmentByCategory(category._id);
-                        groupedRecruitmentMap[category._id] = recruitmentData.map((item) => ({
-                            ...item,
-                            image: item.images,
-                        }));
+                        if (category.slug === 'tuyen-dung') {
+                            // Kiểm tra slug
+                            const recruitmentData = await getRecruitmentByCategory(category._id);
+                            groupedRecruitmentMap[category._id] = recruitmentData.map((item) => ({
+                                ...item,
+                                image: item.images,
+                            }));
+                        }
                     }),
                 );
 
@@ -99,49 +102,53 @@ const Recruitment = () => {
                 <div className={cx('recruitment-column')}>
                     <h2 className={cx('recruitment-title')}>Tuyển dụng</h2>
                     {categories.map((category) => {
-                        const slides = groupedRecruitment[category._id]?.slice(0, 6) || [];
-                        const shouldLoop = slides.length > 3;
+                        if (category.slug === 'tuyen-dung') {
+                            // Chỉ hiển thị loại tin có slug là "tuyen-dung"
+                            const slides = groupedRecruitment[category._id]?.slice(0, 6) || [];
+                            const shouldLoop = slides.length > 3;
 
-                        return (
-                            <div key={category._id} className={cx('recruitment-category')}>
-                                <Title
-                                    text={category.name || 'Loading...'}
-                                    showSeeAll={true}
-                                    slug={`${routes.recruitment}/${category.slug}`}
-                                    categoryId={category._id}
-                                />
-                                <Swiper
-                                    spaceBetween={10}
-                                    slidesPerView={3}
-                                    breakpoints={{
-                                        1280: { slidesPerView: 3 },
-                                        1024: { slidesPerView: 3 },
-                                        768: { slidesPerView: 2 },
-                                        0: { slidesPerView: 1 },
-                                    }}
-                                    loop={shouldLoop}
-                                    modules={[Autoplay]}
-                                    autoplay={{
-                                        delay: 2000,
-                                        disableOnInteraction: false,
-                                    }}
-                                >
-                                    {groupedRecruitment[category._id]?.slice(0, 6).map((item, index) => (
-                                        <SwiperSlide key={index} className={cx('slide')}>
-                                            <Link to={`${routes.recruitment}/${category.slug}/${item._id}`}>
-                                                <Card
-                                                    title={item.title}
-                                                    summary={item.summary}
-                                                    image={item.images}
-                                                    createdAt={item.createdAt}
-                                                    views={item.views}
-                                                />
-                                            </Link>
-                                        </SwiperSlide>
-                                    ))}
-                                </Swiper>
-                            </div>
-                        );
+                            return (
+                                <div key={category._id} className={cx('recruitment-category')}>
+                                    <Title
+                                        text={category.name || 'Loading...'}
+                                        showSeeAll={true}
+                                        slug={`${routes.recruitment}/${category.slug}`}
+                                        categoryId={category._id}
+                                    />
+                                    <Swiper
+                                        spaceBetween={10}
+                                        slidesPerView={3}
+                                        breakpoints={{
+                                            1280: { slidesPerView: 3 },
+                                            1024: { slidesPerView: 3 },
+                                            768: { slidesPerView: 2 },
+                                            0: { slidesPerView: 1 },
+                                        }}
+                                        loop={shouldLoop}
+                                        modules={[Autoplay]}
+                                        autoplay={{
+                                            delay: 2000,
+                                            disableOnInteraction: false,
+                                        }}
+                                    >
+                                        {groupedRecruitment[category._id]?.slice(0, 6).map((item, index) => (
+                                            <SwiperSlide key={index} className={cx('slide')}>
+                                                <Link to={`${routes.recruitment}/${category.slug}/${item._id}`}>
+                                                    <Card
+                                                        title={item.title}
+                                                        summary={item.summary}
+                                                        image={item.images}
+                                                        createdAt={item.createdAt}
+                                                        views={item.views}
+                                                    />
+                                                </Link>
+                                            </SwiperSlide>
+                                        ))}
+                                    </Swiper>
+                                </div>
+                            );
+                        }
+                        return null; // Không hiển thị các loại tin khác
                     })}
                 </div>
                 <div className={cx('suggest')}>

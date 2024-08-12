@@ -70,10 +70,30 @@ function Navigation({ isFixed }) {
     };
 
     const toggleSubMenu = (id) => {
-        setOpenSubMenus((prevState) => ({
-            ...prevState,
-            [id]: !prevState[id],
-        }));
+        if (window.innerWidth < 1280) {
+            setOpenSubMenus((prevState) => ({
+                ...prevState,
+                [id]: !prevState[id],
+            }));
+        }
+    };
+
+    const handleMouseEnter = (id) => {
+        if (window.innerWidth >= 1280) {
+            setOpenSubMenus((prevState) => ({
+                ...prevState,
+                [id]: true,
+            }));
+        }
+    };
+
+    const handleMouseLeave = (id) => {
+        if (window.innerWidth >= 1280) {
+            setOpenSubMenus((prevState) => ({
+                ...prevState,
+                [id]: false,
+            }));
+        }
     };
 
     if (error) {
@@ -112,7 +132,9 @@ function Navigation({ isFixed }) {
                             <li
                                 key={link._id}
                                 className={cx({ 'has-children': link.childs.length > 0 })}
-                                onClick={() => toggleSubMenu(link._id)}
+                                onMouseEnter={() => handleMouseEnter(link._id)} // Hover event
+                                onMouseLeave={() => handleMouseLeave(link._id)} // Leave event
+                                onClick={() => toggleSubMenu(link._id)} // Click event for mobile
                             >
                                 <div className={cx('menu-item')}>
                                     <NavLink
