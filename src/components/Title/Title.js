@@ -17,7 +17,7 @@ function Title({ text, showSeeAll = false, slug, categoryId }) {
                         state: { categoryId },
                     }}
                 >
-                    <button className={cx('see-all')}>Xem tất cả</button>
+                    <button className={cx('see-all')}>Xem thêm</button>
                 </Link>
             )}
         </div>

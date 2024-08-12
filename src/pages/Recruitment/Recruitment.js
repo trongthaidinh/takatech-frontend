@@ -90,13 +90,15 @@ const Recruitment = () => {
     return (
         <article className={cx('wrapper')}>
             <Helmet>
-                <title>Tin Tức | TAKATECH</title>
-                <meta name="description" content="Cập nhật những tin tức mới nhất về ngành điện lực." />
-                <meta name="keywords" content="tin tức, cập nhật, VNETC" />
+                <title>Tuyển dụng | TAKATECH</title>
+                <meta
+                    name="description"
+                    content="Cập nhật những thông tin tuyển dụng mới nhất về ngành công nghệ thông tin."
+                />
+                <meta name="keywords" content="tuyển dụng, công nghệ thông tin, Takatech" />
             </Helmet>
             <div className={cx('recruitment-section')}>
                 <div className={cx('recruitment-column')}>
-                    <h2 className={cx('recruitment-title')}>Tin Tức</h2>
                     {categories.map((category) => {
                         const slides = groupedRecruitment[category._id]?.slice(0, 6) || [];
                         const shouldLoop = slides.length > 3;

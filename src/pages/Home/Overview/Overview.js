@@ -1,3 +1,4 @@
+import React from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
@@ -6,14 +7,27 @@ import Button from '~/components/Button';
 import { Link } from 'react-router-dom';
 import routes from '~/config/routes';
 import overviewGif from '~/assets/images/overview';
+import { motion } from 'framer-motion';
 
 const cx = classNames.bind(styles);
 
 function Overview() {
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('inner')}>
-                <div className={cx('content')}>
+            <motion.div
+                className={cx('inner')}
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.3 }}
+                viewport={{ once: false }}
+                style={{ perspective: '1000px' }}
+            >
+                <motion.div
+                    className={cx('content')}
+                    initial={{ y: 100 }}
+                    whileInView={{ y: 0 }}
+                    transition={{ duration: 0.3 }}
+                >
                     <h2 className={cx('title')}>CÔNG TY TNHH CÔNG NGHỆ TAKATECH</h2>
                     <p className={cx('text')}>
                         Công ty TNHH Công nghệ Taka Tech hoạt động trong lĩnh vực: xây dựng phần mềm và ứng dụng di
@@ -31,11 +45,17 @@ function Overview() {
                             Tìm hiểu thêm
                         </Button>
                     </Link>
-                </div>
-                <div className={cx('sticker-container')}>
+                </motion.div>
+
+                <motion.div
+                    className={cx('sticker-container')}
+                    initial={{ x: 200, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                >
                     <img className={cx('sticker')} src={overviewGif.gif} alt="Animated Sticker" />
-                </div>
-            </div>
+                </motion.div>
+            </motion.div>
         </div>
     );
 }

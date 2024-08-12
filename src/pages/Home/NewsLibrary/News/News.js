@@ -10,6 +10,7 @@ import PushNotification from '~/components/PushNotification';
 import LoadingScreen from '~/components/LoadingScreen';
 import { Link } from 'react-router-dom';
 import routes from '~/config/routes';
+import { motion } from 'framer-motion';
 
 const cx = classNames.bind(styles);
 
@@ -78,16 +79,24 @@ function News() {
                 />
                 <div className={cx('news-list')}>
                     {filteredNews.map((news, index) => (
-                        <Link key={index} to={`${routes.news}/${getCategorySlug(news)}/${news._id}`}>
-                            <CardContent
-                                title={news.title}
-                                summary={news.summary}
-                                image={news.images}
-                                link={news.link}
-                                createdAt={news.createdAt}
-                                views={news.views}
-                            />
-                        </Link>
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                            viewport={{ once: true }}
+                        >
+                            <Link to={`${routes.news}/${getCategorySlug(news)}/${news._id}`}>
+                                <CardContent
+                                    title={news.title}
+                                    summary={news.summary}
+                                    image={news.images}
+                                    link={news.link}
+                                    createdAt={news.createdAt}
+                                    views={news.views}
+                                />
+                            </Link>
+                        </motion.div>
                     ))}
                 </div>
             </div>

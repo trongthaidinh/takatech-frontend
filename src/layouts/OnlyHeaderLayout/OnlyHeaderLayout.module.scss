@@ -26,6 +26,8 @@
 
 .content {
     margin: 0 auto;
+    overflow: hidden;
+
     @include respond-to(lg) {
         display: block;
     }

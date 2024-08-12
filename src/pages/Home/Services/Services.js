@@ -6,12 +6,12 @@ import Title from '~/components/Title';
 import routes from '~/config/routes';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
+import { motion } from 'framer-motion';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 const cx = classNames.bind(styles);
-console.log(developImg);
 
 const Services = () => {
     return (
@@ -58,13 +58,20 @@ const Services = () => {
                             ),
                         },
                     ].map((service, index) => (
-                        <div key={index} className={cx('service-item', { odd: index % 2 !== 0 })}>
+                        <motion.div
+                            key={index}
+                            className={cx('service-item', { odd: index % 2 !== 0 })}
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: index * 0.7 }}
+                            viewport={{ once: true }}
+                        >
                             <div className={cx('service-image')}></div>
                             <div className={cx('service-content')}>
                                 <h2>{service.title}</h2>
                                 {service.content}
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
 
@@ -85,15 +92,21 @@ const Services = () => {
                     }}
                     className={cx('swiper-container')}
                 >
-                    {services.map((service) => (
+                    {services.map((service, index) => (
                         <SwiperSlide key={service.id} className={cx('slide')}>
-                            <div className={cx('service-item')}>
+                            <motion.div
+                                className={cx('service-item')}
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.5, delay: index * 0.25 }}
+                                viewport={{ once: true }}
+                            >
                                 <div
                                     className={cx('image-container')}
                                     style={{ backgroundImage: `url(${service.imgURL})` }}
                                 ></div>
                                 <h3 className={cx('service-title')}>{service.name}</h3>
-                            </div>
+                            </motion.div>
                         </SwiperSlide>
                     ))}
                 </Swiper>

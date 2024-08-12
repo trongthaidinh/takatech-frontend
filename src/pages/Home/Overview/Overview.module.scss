@@ -2,6 +2,7 @@
 @import '../../../styles/variables';
 
 .wrapper {
+    position: relative;
     display: flex;
     width: 100%;
     justify-content: center;
@@ -29,6 +30,14 @@
     justify-content: space-between;
     align-items: center;
     margin: 40px 0;
+    transform: translateY(50px);
+    opacity: 0;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+
+    &.visible {
+        transform: translateY(0);
+        opacity: 1;
+    }
 
     @include respond-to(lg) {
         width: 100%;
@@ -120,7 +129,19 @@
 }
 
 .sticker {
-    width: 100%; // Thay đổi kích thước sticker nếu cần
-    height: auto; // Đảm bảo tỷ lệ khung hình được giữ
-    border-radius: 8px; // Thêm góc bo nếu cần
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.content {
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.sticker-container {
+    transition: transform 0.3s ease-out;
+}
+
+.sticker-container:hover {
+    transform: rotate(5deg);
 }

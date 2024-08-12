@@ -28,8 +28,6 @@ function Teams() {
             setLoading(true);
             try {
                 const departments = await getDepartments();
-                // setDepartments(departments);
-
                 const allTeams = {};
                 for (const department of departments) {
                     const members = await getDepartmentMembers(department._id);
