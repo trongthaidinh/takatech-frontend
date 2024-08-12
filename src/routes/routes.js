@@ -64,6 +64,8 @@ import AddDepartment from '~/pages/Admin/Department/AddDepartment/AddDepartment'
 import MemberList from '~/pages/Admin/Department/MemberList';
 import AddMember from '~/pages/Admin/Department/AddMember/AddMember';
 import UpdateMember from '~/pages/Admin/Department/UpdateMember';
+import RecruitmentCategory from '~/pages/RecruitmentCategory';
+import RecruitmentDetail from '~/pages/RecruitmentDetail';
 
 // Public Routes
 const publicRoutes = [
@@ -129,6 +131,16 @@ const publicRoutes = [
         path: config.routes.recruitment,
         component: Recruitment,
         layout: OnlyHeaderLayout,
+    },
+    {
+        path: config.routes.recruitmentCategory,
+        component: RecruitmentCategory,
+        layout: (props) => <DefaultLayout {...props} baseRoute={config.routes.recruitment} categoryType={4} />,
+    },
+    {
+        path: config.routes.recruitmentDetail,
+        component: RecruitmentDetail,
+        layout: (props) => <DefaultLayout {...props} baseRoute={config.routes.recruitment} categoryType={4} />,
     },
 ];
 

@@ -24,24 +24,16 @@ const EditProduct = () => {
 
     const [initialValues] = useState({
         updateName: '',
-        brand: '',
-        wattage: '',
-        size: '',
-        weight: '',
-        warranty: '',
         content: '',
         updateCate: '',
+        summary: '',
     });
 
     const validationSchema = Yup.object({
         updateName: Yup.string().required('Tên sản phẩm là bắt buộc'),
-        brand: Yup.string().required('Thương hiệu là bắt buộc'),
-        wattage: Yup.string().required('Công suất là bắt buộc'),
-        size: Yup.string().required('Kích thước là bắt buộc'),
-        weight: Yup.number().required('Trọng lượng là bắt buộc').typeError('Trọng lượng phải là số'),
-        warranty: Yup.number().required('Bảo hành là bắt buộc').typeError('Bảo hành phải là số'),
         content: Yup.string().required('Nội dung là bắt buộc'),
         updateCate: Yup.string().required('Danh mục là bắt buộc'),
+        summary: Yup.string().required('Tóm tắt là bắt buộc'),
     });
 
     useEffect(() => {
@@ -59,13 +51,9 @@ const EditProduct = () => {
                 const productData = await getProductById(id);
                 setProduct(productData);
                 initialValues.updateName = productData.name;
-                initialValues.brand = productData.detail[0].brand;
-                initialValues.wattage = productData.detail[0].wattage;
-                initialValues.size = productData.detail[0].size;
-                initialValues.weight = productData.detail[0].weight;
-                initialValues.warranty = productData.detail[0].warranty;
                 initialValues.content = productData.detail[0].content;
                 initialValues.updateCate = productData.category_id;
+                initialValues.summary = productData.detail[0].summary;
                 setFiles(productData.image || []);
             } catch (error) {
                 console.error('Lỗi khi tải sản phẩm:', error);
@@ -90,13 +78,9 @@ const EditProduct = () => {
         files.forEach((image) => {
             formData.append('updateImage', image);
         });
-        formData.append('brand', values.brand);
-        formData.append('wattage', values.wattage);
-        formData.append('size', values.size);
-        formData.append('weight', values.weight);
-        formData.append('warranty', values.warranty);
         formData.append('content', values.content);
         formData.append('updateCate', values.updateCate);
+        formData.append('summary', values.summary);
 
         try {
             await updateProduct(id, formData);
@@ -168,29 +152,9 @@ const EditProduct = () => {
                                 <ErrorMessage name="updateCate" component="div" className={styles.error} />
                             </div>
                             <div className={styles.formGroup}>
-                                <label htmlFor="brand">Thương Hiệu</label>
-                                <Field name="brand" type="text" className={styles.input} />
-                                <ErrorMessage name="brand" component="div" className={styles.error} />
-                            </div>
-                            <div className={styles.formGroup}>
-                                <label htmlFor="wattage">Công Suất</label>
-                                <Field name="wattage" type="text" className={styles.input} />
-                                <ErrorMessage name="wattage" component="div" className={styles.error} />
-                            </div>
-                            <div className={styles.formGroup}>
-                                <label htmlFor="size">Kích Thước</label>
-                                <Field name="size" type="text" className={styles.input} />
-                                <ErrorMessage name="size" component="div" className={styles.error} />
-                            </div>
-                            <div className={styles.formGroup}>
-                                <label htmlFor="weight">Trọng Lượng</label>
-                                <Field name="weight" type="number" className={styles.input} />
-                                <ErrorMessage name="weight" component="div" className={styles.error} />
-                            </div>
-                            <div className={styles.formGroup}>
-                                <label htmlFor="warranty">Bảo Hành</label>
-                                <Field name="warranty" type="number" className={styles.input} />
-                                <ErrorMessage name="warranty" component="div" className={styles.error} />
+                                <label htmlFor="summary">Tóm Tắt</label>
+                                <Field name="summary" type="text" className={styles.input} />
+                                <ErrorMessage name="summary" component="div" className={styles.error} />
                             </div>
                             <div className={styles.formGroup}>
                                 <label htmlFor="content">Nội Dung</label>

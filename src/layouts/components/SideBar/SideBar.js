@@ -21,7 +21,8 @@ function SideBar({ categoryType }) {
         async function fetchCategoryData() {
             try {
                 const data = await getCategoriesByType(categoryType);
-                setCategoriesData(data);
+                const filteredData = data.filter((category) => category.slug !== 'tuyen-dung');
+                setCategoriesData(filteredData);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching category data:', error);

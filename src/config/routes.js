@@ -57,6 +57,8 @@ const routes = {
     serviceDetail: '/dich-vu/:category/:id',
     servicesCategory: `/dich-vu/:slug`,
     recruitment: '/tuyen-dung',
+    recruitmentDetail: `/tuyen-dung/:category/:id`,
+    recruitmentCategory: '/tuyen-dung/:slug',
     error404: '/404',
     contact: '/lien-he',
 };

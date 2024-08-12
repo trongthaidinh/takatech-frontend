@@ -83,10 +83,7 @@ function Products() {
                             <div className={cx('product')}>
                                 <h3 className={cx('product-name')}>{product.name}</h3>
                                 <img src={product.image[0]} alt={product.name} className={cx('product-image')} />
-                                <p className={cx('product-des')}>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim.
-                                </p>
+                                <p className={cx('product-des')}>{product.summary}</p>
                             </div>
                         </SwiperSlide>
                     ))}

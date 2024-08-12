@@ -22,24 +22,16 @@ const AddProduct = () => {
     const initialValues = {
         name: '',
         images: [],
-        brand: '',
-        wattage: '',
-        size: '',
-        weight: '',
-        warranty: '',
         content: '',
+        summary: '',
         categoryID: '',
     };
 
     const validationSchema = Yup.object({
         name: Yup.string().required('Tên sản phẩm là bắt buộc'),
         images: Yup.array().required('Hình ảnh là bắt buộc'),
-        brand: Yup.string().required('Thương hiệu là bắt buộc'),
-        wattage: Yup.string().required('Công suất là bắt buộc'),
-        size: Yup.string().required('Kích thước là bắt buộc'),
-        weight: Yup.number().required('Trọng lượng là bắt buộc').typeError('Trọng lượng phải là số'),
-        warranty: Yup.number().required('Bảo hành là bắt buộc').typeError('Bảo hành phải là số'),
         content: Yup.string().required('Nội dung là bắt buộc'),
+        summary: Yup.string().required('Tóm tắt là bắt buộc'),
         categoryID: Yup.string().required('Danh mục là bắt buộc'),
     });
 
@@ -69,12 +61,8 @@ const AddProduct = () => {
         files.forEach((image) => {
             formData.append('images', image);
         });
-        formData.append('brand', values.brand);
-        formData.append('wattage', values.wattage);
-        formData.append('size', values.size);
-        formData.append('weight', values.weight);
-        formData.append('warranty', values.warranty);
         formData.append('content', values.content);
+        formData.append('summary', values.summary);
         formData.append('categoryID', values.categoryID);
 
         try {
@@ -146,29 +134,9 @@ const AddProduct = () => {
                             <ErrorMessage name="categoryID" component="div" className={styles.error} />
                         </div>
                         <div className={styles.formGroup}>
-                            <label htmlFor="brand">Thương Hiệu</label>
-                            <Field name="brand" type="text" className={styles.input} />
-                            <ErrorMessage name="brand" component="div" className={styles.error} />
-                        </div>
-                        <div className={styles.formGroup}>
-                            <label htmlFor="wattage">Công Suất</label>
-                            <Field name="wattage" type="text" className={styles.input} />
-                            <ErrorMessage name="wattage" component="div" className={styles.error} />
-                        </div>
-                        <div className={styles.formGroup}>
-                            <label htmlFor="size">Kích Thước</label>
-                            <Field name="size" type="text" className={styles.input} />
-                            <ErrorMessage name="size" component="div" className={styles.error} />
-                        </div>
-                        <div className={styles.formGroup}>
-                            <label htmlFor="weight">Trọng Lượng</label>
-                            <Field name="weight" type="number" className={styles.input} />
-                            <ErrorMessage name="weight" component="div" className={styles.error} />
-                        </div>
-                        <div className={styles.formGroup}>
-                            <label htmlFor="warranty">Bảo Hành</label>
-                            <Field name="warranty" type="number" className={styles.input} />
-                            <ErrorMessage name="warranty" component="div" className={styles.error} />
+                            <label htmlFor="summary">Tóm Tắt</label>
+                            <Field name="summary" type="text" className={styles.input} />
+                            <ErrorMessage name="summary" component="div" className={styles.error} />
                         </div>
                         <div className={styles.formGroup}>
                             <label htmlFor="content">Nội Dung</label>
