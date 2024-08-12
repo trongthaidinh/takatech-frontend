@@ -102,7 +102,7 @@
                     width: 100%;
                     @include respond-to(lg) {
                         padding: 16px 20px;
-                        justify-content: flex-start;
+                        justify-content: space-between;
                     }
 
                     .item-icon {
@@ -137,20 +137,6 @@
                     .dropdown {
                         display: none;
                     }
-
-                    &:hover .dropdown {
-                        display: flex;
-                        flex-direction: column;
-                        background-color: var(--primary);
-                        transform: translateY(-12px);
-                        opacity: 0;
-                        animation: slideDown 0.3s forwards ease-in-out;
-
-                        @include respond-to(lg) {
-                            display: inline-block;
-                            width: 100%;
-                        }
-                    }
                 }
 
                 a {
@@ -177,6 +163,7 @@
                     overflow: hidden;
 
                     @include respond-to(lg) {
+                        display: none;
                         border-radius: 0;
                     }
 
@@ -196,7 +183,7 @@
                             text-transform: uppercase;
 
                             @include respond-to(lg) {
-                                padding: 20px 52px;
+                                padding: 20px 40px;
                             }
 
                             &:hover {
@@ -207,7 +194,27 @@
                     }
 
                     &.open {
-                        display: block;
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        position: static;
+                        box-shadow: none;
+                        background-color: none;
+                        li {
+                            background-color: var(--primary);
+                            height: auto;
+
+                            &:hover {
+                                background-color: var(--secondary);
+                            }
+
+                            a {
+                                color: var(--white);
+                                background-color: transparent;
+                                font-size: 14px;
+                                // margin-left: 20px;
+                            }
+                        }
                     }
                 }
             }
@@ -251,27 +258,11 @@
                         height: auto;
                         font-size: 18px;
                     }
-
-                    .dropdown {
-                        position: static;
-                        box-shadow: none;
-                        background-color: none;
-                        li {
-                            height: auto;
-
-                            a {
-                                color: var(--white);
-                                background-color: transparent;
-                                font-size: 14px;
-                                margin-left: 20px;
-                            }
-                        }
-                    }
                 }
 
                 &.open {
                     display: flex;
-                    max-height: 100vh;
+                    max-height: calc(100vh - var(--nav-height));
                     overflow-y: auto;
                     transition: max-height 0.3s ease;
                     &::-webkit-scrollbar {

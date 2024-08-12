@@ -109,13 +109,17 @@ function Navigation({ isFixed }) {
                         const iconData = iconsData.find((icon) => icon.position === link.position);
                         const sortedChilds = link.childs.sort((a, b) => a.position - b.position);
                         return (
-                            <li key={link._id} className={cx({ 'has-children': link.childs.length > 0 })}>
+                            <li
+                                key={link._id}
+                                className={cx({ 'has-children': link.childs.length > 0 })}
+                                onClick={() => toggleSubMenu(link._id)}
+                            >
                                 <div className={cx('menu-item')}>
                                     <NavLink
                                         end
                                         to={`/${link.slug}`}
                                         className={({ isActive }) => cx({ 'active-link': isActive })}
-                                        onClick={() => toggleSubMenu(link._id)}
+                                        onClick={handleLinkClick}
                                     >
                                         <div className={cx('item-icon')}>
                                             {iconData && (
@@ -128,14 +132,13 @@ function Navigation({ isFixed }) {
                                         <FontAwesomeIcon
                                             icon={openSubMenus[link._id] ? faChevronDown : faChevronRight}
                                             className={cx('submenu-icon')}
-                                            onClick={() => toggleSubMenu(link._id)}
                                         />
                                     )}
                                 </div>
                                 {link.childs.length > 0 && (
                                     <ul className={cx('dropdown', { open: openSubMenus[link._id] })}>
                                         {sortedChilds.map((childLink) => (
-                                            <li key={childLink._id} onClick={handleLinkClick}>
+                                            <li key={childLink._id}>
                                                 <NavLink
                                                     to={`/${link.slug}/${childLink.slug}`}
                                                     className={({ isActive }) => cx({ 'active-link': isActive })}
