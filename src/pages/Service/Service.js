@@ -99,11 +99,11 @@ const Service = () => {
                 <div className={cx('service-column')}>
                     <h2 className={cx('service-title')}>Dịch Vụ</h2>
                     {categories.map((category) => {
-                        const slides = groupedService[category._id]?.slice(0, 6) || [];
+                        const slides = groupedService[category._id] || []; // Make sure to get the right services
                         const shouldLoop = slides.length > 3;
 
                         if (slides.length === 0) {
-                            return null;
+                            return null; // Skip empty categories
                         }
 
                         return (
@@ -130,7 +130,7 @@ const Service = () => {
                                         disableOnInteraction: false,
                                     }}
                                 >
-                                    {groupedService[category._id]?.slice(0, 6).map((item, index) => (
+                                    {slides.map((item, index) => (
                                         <SwiperSlide key={index} className={cx('slide')}>
                                             <Link to={`${routes.services}/${category.slug}/${item._id}`}>
                                                 <Card

@@ -40,6 +40,12 @@
             opacity: 1;
             transition: opacity 0.3s 0.3s;
         }
+
+        .menuItem {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
     }
 }
 

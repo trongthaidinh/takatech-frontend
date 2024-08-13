@@ -18,7 +18,6 @@ import {
     faHandshake,
     faBookOpen,
     faInfoCircle,
-    faUserFriends,
     faListAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import routes from '~/config/routes';
@@ -69,24 +68,26 @@ const SideBar = () => {
             <ul className={cx('menu')}>
                 <li>
                     <NavLink to={routes.admin} className={cx('menuItem')}>
-                        <FontAwesomeIcon icon={faTachometerAlt} className={cx('menuIcon')} />
-                        <span className={cx('menuText')}>{!isCollapsed && 'Bảng điều khiển'}</span>
+                        <div>
+                            <FontAwesomeIcon icon={faTachometerAlt} className={cx('menuIcon')} />
+                            <span className={cx('menuText')}>{!isCollapsed && 'Bảng điều khiển'}</span>
+                        </div>
                     </NavLink>
                 </li>
                 <li>
                     <div className={cx('menuItem')} onClick={() => toggleMenu('menuManagement')}>
-                        <FontAwesomeIcon icon={faClipboardList} className={cx('menuIcon')} />
-                        <span className={cx('menuText')}>
-                            {!isCollapsed && (
-                                <>
-                                    Quản lý Menu
-                                    <FontAwesomeIcon
-                                        icon={openMenus.menuManagement ? faChevronDown : faChevronRight}
-                                        className={cx('chevronIcon')}
-                                    />
-                                </>
-                            )}
-                        </span>
+                        <div>
+                            <FontAwesomeIcon icon={faClipboardList} className={cx('menuIcon')} />
+                            <span className={cx('menuText')}>Quản lý Menu</span>
+                        </div>
+                        {!isCollapsed && (
+                            <>
+                                <FontAwesomeIcon
+                                    icon={openMenus.menuManagement ? faChevronDown : faChevronRight}
+                                    className={cx('chevronIcon')}
+                                />
+                            </>
+                        )}
                     </div>
                     <ul className={cx('subMenu', { open: openMenus.menuManagement })}>
                         <li>
@@ -99,18 +100,18 @@ const SideBar = () => {
                 </li>
                 <li>
                     <div className={cx('menuItem')} onClick={() => toggleMenu('categoryManagement')}>
-                        <FontAwesomeIcon icon={faListAlt} className={cx('menuIcon')} />
-                        <span className={cx('menuText')}>
-                            {!isCollapsed && (
-                                <>
-                                    Quản lý danh mục
-                                    <FontAwesomeIcon
-                                        icon={openMenus.categoryManagement ? faChevronDown : faChevronRight}
-                                        className={cx('chevronIcon')}
-                                    />
-                                </>
-                            )}
-                        </span>
+                        <div>
+                            <FontAwesomeIcon icon={faListAlt} className={cx('menuIcon')} />
+                            <span className={cx('menuText')}>Quản lý danh mục</span>
+                        </div>
+                        {!isCollapsed && (
+                            <>
+                                <FontAwesomeIcon
+                                    icon={openMenus.categoryManagement ? faChevronDown : faChevronRight}
+                                    className={cx('chevronIcon')}
+                                />
+                            </>
+                        )}
                     </div>
                     <ul className={cx('subMenu', { open: openMenus.categoryManagement })}>
                         <li>
@@ -123,24 +124,26 @@ const SideBar = () => {
                 </li>
                 <li>
                     <NavLink to={routes.messagesList} className={cx('menuItem')}>
-                        <FontAwesomeIcon icon={faEnvelope} className={cx('menuIcon')} />
-                        <span className={cx('menuText')}>{!isCollapsed && 'Quản lý tin nhắn'}</span>
+                        <div>
+                            <FontAwesomeIcon icon={faEnvelope} className={cx('menuIcon')} />
+                            <span className={cx('menuText')}>{!isCollapsed && 'Quản lý tin nhắn'}</span>
+                        </div>
                     </NavLink>
                 </li>
                 <li>
                     <div className={cx('menuItem')} onClick={() => toggleMenu('userManagement')}>
-                        <FontAwesomeIcon icon={faUsers} className={cx('menuIcon')} />
-                        <span className={cx('menuText')}>
-                            {!isCollapsed && (
-                                <>
-                                    Quản lý người dùng
-                                    <FontAwesomeIcon
-                                        icon={openMenus.userManagement ? faChevronDown : faChevronRight}
-                                        className={cx('chevronIcon')}
-                                    />
-                                </>
-                            )}
-                        </span>
+                        <div>
+                            <FontAwesomeIcon icon={faUsers} className={cx('menuIcon')} />
+                            <span className={cx('menuText')}>Quản lý người dùng</span>
+                        </div>
+                        {!isCollapsed && (
+                            <>
+                                <FontAwesomeIcon
+                                    icon={openMenus.userManagement ? faChevronDown : faChevronRight}
+                                    className={cx('chevronIcon')}
+                                />
+                            </>
+                        )}
                     </div>
                     <ul className={cx('subMenu', { open: openMenus.userManagement })}>
                         <li>
@@ -153,18 +156,18 @@ const SideBar = () => {
                 </li>
                 <li>
                     <div className={cx('menuItem')} onClick={() => toggleMenu('productManagement')}>
-                        <FontAwesomeIcon icon={faBox} className={cx('menuIcon')} />
-                        <span className={cx('menuText')}>
-                            {!isCollapsed && (
-                                <>
-                                    Quản lý sản phẩm
-                                    <FontAwesomeIcon
-                                        icon={openMenus.productManagement ? faChevronDown : faChevronRight}
-                                        className={cx('chevronIcon')}
-                                    />
-                                </>
-                            )}
-                        </span>
+                        <div>
+                            <FontAwesomeIcon icon={faBox} className={cx('menuIcon')} />
+                            <span className={cx('menuText')}>Quản lý sản phẩm</span>
+                        </div>
+                        {!isCollapsed && (
+                            <>
+                                <FontAwesomeIcon
+                                    icon={openMenus.productManagement ? faChevronDown : faChevronRight}
+                                    className={cx('chevronIcon')}
+                                />
+                            </>
+                        )}
                     </div>
                     <ul className={cx('subMenu', { open: openMenus.productManagement })}>
                         <li>
@@ -177,18 +180,18 @@ const SideBar = () => {
                 </li>
                 <li>
                     <div className={cx('menuItem')} onClick={() => toggleMenu('newsManagement')}>
-                        <FontAwesomeIcon icon={faNewspaper} className={cx('menuIcon')} />
-                        <span className={cx('menuText')}>
-                            {!isCollapsed && (
-                                <>
-                                    Quản lý tin tức
-                                    <FontAwesomeIcon
-                                        icon={openMenus.newsManagement ? faChevronDown : faChevronRight}
-                                        className={cx('chevronIcon')}
-                                    />
-                                </>
-                            )}
-                        </span>
+                        <div>
+                            <FontAwesomeIcon icon={faNewspaper} className={cx('menuIcon')} />
+                            <span className={cx('menuText')}>Quản lý tin tức</span>
+                        </div>
+                        {!isCollapsed && (
+                            <>
+                                <FontAwesomeIcon
+                                    icon={openMenus.newsManagement ? faChevronDown : faChevronRight}
+                                    className={cx('chevronIcon')}
+                                />
+                            </>
+                        )}
                     </div>
                     <ul className={cx('subMenu', { open: openMenus.newsManagement })}>
                         <li>
@@ -202,18 +205,18 @@ const SideBar = () => {
 
                 <li>
                     <div className={cx('menuItem')} onClick={() => toggleMenu('serviceManagement')}>
-                        <FontAwesomeIcon icon={faLayerGroup} className={cx('menuIcon')} />
-                        <span className={cx('menuText')}>
-                            {!isCollapsed && (
-                                <>
-                                    Quản lý dịch vụ
-                                    <FontAwesomeIcon
-                                        icon={openMenus.serviceManagement ? faChevronDown : faChevronRight}
-                                        className={cx('chevronIcon')}
-                                    />
-                                </>
-                            )}
-                        </span>
+                        <div>
+                            <FontAwesomeIcon icon={faLayerGroup} className={cx('menuIcon')} />
+                            <span className={cx('menuText')}>Quản lý dịch vụ</span>
+                        </div>
+                        {!isCollapsed && (
+                            <>
+                                <FontAwesomeIcon
+                                    icon={openMenus.serviceManagement ? faChevronDown : faChevronRight}
+                                    className={cx('chevronIcon')}
+                                />
+                            </>
+                        )}
                     </div>
                     <ul className={cx('subMenu', { open: openMenus.serviceManagement })}>
                         <li>
@@ -226,18 +229,18 @@ const SideBar = () => {
                 </li>
                 <li>
                     <div className={cx('menuItem')} onClick={() => toggleMenu('partnerManagement')}>
-                        <FontAwesomeIcon icon={faHandshake} className={cx('menuIcon')} />
-                        <span className={cx('menuText')}>
-                            {!isCollapsed && (
-                                <>
-                                    Quản lý đối tác
-                                    <FontAwesomeIcon
-                                        icon={openMenus.partnerManagement ? faChevronDown : faChevronRight}
-                                        className={cx('chevronIcon')}
-                                    />
-                                </>
-                            )}
-                        </span>
+                        <div>
+                            <FontAwesomeIcon icon={faHandshake} className={cx('menuIcon')} />
+                            <span className={cx('menuText')}>Quản lý đối tác</span>
+                        </div>
+                        {!isCollapsed && (
+                            <>
+                                <FontAwesomeIcon
+                                    icon={openMenus.partnerManagement ? faChevronDown : faChevronRight}
+                                    className={cx('chevronIcon')}
+                                />
+                            </>
+                        )}
                     </div>
                     <ul className={cx('subMenu', { open: openMenus.partnerManagement })}>
                         <li>
@@ -250,18 +253,18 @@ const SideBar = () => {
                 </li>
                 <li>
                     <div className={styles.menuItem} onClick={() => toggleMenu('libraryManagement')}>
-                        <FontAwesomeIcon icon={faBookOpen} className={styles.menuIcon} />
-                        <span className={styles.menuText}>
-                            {!isCollapsed && (
-                                <>
-                                    Quản lý thư viện
-                                    <FontAwesomeIcon
-                                        icon={openMenus.libraryManagement ? faChevronDown : faChevronRight}
-                                        className={styles.chevronIcon}
-                                    />
-                                </>
-                            )}
-                        </span>
+                        <div>
+                            <FontAwesomeIcon icon={faBookOpen} className={styles.menuIcon} />
+                            <span className={styles.menuText}>Quản lý thư viện</span>
+                        </div>
+                        {!isCollapsed && (
+                            <>
+                                <FontAwesomeIcon
+                                    icon={openMenus.libraryManagement ? faChevronDown : faChevronRight}
+                                    className={styles.chevronIcon}
+                                />
+                            </>
+                        )}
                     </div>
                     <ul className={`${styles.subMenu} ${openMenus.libraryManagement ? styles.open : ''}`}>
                         <li>
@@ -280,18 +283,18 @@ const SideBar = () => {
                 </li>
                 <li>
                     <div className={styles.menuItem} onClick={() => toggleMenu('aboutManagement')}>
-                        <FontAwesomeIcon icon={faInfoCircle} className={styles.menuIcon} />
-                        <span className={styles.menuText}>
-                            {!isCollapsed && (
-                                <>
-                                    Quản lý trang
-                                    <FontAwesomeIcon
-                                        icon={openMenus.aboutManagement ? faChevronDown : faChevronRight}
-                                        className={styles.chevronIcon}
-                                    />
-                                </>
-                            )}
-                        </span>
+                        <div>
+                            <FontAwesomeIcon icon={faInfoCircle} className={styles.menuIcon} />
+                            <span className={styles.menuText}>Quản lý trang</span>
+                        </div>
+                        {!isCollapsed && (
+                            <>
+                                <FontAwesomeIcon
+                                    icon={openMenus.aboutManagement ? faChevronDown : faChevronRight}
+                                    className={styles.chevronIcon}
+                                />
+                            </>
+                        )}
                     </div>
                     <ul className={`${styles.subMenu} ${openMenus.aboutManagement ? styles.open : ''}`}>
                         <li>
@@ -302,34 +305,13 @@ const SideBar = () => {
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <div className={styles.menuItem} onClick={() => toggleMenu('teamManagement')}>
-                        <FontAwesomeIcon icon={faUserFriends} className={styles.menuIcon} />
-                        <span className={styles.menuText}>
-                            {!isCollapsed && (
-                                <>
-                                    Quản lý đội ngũ
-                                    <FontAwesomeIcon
-                                        icon={openMenus.teamManagement ? faChevronDown : faChevronRight}
-                                        className={styles.chevronIcon}
-                                    />
-                                </>
-                            )}
-                        </span>
-                    </div>
-                    <ul className={`${styles.subMenu} ${openMenus.teamManagement ? styles.open : ''}`}>
-                        <li>
-                            <NavLink to={routes.memberList}>Danh sách đội ngũ</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={routes.addMember}>Thêm đội ngũ</NavLink>
-                        </li>
-                    </ul>
-                </li>
+
                 <li>
                     <NavLink to={routes.settings} className={styles.menuItem}>
-                        <FontAwesomeIcon icon={faCogs} className={styles.menuIcon} />
-                        <span className={styles.menuText}>{!isCollapsed && 'Cài đặt'}</span>
+                        <div>
+                            <FontAwesomeIcon icon={faCogs} className={styles.menuIcon} />
+                            <span className={styles.menuText}>{!isCollapsed && 'Cài đặt'}</span>
+                        </div>
                     </NavLink>
                 </li>
             </ul>
