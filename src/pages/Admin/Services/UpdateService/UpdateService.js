@@ -30,7 +30,7 @@ const UpdateService = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const fetchedCategories = await getCategoriesByType(3);
+                const fetchedCategories = await getCategoriesByType(2);
                 setCategories(fetchedCategories);
             } catch (error) {
                 console.error('Lỗi khi tải danh mục:', error);
@@ -43,13 +43,13 @@ const UpdateService = () => {
                 setInitialValues({
                     title: service.title,
                     summary: service.summary,
-                    image: service.image,
+                    image: service.images,
                     categoryId: service.categoryId,
                     content: service.content,
                     isFeatured: service.isFeatured,
                 });
             } catch (error) {
-                console.error('Lỗi khi tải dịch vụ:', error);
+                console.error('Lỗi khi tải tin tức:', error);
             }
         };
 
@@ -69,9 +69,9 @@ const UpdateService = () => {
         formData.append('summary', values.summary);
 
         if (values.image) {
-            formData.append('image', values.image);
+            formData.append('images', values.image);
         } else {
-            formData.append('image', initialValues.image);
+            formData.append('images', initialValues.image);
         }
 
         formData.append('categoryId', values.categoryId);
@@ -80,14 +80,14 @@ const UpdateService = () => {
 
         try {
             await updateService(id, formData);
-            setNotification({ message: 'Cập nhật dịch vụ thành công!', type: 'success' });
+            setNotification({ message: 'Cập nhật tin tức thành công!', type: 'success' });
             resetForm();
             setTimeout(() => {
                 navigate(routes.serviceList);
             }, 1000);
         } catch (error) {
-            setNotification({ message: 'Lỗi khi cập nhật dịch vụ.', type: 'error' });
-            console.error('Lỗi khi cập nhật dịch vụ:', error);
+            setNotification({ message: 'Lỗi khi cập nhật tin tức.', type: 'error' });
+            console.error('Lỗi khi cập nhật tin tức:', error);
         }
     };
 
@@ -97,7 +97,7 @@ const UpdateService = () => {
 
     return (
         <div className={styles.editService}>
-            <Title text="Cập nhật dịch vụ" />
+            <Title text="Cập nhật tin tức" />
             {notification.message && <PushNotification message={notification.message} type={notification.type} />}
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
                 {({ isSubmitting, setFieldValue, values }) => (
@@ -161,7 +161,7 @@ const UpdateService = () => {
                             </label>
                         </div>
                         <button type="submit" disabled={isSubmitting} className={styles.submitButton}>
-                            Cập Nhật Dịch vụ
+                            Cập Nhật Dịch Vụ
                         </button>
                     </Form>
                 )}

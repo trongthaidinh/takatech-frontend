@@ -45,12 +45,12 @@ const ServiceDetail = () => {
     return (
         <article className={cx('wrapper')}>
             <Helmet>
-                <title>{`${serviceDetail.name} | TAKATECH`}</title>
+                <title>{`${serviceDetail.title} | TAKATECH`}</title>
                 <meta name="description" content={serviceDetail.summary} />
-                <meta name="keywords" content={`dịch vụ, ${serviceDetail.name}, VNETC`} />
+                <meta name="keywords" content={`dịch vụ, ${serviceDetail.title}, VNETC`} />
             </Helmet>
             <div className={cx('header')}>
-                <Title text={`${serviceDetail.name}`} className={cx('title')} />
+                <Title text={`${serviceDetail.title}`} className={cx('title')} />
             </div>
             <div className={cx('content')} dangerouslySetInnerHTML={{ __html: serviceDetail.content }} />
             <DateTime
