@@ -6,8 +6,8 @@ import Services from './Services';
 // import Projects from './Projects';
 import NewsLibrary from './NewsLibrary';
 import Banner from './Banner';
-import Teams from './Teams';
 import Partners from './Partners';
+import FAQs from './FAQs';
 
 const Home = () => (
     <article>
@@ -26,7 +26,7 @@ const Home = () => (
         <Services />
         {/* <Projects /> */}
         <NewsLibrary />
-        <Teams />
+        <FAQs />
         <Partners />
     </article>
 );

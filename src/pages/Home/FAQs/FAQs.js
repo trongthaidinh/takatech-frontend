@@ -1,0 +1,130 @@
+import React, { useState } from 'react';
+import Title from '~/components/Title';
+import styles from './FAQs.module.scss';
+import classNames from 'classnames/bind';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+
+const cx = classNames.bind(styles);
+
+const faqsData = [
+    {
+        title: 'Tư vấn Thương hiệu và Tiếp thị',
+        questions: [
+            {
+                question:
+                    'Tôi có thể yêu cầu dịch vụ thiết kế thương hiệu và tiếp thị bao gồm thiết kế Website, Logo, Ấn phẩm.v.v. không?',
+                answer: 'Vâng bạn có thể hoàn toàn tìm đến chúng tôi. Xây dựng thương hiệu là một trong những thế mạnh của chúng tôi, nên hãy đừng ngần ngại mà liên hệ nhé.',
+            },
+            {
+                question: 'Việc thiết kế Logo được thực hiện như nào?',
+                answer: 'Đầu tiên chúng tôi sẽ lắng nghe hình dung và phương hướng của thương hiệu từ khách hàng. Sau đó chúng tôi sẽ suy nghĩ và thực hiện đề xuất một số ý tưởng Logo thể hiện được giá trị của thương hiệu. Từ đó, bằng việc trải qua quá trình thảo luận và sàng lọc thiết kế liên tục, chúng tôi sẽ chọn ra được thiết kế cuối cùng và tinh chỉnh những chi tiết nhỏ. Tuỳ theo yêu cầu của khách hàng, chúng tôi cũng có thể chuẩn bị tài liệu Quy tắc thương hiệu và Khái niệm thương hiệu.',
+            },
+            {
+                question: 'Các bạn có thể vận hành quảng cáo Website không?',
+                answer: 'Liên quan đến quy định về giấy phép kinh doanh, chúng tôi không thể hạch toán như chi phí quảng cáo nhưng chúng tôi có thể tư vấn quảng cáo cho Website.',
+            },
+        ],
+    },
+    {
+        title: 'Thiết kế Website',
+        questions: [
+            {
+                question: 'Các bạn có thể thiết kế Website đa ngôn ngữ không? Chi phí có thay đổi không?',
+                answer: `Vâng, chúng tôi có thể thiết kế Website đa ngôn ngữ. Trường hợp này, tuỳ theo ngôn ngữ và độ dài và cỡ chữ sẽ khác nhau. nên có trường hợp layout sẽ lệch, chúng tôi cần điều chỉnh layout cho ngôn ngữ tương ứng nên chúng tôi sẽ tính thêm phí “Điều chỉnh đa ngôn ngữ.
+                Ngoài ra, trường hợp Website dùng CMS như WordPress, Chúng tôi cần cài đặt phía backend để có các trường nhập cho các ngôn ngữ cũng như nút chuyển ngữ,… nên sẽ có phát sinh phí cho những phần cài đặt đó.`,
+            },
+        ],
+    },
+    {
+        title: 'Thiết kế UI/UX',
+        questions: [
+            {
+                question: 'Tôi có thể yêu cầu thiết kế ứng dụng điện thoại không?',
+                answer: `Vâng, có thể ạ. Chúng tôi có thể đề xuất những thiết kế UI có thể đem lại trải nghiệm tốt cho người dùng.`,
+            },
+        ],
+    },
+    {
+        title: 'Bảo trì Website',
+        questions: [
+            {
+                question: 'Có những phí nào phải trả hàng tháng sau khi Website được hoàn thành không?',
+                answer: `Ngoài chi phí Tên Miền và Server thì không có chi phí nào phải trả hàng tháng. Trường hợp phát sinh chỉnh sửa cho website, chúng tôi xin phép báo giá cho mỗi lần chỉnh sửa.`,
+            },
+            {
+                question: 'Tôi có thể yêu cầu dịch vụ bào trì Server và Domain không?',
+                answer: `Vâng, có thể ạ. Khi server có phát sinh vấn để gì, chúng tôi sẽ nhanh chóng báo cáo cho khách hàng.`,
+            },
+        ],
+    },
+];
+
+function FAQs() {
+    const [expandedIndex, setExpandedIndex] = useState(null);
+    const [expandedQuestions, setExpandedQuestions] = useState({});
+
+    const toggleTitle = (index) => {
+        setExpandedIndex(expandedIndex === index ? null : index);
+    };
+
+    const toggleQuestion = (titleIndex, questionIndex) => {
+        setExpandedQuestions((prev) => ({
+            ...prev,
+            [titleIndex]: prev[titleIndex] === questionIndex ? null : questionIndex,
+        }));
+    };
+
+    return (
+        <div className={cx('wrapper')}>
+            <div className={cx('inner')}>
+                <Title text="FAQs" />
+                <div className={cx('faqs')}>
+                    {faqsData.map((faq, titleIndex) => (
+                        <div key={titleIndex} className={cx('faq-title')}>
+                            <div
+                                className={cx('faq-title-question', { active: expandedIndex === titleIndex })}
+                                onClick={() => toggleTitle(titleIndex)}
+                            >
+                                <span>{faq.title}</span>
+                                <FontAwesomeIcon
+                                    icon={expandedIndex === titleIndex ? faMinus : faPlus}
+                                    className={cx('toggle-icon')}
+                                />
+                            </div>
+                            {expandedIndex === titleIndex && (
+                                <div className={cx('faq-questions')}>
+                                    {faq.questions.map((item, questionIndex) => (
+                                        <div key={questionIndex} className={cx('faq-item')}>
+                                            <div
+                                                className={cx('faq-question')}
+                                                onClick={() => toggleQuestion(titleIndex, questionIndex)}
+                                            >
+                                                <span>{item.question}</span>
+                                                <FontAwesomeIcon
+                                                    icon={
+                                                        expandedQuestions[titleIndex] === questionIndex
+                                                            ? faMinus
+                                                            : faPlus
+                                                    }
+                                                    className={cx('toggle-icon')}
+                                                />
+                                            </div>
+                                            {expandedQuestions[titleIndex] === questionIndex && (
+                                                <div className={cx('faq-answer')}>
+                                                    <p>{item.answer}</p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default FAQs;
