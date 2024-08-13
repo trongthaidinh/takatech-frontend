@@ -17,6 +17,7 @@ const AddCategory = () => {
     const initialValues = {
         name: '',
         type: '',
+        image: null,
     };
 
     const validationSchema = Yup.object({
@@ -28,8 +29,13 @@ const AddCategory = () => {
     });
 
     const handleSubmit = async (values, { resetForm, setSubmitting }) => {
+        const formData = new FormData();
+        formData.append('name', values.name);
+        formData.append('type', values.type);
+        formData.append('image', values.image); // Thêm hình ảnh vào FormData
+
         try {
-            await addCategory(values);
+            await addCategory(formData); // Gửi formData thay vì values
             resetForm();
             setNotificationMessage('Thêm danh mục thành công!');
             setIsError(false);
@@ -52,7 +58,7 @@ const AddCategory = () => {
                 <PushNotification message={notificationMessage} type={isError ? 'error' : 'success'} />
             )}
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-                {({ isSubmitting }) => (
+                {({ isSubmitting, setFieldValue }) => (
                     <Form className={styles.addForm}>
                         <div className={styles.formGroup}>
                             <label htmlFor="name">Tên Danh mục</label>
@@ -70,6 +76,20 @@ const AddCategory = () => {
                                 ))}
                             </Field>
                             <ErrorMessage name="type" component="div" className={styles.error} />
+                        </div>
+                        <div className={styles.formGroup}>
+                            <label htmlFor="image">Chọn Ảnh</label>
+                            <input
+                                id="image"
+                                name="image"
+                                type="file"
+                                accept="image/*"
+                                onChange={(event) => {
+                                    setFieldValue('image', event.currentTarget.files[0]);
+                                }}
+                                className={styles.input}
+                            />
+                            <ErrorMessage name="image" component="div" className={styles.error} />
                         </div>
                         <button type="submit" disabled={isSubmitting} className={styles.submitButton}>
                             Thêm Danh mục

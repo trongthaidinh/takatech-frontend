@@ -20,6 +20,7 @@ function Title({ text, showSeeAll = false, slug, categoryId }) {
                     <button className={cx('see-all')}>Xem thêm</button>
                 </Link>
             )}
+            <div className={cx('line')} />
         </div>
     );
 }

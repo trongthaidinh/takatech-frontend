@@ -50,14 +50,13 @@ export const getCategoriesByType = async (value) => {
     }
 };
 
-export const addCategory = async (categoryData) => {
-    try {
-        const response = await httpRequest.post('/category', categoryData);
-        return response.data;
-    } catch (error) {
-        console.error('Lỗi khi thêm danh mục:', error);
-        throw error;
-    }
+export const addCategory = async (data) => {
+    const response = await httpRequest.post('/category', data, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    });
+    return response.data;
 };
 
 export const deleteCategory = async (id) => {

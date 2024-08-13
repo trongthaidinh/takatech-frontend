@@ -20,6 +20,12 @@ export const services = [
         path: `${routes.services}/`,
     },
     {
+        imgURL: require('~/assets/images/services/5.png'),
+        imgAlt: 'historyDevelop image',
+        name: 'Gia công phần mềm',
+        path: `${routes.services}/`,
+    },
+    {
         imgURL: require('~/assets/images/services/4.png'),
         imgAlt: 'Graphic Image',
         name: 'Thiết kế đồ họa',
