@@ -97,7 +97,9 @@ function FAQs() {
                                     {faq.questions.map((item, questionIndex) => (
                                         <div key={questionIndex} className={cx('faq-item')}>
                                             <div
-                                                className={cx('faq-question')}
+                                                className={cx('faq-question', {
+                                                    active: expandedQuestions[titleIndex] === questionIndex,
+                                                })}
                                                 onClick={() => toggleQuestion(titleIndex, questionIndex)}
                                             >
                                                 <span>{item.question}</span>
@@ -110,11 +112,13 @@ function FAQs() {
                                                     className={cx('toggle-icon')}
                                                 />
                                             </div>
-                                            {expandedQuestions[titleIndex] === questionIndex && (
-                                                <div className={cx('faq-answer')}>
-                                                    <p>{item.answer}</p>
-                                                </div>
-                                            )}
+                                            <div
+                                                className={cx('faq-answer', {
+                                                    active: expandedQuestions[titleIndex] === questionIndex,
+                                                })}
+                                            >
+                                                <p>{item.answer}</p>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>

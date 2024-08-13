@@ -65,18 +65,25 @@
 .faq-question {
     display: flex;
     justify-content: space-between;
-    padding: 15px;
+    padding: 16px 0 8px 0;
     font-weight: bold;
     margin-left: 40px;
 }
 
 .faq-answer {
-    padding: 15px;
-    background-color: #fff;
     border-radius: 8px;
     font-size: 1.6rem;
-    margin: 10px 0 10px 40px;
+    margin: 10px 0 10px 56px;
     line-height: 1.6;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    color: slategray;
+    cursor: auto;
+}
+
+.faq-answer.active {
+    max-height: 500px;
 }
 
 .toggle-icon {
