@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { getServiceByType } from '~/services/serviceService';
+import { getServiceByCategory } from '~/services/serviceService';
 import Title from '~/components/Title';
 import styles from './ServiceCategory.module.scss';
 import { Link } from 'react-router-dom';
@@ -17,10 +17,10 @@ const cx = classNames.bind(styles);
 function ServiceCategory() {
     const location = useLocation();
     const [service, setService] = useState([]);
-    const [serviceType, setServiceType] = useState(0);
+    const [categoryId, setCategoryId] = useState(null);
     const [categoryName, setCategoryName] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const servicePerPage = 9;
+    const servicePerPage = 12;
 
     const extractSlugFromPathname = (pathname) => {
         const parts = pathname.split('/');
@@ -33,10 +33,9 @@ function ServiceCategory() {
         async function fetchCategory() {
             try {
                 const categories = await getCategoriesByType(3);
-                const categoryIndex = categories.findIndex((cat) => cat.slug === slug);
-                const category = categories[categoryIndex];
+                const category = categories.find((cat) => cat.slug === slug);
                 if (category) {
-                    setServiceType(categoryIndex);
+                    setCategoryId(category._id);
                     setCategoryName(category.name);
                 }
             } catch (error) {
@@ -51,16 +50,18 @@ function ServiceCategory() {
 
     useEffect(() => {
         async function fetchServiceCategory() {
-            try {
-                const data = await getServiceByType(serviceType);
-                setService(data);
-            } catch (error) {
-                console.error('Error fetching service:', error);
+            if (categoryId) {
+                try {
+                    const data = await getServiceByCategory(categoryId);
+                    setService(data);
+                } catch (error) {
+                    console.error('Error fetching service:', error);
+                }
             }
         }
 
         fetchServiceCategory();
-    }, [serviceType]);
+    }, [categoryId]);
 
     const indexOfLastService = currentPage * servicePerPage;
     const indexOfFirstService = indexOfLastService - servicePerPage;
@@ -75,11 +76,12 @@ function ServiceCategory() {
     };
 
     const renderServiceCategory = () => {
-        return currentServiceCategory.map((serviceItem) => (
+        return currentServiceCategory.map((serviceItem, index) => (
             <Link to={`${routes.services}/${slug}/${serviceItem._id}`} key={serviceItem._id}>
                 <Card
-                    title={serviceItem.name}
-                    image={serviceItem.image}
+                    key={index}
+                    title={serviceItem.title}
+                    image={serviceItem.images}
                     summary={serviceItem.summary}
                     createdAt={new Date(serviceItem.createdAt).getTime()}
                     views={serviceItem.views}
@@ -113,12 +115,9 @@ function ServiceCategory() {
     return (
         <div className={cx('container')}>
             <Helmet>
-                <title>{`${categoryName} | TAKATECH`}</title>
-                <meta
-                    name="description"
-                    content={`Khám phá dịch vụ ${categoryName} mà chúng tôi cung cấp tại VNETC.`}
-                />
-                <meta name="keywords" content={`dịch vụ, ${categoryName}, VNETC`} />
+                <title>{categoryName} | TAKATECH</title>
+                <meta name="description" content={`Xem các tin tức liên quan đến ${categoryName} trên VNETC.`} />
+                <meta name="keywords" content={`${categoryName}, tin tức, VNETC`} />
             </Helmet>
             <Title text={categoryName} />
             <div className={cx('serviceGrid')}>{renderServiceCategory()}</div>

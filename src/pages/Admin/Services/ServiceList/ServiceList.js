@@ -41,8 +41,8 @@ const ServiceList = () => {
         }
     };
 
-    const filteredServices = services.filter((service) =>
-        service.name.toLowerCase().includes(searchTerm.toLowerCase()),
+    const filteredServices = services.filter(
+        (service) => service.title && service.title.toLowerCase().includes(searchTerm.toLowerCase()),
     );
 
     const totalPages = Math.ceil(filteredServices.length / itemsPerPage);
@@ -80,10 +80,10 @@ const ServiceList = () => {
                         {currentServices.length > 0 ? (
                             currentServices.map((service) => (
                                 <tr key={service._id}>
-                                    <td>{service.name}</td>
+                                    <td>{service.title}</td>
                                     <td>{service.summary}</td>
                                     <td>
-                                        <img src={service.image} alt={service.name} className={styles.serviceImage} />
+                                        <img src={service.images} alt={service.title} className={styles.serviceImage} />
                                     </td>
                                     <td>
                                         <Link to={`/admin/update-service/${service._id}`} className={styles.editButton}>
