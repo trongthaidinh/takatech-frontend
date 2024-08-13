@@ -1,6 +1,6 @@
 import httpRequest from '~/utils/httpRequest';
 
-export const getNewsPagination = async (page = 1, limit = 4) => {
+export const getNewsPagination = async (page = 1, limit = 10) => {
     try {
         const response = await httpRequest.get(`/news?page=${page}&limit=${limit}`);
         return response.data.data;
