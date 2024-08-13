@@ -53,7 +53,7 @@ const EditProduct = () => {
                 initialValues.updateName = productData.name;
                 initialValues.content = productData.detail[0].content;
                 initialValues.updateCate = productData.category_id;
-                initialValues.summary = productData.detail[0].summary;
+                initialValues.summary = productData.summary;
                 setFiles(productData.image || []);
             } catch (error) {
                 console.error('Lỗi khi tải sản phẩm:', error);

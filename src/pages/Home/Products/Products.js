@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import React, { useEffect, useState } from 'react';
 import { getProductsPagination } from '~/services/productService';
-// import { getCategoriesByType } from '~/services/categoryService';
+import { getCategoriesByType } from '~/services/categoryService';
 import styles from './Products.module.scss';
 import Title from '~/components/Title';
 import LoadingScreen from '~/components/LoadingScreen';
@@ -12,12 +12,13 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import routes from '~/config/routes';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function Products() {
     const [products, setProducts] = useState([]);
-    // const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -25,9 +26,9 @@ function Products() {
         const fetchProductsAndCategories = async () => {
             try {
                 const productsData = await getProductsPagination();
-                // const categoriesData = await getCategoriesByType(1);
+                const categoriesData = await getCategoriesByType(1);
                 setProducts(productsData);
-                // setCategories(categoriesData);
+                setCategories(categoriesData);
                 setLoading(false);
             } catch (err) {
                 setError(err);
@@ -46,6 +47,11 @@ function Products() {
     if (loading) {
         return <LoadingScreen />;
     }
+
+    const getCategorySlug = (product) => {
+        const category = categories.find((cat) => cat._id === product.category_id);
+        return category ? category.slug : '';
+    };
 
     return (
         <div className={cx('wrapper')}>
@@ -80,11 +86,13 @@ function Products() {
                 >
                     {products.map((product) => (
                         <SwiperSlide key={product._id} className={cx('slide')}>
-                            <div className={cx('product')}>
-                                <h3 className={cx('product-name')}>{product.name}</h3>
-                                <img src={product.image[0]} alt={product.name} className={cx('product-image')} />
-                                <p className={cx('product-des')}>{product.summary}</p>
-                            </div>
+                            <Link to={`${routes.products}/${getCategorySlug(product)}/${product._id}`}>
+                                <div className={cx('product')}>
+                                    <h3 className={cx('product-name')}>{product.name}</h3>
+                                    <img src={product.image[0]} alt={product.name} className={cx('product-image')} />
+                                    <p className={cx('product-des')}>{product.summary}</p>
+                                </div>
+                            </Link>
                         </SwiperSlide>
                     ))}
                 </Swiper>

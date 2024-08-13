@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './News.module.scss';
 import classNames from 'classnames/bind';
 import { getNewsPagination } from '~/services/newsService';
-import { getCategories } from '~/services/categoryService';
+import { getCategoriesByType } from '~/services/categoryService';
 import CardContent from '~/components/CardContent';
 import ButtonGroup from '~/components/ButtonGroup';
 import Title from '~/components/Title';
@@ -24,7 +24,7 @@ function News() {
     useEffect(() => {
         const loadData = async () => {
             try {
-                const [newsData, categoryData] = await Promise.all([getNewsPagination(), getCategories()]);
+                const [newsData, categoryData] = await Promise.all([getNewsPagination(), getCategoriesByType(2)]);
                 setNews(newsData);
                 setCategories(categoryData);
             } catch (error) {
@@ -64,6 +64,7 @@ function News() {
     };
 
     const getCategorySlug = (news) => {
+        console.log(news);
         const category = categories.find((cat) => cat._id === news.categoryId);
         return category ? category.slug : '';
     };

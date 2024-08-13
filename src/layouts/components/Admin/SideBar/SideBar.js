@@ -19,6 +19,7 @@ import {
     faBookOpen,
     faInfoCircle,
     faListAlt,
+    faUsersLine,
 } from '@fortawesome/free-solid-svg-icons';
 import routes from '~/config/routes';
 import companyLogo from '~/assets/images/takatech-logo.png';
@@ -248,6 +249,30 @@ const SideBar = () => {
                         </li>
                         <li>
                             <NavLink to={routes.addPartner}>Thêm đối tác</NavLink>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <div className={cx('menuItem')} onClick={() => toggleMenu('recruitmentManagement')}>
+                        <div>
+                            <FontAwesomeIcon icon={faUsersLine} className={cx('menuIcon')} />
+                            <span className={cx('menuText')}>Quản lý tuyển dụng</span>
+                        </div>
+                        {!isCollapsed && (
+                            <>
+                                <FontAwesomeIcon
+                                    icon={openMenus.recruitmentManagement ? faChevronDown : faChevronRight}
+                                    className={cx('chevronIcon')}
+                                />
+                            </>
+                        )}
+                    </div>
+                    <ul className={cx('subMenu', { open: openMenus.recruitmentManagement })}>
+                        <li>
+                            <NavLink to={routes.recruitmentList}>Danh sách tin tuyển dụng</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to={routes.addRecruitment}>Thêm tin tuyển dụng</NavLink>
                         </li>
                     </ul>
                 </li>

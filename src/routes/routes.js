@@ -66,6 +66,9 @@ import AddMember from '~/pages/Admin/Department/AddMember/AddMember';
 import UpdateMember from '~/pages/Admin/Department/UpdateMember';
 import RecruitmentCategory from '~/pages/RecruitmentCategory';
 import RecruitmentDetail from '~/pages/RecruitmentDetail';
+import RecruitmentList from '~/pages/Admin/Recruitment/RecruitmentList';
+import AddRecruitment from '~/pages/Admin/Recruitment/AddRecruitment';
+import UpdateRecruitment from '~/pages/Admin/Recruitment/UpdateRecruitment';
 
 // Public Routes
 const publicRoutes = [
@@ -158,6 +161,9 @@ const privateRoutes = [
     { path: config.routes.newsList, component: NewsList, layout: AdminLayout },
     { path: config.routes.addNews, component: AddNews, layout: AdminLayout },
     { path: config.routes.updateNews, component: UpdateNews, layout: AdminLayout },
+    { path: config.routes.recruitmentList, component: RecruitmentList, layout: AdminLayout },
+    { path: config.routes.addRecruitment, component: AddRecruitment, layout: AdminLayout },
+    { path: config.routes.updateRecruitment, component: UpdateRecruitment, layout: AdminLayout },
     { path: config.routes.serviceList, component: ServiceList, layout: AdminLayout },
     { path: config.routes.addService, component: AddService, layout: AdminLayout },
     { path: config.routes.updateService, component: UpdateService, layout: AdminLayout },

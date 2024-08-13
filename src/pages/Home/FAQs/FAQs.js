@@ -4,6 +4,7 @@ import styles from './FAQs.module.scss';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { motion } from 'framer-motion';
 
 const cx = classNames.bind(styles);
 
@@ -79,9 +80,16 @@ function FAQs() {
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <Title text="FAQs" />
+
                 <div className={cx('faqs')}>
                     {faqsData.map((faq, titleIndex) => (
-                        <div key={titleIndex} className={cx('faq-title')}>
+                        <motion.div
+                            key={titleIndex}
+                            className={cx('faq-title')}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: titleIndex * 0.1 }}
+                        >
                             <div
                                 className={cx('faq-title-question', { active: expandedIndex === titleIndex })}
                                 onClick={() => toggleTitle(titleIndex)}
@@ -95,7 +103,13 @@ function FAQs() {
                             {expandedIndex === titleIndex && (
                                 <div className={cx('faq-questions')}>
                                     {faq.questions.map((item, questionIndex) => (
-                                        <div key={questionIndex} className={cx('faq-item')}>
+                                        <motion.div
+                                            key={questionIndex}
+                                            className={cx('faq-item')}
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ duration: 0.5, delay: questionIndex * 0.1 }}
+                                        >
                                             <div
                                                 className={cx('faq-question', {
                                                     active: expandedQuestions[titleIndex] === questionIndex,
@@ -119,11 +133,11 @@ function FAQs() {
                                             >
                                                 <p>{item.answer}</p>
                                             </div>
-                                        </div>
+                                        </motion.div>
                                     ))}
                                 </div>
                             )}
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>

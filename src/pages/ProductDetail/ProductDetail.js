@@ -79,12 +79,16 @@ const ProductDetail = () => {
             <Helmet>
                 <title>{productDetail.name} | TAKATECH</title>
                 <meta name="description" content={`Chi tiết về sản phẩm: ${productDetail.name}.`} />
-                <meta name="keywords" content={`sản phẩm, ${productDetail.name}, VNETC`} />
+                <meta name="keywords" content={`sản phẩm, ${productDetail.name}, Takatech`} />
             </Helmet>
 
             <div className={cx('info-section')}>
                 <Title text="Thông tin sản phẩm" />
                 <h2 className={cx('product-name')}>{productDetail.name}</h2>
+
+                <div className={cx('product-image-wrapper')}>
+                    <img src={productDetail.image} alt={productDetail.name} className={cx('product-image')} />
+                </div>
 
                 <div
                     className={cx('info-content')}

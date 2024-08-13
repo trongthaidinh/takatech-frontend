@@ -13,7 +13,7 @@
     }
 
     @include respond-to(sm) {
-        margin-top: var(--nav-height);
+        margin-top: 20px;
         padding: 10px;
     }
 
