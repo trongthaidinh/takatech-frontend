@@ -108,7 +108,7 @@ const AddService = () => {
                             </div>
                             <ErrorMessage name="images" component="div" className={styles.error} />
                         </div>
-                        <div className={styles.imagesPreview}>
+                        <div className={styles.imagePreview}>
                             {files.map((img, index) => (
                                 <div key={index} className={styles.imageContainer}>
                                     <img
@@ -132,7 +132,7 @@ const AddService = () => {
                                 <option value="">Chọn danh mục</option>
                                 {categories.map((category) => (
                                     <option key={category._id} value={category._id}>
-                                        {category.title}
+                                        {category.name}
                                     </option>
                                 ))}
                             </Field>

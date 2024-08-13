@@ -14,7 +14,6 @@ import {
     faChevronRight,
     faChevronDown,
     faNewspaper,
-    faDiagramProject,
     faLayerGroup,
     faHandshake,
     faBookOpen,
@@ -200,30 +199,7 @@ const SideBar = () => {
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <div className={cx('menuItem')} onClick={() => toggleMenu('projectManagement')}>
-                        <FontAwesomeIcon icon={faDiagramProject} className={cx('menuIcon')} />
-                        <span className={cx('menuText')}>
-                            {!isCollapsed && (
-                                <>
-                                    Quản lý dự án
-                                    <FontAwesomeIcon
-                                        icon={openMenus.projectManagement ? faChevronDown : faChevronRight}
-                                        className={cx('chevronIcon')}
-                                    />
-                                </>
-                            )}
-                        </span>
-                    </div>
-                    <ul className={cx('subMenu', { open: openMenus.projectManagement })}>
-                        <li>
-                            <NavLink to={routes.projectList}>Danh sách dự án</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={routes.addProject}>Thêm dự án</NavLink>
-                        </li>
-                    </ul>
-                </li>
+
                 <li>
                     <div className={cx('menuItem')} onClick={() => toggleMenu('serviceManagement')}>
                         <FontAwesomeIcon icon={faLayerGroup} className={cx('menuIcon')} />

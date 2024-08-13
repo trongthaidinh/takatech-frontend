@@ -140,7 +140,7 @@ const UpdateService = () => {
                                 <option value="">Chọn danh mục</option>
                                 {categories.map((category) => (
                                     <option key={category._id} value={category._id}>
-                                        {category.title}
+                                        {category.name}
                                     </option>
                                 ))}
                             </Field>
