@@ -57,10 +57,11 @@
     color: var(--white);
     background-color: var(--primary);
     border-color: var(--primary);
+    transition: all ease-in-out 0.2s;
 
     &:hover {
         border-color: transparent;
-        background: rgb(64, 66, 177, 0.7);
+        background-color: var(--secondary);
     }
 }
 
