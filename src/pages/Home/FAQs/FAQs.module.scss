@@ -54,9 +54,25 @@
     background-color: var(--primary);
     color: var(--white);
 
-    &.active {
-        background-color: var(--primary);
+    &:hover {
+        background-color: var(--secondary);
         color: var(--white);
+        .toggle-icon {
+            margin-left: 10px;
+            transition: transform 0.3s;
+            color: var(--white);
+        }
+    }
+
+    &.active {
+        background-color: var(--secondary);
+        color: var(--white);
+
+        .toggle-icon {
+            margin-left: 10px;
+            transition: transform 0.3s;
+            color: var(--white);
+        }
     }
 }
 
@@ -75,6 +91,11 @@
     padding: 16px 0 8px 0;
     font-weight: bold;
     margin-left: 40px;
+    transition: all ease-in-out 0.3s;
+
+    &.active {
+        color: var(--secondary);
+    }
 }
 
 .faq-answer {
