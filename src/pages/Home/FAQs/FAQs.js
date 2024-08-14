@@ -5,6 +5,7 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
+import ContactForm from '~/components/ContactForm';
 
 const cx = classNames.bind(styles);
 
@@ -62,11 +63,14 @@ const faqsData = [
 ];
 
 function FAQs() {
-    const [expandedIndex, setExpandedIndex] = useState(null);
-    const [expandedQuestions, setExpandedQuestions] = useState({});
+    const [expandedIndex, setExpandedIndex] = useState(0);
+    const [expandedQuestions, setExpandedQuestions] = useState({ 0: 0 });
 
     const toggleTitle = (index) => {
         setExpandedIndex(expandedIndex === index ? null : index);
+        if (expandedIndex === index) {
+            setExpandedQuestions({});
+        }
     };
 
     const toggleQuestion = (titleIndex, questionIndex) => {
@@ -80,65 +84,88 @@ function FAQs() {
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <Title text="FAQs" />
-
-                <div className={cx('faqs')}>
-                    {faqsData.map((faq, titleIndex) => (
-                        <motion.div
-                            key={titleIndex}
-                            className={cx('faq-title')}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: titleIndex * 0.1 }}
-                        >
-                            <div
-                                className={cx('faq-title-question', { active: expandedIndex === titleIndex })}
-                                onClick={() => toggleTitle(titleIndex)}
+                <div className={cx('section-grid')}>
+                    <div className={cx('faqs')}>
+                        {faqsData.map((faq, titleIndex) => (
+                            <motion.div
+                                key={titleIndex}
+                                className={cx('faq-title')}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: titleIndex * 0.1 }}
                             >
-                                <span>{faq.title}</span>
-                                <FontAwesomeIcon
-                                    icon={expandedIndex === titleIndex ? faMinus : faPlus}
-                                    className={cx('toggle-icon')}
-                                />
-                            </div>
-                            {expandedIndex === titleIndex && (
-                                <div className={cx('faq-questions')}>
-                                    {faq.questions.map((item, questionIndex) => (
-                                        <motion.div
-                                            key={questionIndex}
-                                            className={cx('faq-item')}
-                                            initial={{ opacity: 0, y: 10 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{ duration: 0.5, delay: questionIndex * 0.1 }}
-                                        >
-                                            <div
-                                                className={cx('faq-question', {
-                                                    active: expandedQuestions[titleIndex] === questionIndex,
-                                                })}
-                                                onClick={() => toggleQuestion(titleIndex, questionIndex)}
-                                            >
-                                                <span>{item.question}</span>
-                                                <FontAwesomeIcon
-                                                    icon={
-                                                        expandedQuestions[titleIndex] === questionIndex
-                                                            ? faMinus
-                                                            : faPlus
-                                                    }
-                                                    className={cx('toggle-icon')}
-                                                />
-                                            </div>
-                                            <div
-                                                className={cx('faq-answer', {
-                                                    active: expandedQuestions[titleIndex] === questionIndex,
-                                                })}
-                                            >
-                                                <p>{item.answer}</p>
-                                            </div>
-                                        </motion.div>
-                                    ))}
+                                <div
+                                    className={cx('faq-title-question', { active: expandedIndex === titleIndex })}
+                                    onClick={() => toggleTitle(titleIndex)}
+                                >
+                                    <span>{faq.title}</span>
+                                    <FontAwesomeIcon
+                                        icon={expandedIndex === titleIndex ? faMinus : faPlus}
+                                        className={cx('toggle-icon')}
+                                    />
                                 </div>
-                            )}
-                        </motion.div>
-                    ))}
+                                {expandedIndex === titleIndex && (
+                                    <motion.div
+                                        className={cx('faq-questions')}
+                                        initial={{ height: 0 }}
+                                        animate={{ height: 'auto' }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.5 }}
+                                    >
+                                        {faq.questions.map((item, questionIndex) => (
+                                            <motion.div
+                                                key={questionIndex}
+                                                className={cx('faq-item')}
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: 10 }}
+                                                transition={{ duration: 0.1, delay: questionIndex * 0.2 }}
+                                            >
+                                                <div
+                                                    className={cx('faq-question', {
+                                                        active: expandedQuestions[titleIndex] === questionIndex,
+                                                    })}
+                                                    onClick={() => toggleQuestion(titleIndex, questionIndex)}
+                                                >
+                                                    <span>{item.question}</span>
+                                                    <FontAwesomeIcon
+                                                        icon={
+                                                            expandedQuestions[titleIndex] === questionIndex
+                                                                ? faMinus
+                                                                : faPlus
+                                                        }
+                                                        className={cx('toggle-icon')}
+                                                    />
+                                                </div>
+                                                <motion.div
+                                                    className={cx('faq-answer', {
+                                                        active: expandedQuestions[titleIndex] === questionIndex,
+                                                    })}
+                                                    initial={{ maxHeight: 0, opacity: 0 }}
+                                                    animate={{
+                                                        maxHeight:
+                                                            expandedQuestions[titleIndex] === questionIndex
+                                                                ? '500px'
+                                                                : 0,
+                                                        opacity:
+                                                            expandedQuestions[titleIndex] === questionIndex ? 1 : 0,
+                                                    }}
+                                                    exit={{ maxHeight: 0, opacity: 0 }}
+                                                    transition={{ duration: 0.2 }}
+                                                >
+                                                    <p>{item.answer}</p>
+                                                </motion.div>
+                                            </motion.div>
+                                        ))}
+                                    </motion.div>
+                                )}
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    <div className={cx('formSection')}>
+                        <ContactForm />
+                    </div>
                 </div>
             </div>
         </div>
