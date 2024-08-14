@@ -71,7 +71,7 @@ const UpdateNews = () => {
         if (values.image) {
             formData.append('images', values.image);
         } else {
-            formData.append('images', initialValues.image);
+            formData.append('images', initialValues.images);
         }
 
         formData.append('categoryId', values.categoryId);
