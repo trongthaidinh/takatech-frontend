@@ -93,6 +93,10 @@
     margin-left: 40px;
     transition: all ease-in-out 0.3s;
 
+    &:hover {
+        color: var(--secondary);
+    }
+
     &.active {
         color: var(--secondary);
     }
