@@ -39,7 +39,7 @@ const AddRecruitment = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const fetchedCategories = await getCategoriesByType(2);
+                const fetchedCategories = await getCategoriesByType(4);
                 setCategories(fetchedCategories);
             } catch (error) {
                 console.error('Lỗi khi tải danh mục:', error);

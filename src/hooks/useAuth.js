@@ -54,6 +54,7 @@ const useProvideAuth = () => {
         logout();
         setUser(null);
         localStorage.removeItem('user');
+        localStorage.removeItem('tokenExp');
         localStorage.removeItem('userEmail');
         navigate('/login');
     };

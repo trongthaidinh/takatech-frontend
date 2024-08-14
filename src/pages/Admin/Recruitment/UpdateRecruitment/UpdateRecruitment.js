@@ -30,7 +30,7 @@ const UpdateRecruitment = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const fetchedCategories = await getCategoriesByType(2);
+                const fetchedCategories = await getCategoriesByType(4);
                 setCategories(fetchedCategories);
             } catch (error) {
                 console.error('Lỗi khi tải danh mục:', error);
@@ -71,7 +71,7 @@ const UpdateRecruitment = () => {
         if (values.image) {
             formData.append('images', values.image);
         } else {
-            formData.append('images', initialValues.image);
+            formData.append('images', initialValues.images);
         }
 
         formData.append('categoryId', values.categoryId);

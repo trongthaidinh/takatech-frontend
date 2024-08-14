@@ -153,7 +153,7 @@ const Service = () => {
                     <ButtonGroup buttons={['Nổi bật', 'Xem nhiều']} onButtonClick={handleButtonClick} />
                     <div className={cx('suggest-items')}>
                         {filteredServiceItems.map((item, index) => (
-                            <Link key={index} to={`${routes.service}/${getCategorySlug(item.categoryId)}/${item._id}`}>
+                            <Link key={index} to={`${routes.services}/${getCategorySlug(item.categoryId)}/${item._id}`}>
                                 <SuggestCard
                                     title={item.title}
                                     summary={item.summary}
