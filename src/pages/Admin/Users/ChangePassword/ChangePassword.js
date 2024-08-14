@@ -6,6 +6,7 @@ import { changePassword, getUserByEmail } from '~/services/userService';
 import styles from './ChangePassword.module.scss';
 import PushNotification from '~/components/PushNotification'; // Import component PushNotification
 import routes from '~/config/routes';
+import { Spin } from 'antd';
 
 const ChangePassword = () => {
     const navigate = useNavigate();
@@ -86,7 +87,7 @@ const ChangePassword = () => {
                             <ErrorMessage name="confirmPassword" component="div" className={styles.error} />
                         </div>
                         <button type="submit" disabled={isSubmitting || loading} className={styles.submitButton}>
-                            {loading ? 'Đang đổi mật khẩu...' : 'Đổi Mật Khẩu'}
+                            {loading ? <Spin size="small" /> : 'Đổi Mật Khẩu'}
                         </button>
                         {loading && <div className={styles.loader} />}
                     </Form>

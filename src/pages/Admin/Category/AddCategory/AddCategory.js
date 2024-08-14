@@ -8,6 +8,7 @@ import styles from './AddCategory.module.scss';
 import routes from '~/config/routes';
 import CATEGORY_TYPES from '~/constants/CategoryType/CategoryType';
 import Title from '~/components/Title';
+import { Spin } from 'antd';
 
 const AddCategory = () => {
     const navigate = useNavigate();
@@ -92,7 +93,7 @@ const AddCategory = () => {
                             <ErrorMessage name="image" component="div" className={styles.error} />
                         </div>
                         <button type="submit" disabled={isSubmitting} className={styles.submitButton}>
-                            Thêm Danh mục
+                            {isSubmitting ? <Spin size="small" /> : 'Thêm Danh Mục'}
                         </button>
                     </Form>
                 )}

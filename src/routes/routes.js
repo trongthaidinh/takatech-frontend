@@ -13,7 +13,6 @@ import Service from '~/pages/Service';
 import Search from '~/pages/Search';
 import Products from '~/pages/Products';
 import Error404 from '~/pages/Error404';
-import ProjectCategory from '~/pages/ProjectCategory';
 import Contact from '~/pages/Contact';
 import Recruitment from '~/pages/Recruitment';
 import IndustryNews from '~/pages/IndustryNews';
@@ -25,8 +24,6 @@ import Dashboard from '~/pages/Admin/Dashboard';
 import AddNavigation from '~/pages/Admin/Navigation/AddNavigation';
 import ServiceDetail from '~/pages/ServiceDetail';
 import ServiceCategory from '~/pages/ServiceCategory';
-import Project from '~/pages/Project';
-import ProjectDetail from '~/pages/ProjectDetail';
 import Product from '~/pages/Product';
 import NavigationList from '~/pages/Admin/Navigation/NavigationList';
 import EditNavigation from '~/pages/Admin/Navigation/EditNavigation';
@@ -41,9 +38,6 @@ import AddService from '~/pages/Admin/Services/AddService';
 import UpdateService from '~/pages/Admin/Services/UpdateService';
 import PartnerList from '~/pages/Admin/Partners/ParnerList/PartnerList';
 import AddPartner from '~/pages/Admin/Partners/AddPartner';
-import UpdateProject from '~/pages/Admin/Projects/UpdateProject';
-import ProjectList from '~/pages/Admin/Projects/ProjectList';
-import AddProject from '~/pages/Admin/Projects/AddProject';
 import UserList from '~/pages/Admin/Users/UserList';
 import AddUser from '~/pages/Admin/Users/AddUser';
 import UpdateUser from '~/pages/Admin/Users/UpdateUser';
@@ -59,11 +53,6 @@ import AddPage from '~/pages/Admin/PagesAbout/AddPage';
 import UpdatePage from '~/pages/Admin/PagesAbout/UpdatePage';
 import CategoryList from '~/pages/Admin/Category/CategoryList';
 import AddCategory from '~/pages/Admin/Category/AddCategory';
-import DepartmentList from '~/pages/Admin/Department/DepartmentList';
-import AddDepartment from '~/pages/Admin/Department/AddDepartment/AddDepartment';
-import MemberList from '~/pages/Admin/Department/MemberList';
-import AddMember from '~/pages/Admin/Department/AddMember/AddMember';
-import UpdateMember from '~/pages/Admin/Department/UpdateMember';
 import RecruitmentCategory from '~/pages/RecruitmentCategory';
 import RecruitmentDetail from '~/pages/RecruitmentDetail';
 import RecruitmentList from '~/pages/Admin/Recruitment/RecruitmentList';
@@ -89,17 +78,6 @@ const publicRoutes = [
     },
     { path: config.routes.products, component: Product, layout: OnlyHeaderLayout },
     { path: config.routes.productDetail, component: ProductDetail, layout: OnlyHeaderLayout },
-    { path: config.routes.projects, component: Project, layout: OnlyHeaderLayout },
-    {
-        path: config.routes.projectCategory,
-        component: ProjectCategory,
-        layout: (props) => <DefaultLayout {...props} baseRoute={config.routes.projects} categoryType={4} />,
-    },
-    {
-        path: config.routes.projectDetail,
-        component: ProjectDetail,
-        layout: (props) => <DefaultLayout {...props} baseRoute={config.routes.projects} categoryType={4} />,
-    },
     {
         path: config.routes.introduction,
         component: Introduction,
@@ -169,9 +147,6 @@ const privateRoutes = [
     { path: config.routes.updateService, component: UpdateService, layout: AdminLayout },
     { path: config.routes.partnerList, component: PartnerList, layout: AdminLayout },
     { path: config.routes.addPartner, component: AddPartner, layout: AdminLayout },
-    { path: config.routes.updateProject, component: UpdateProject, layout: AdminLayout },
-    { path: config.routes.projectList, component: ProjectList, layout: AdminLayout },
-    { path: config.routes.addProject, component: AddProject, layout: AdminLayout },
     { path: config.routes.updateUser, component: UpdateUser, layout: AdminLayout },
     { path: config.routes.userList, component: UserList, layout: AdminLayout },
     { path: config.routes.videosList, component: VideoList, layout: AdminLayout },
@@ -187,11 +162,6 @@ const privateRoutes = [
     { path: config.routes.updatePage, component: UpdatePage, layout: AdminLayout },
     { path: config.routes.categoryList, component: CategoryList, layout: AdminLayout },
     { path: config.routes.addCategory, component: AddCategory, layout: AdminLayout },
-    { path: config.routes.departmentList, component: DepartmentList, layout: AdminLayout },
-    { path: config.routes.addDepartment, component: AddDepartment, layout: AdminLayout },
-    { path: config.routes.memberList, component: MemberList, layout: AdminLayout },
-    { path: config.routes.addMember, component: AddMember, layout: AdminLayout },
-    { path: config.routes.updateMember, component: UpdateMember, layout: AdminLayout },
 ];
 
 export { publicRoutes, privateRoutes };

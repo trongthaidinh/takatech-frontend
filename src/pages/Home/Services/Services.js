@@ -31,8 +31,6 @@ const Services = () => {
         fetchCategories();
     }, []);
 
-    console.log(categories);
-
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>

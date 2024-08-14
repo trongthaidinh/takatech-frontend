@@ -10,6 +10,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import LoadingScreen from '~/components/LoadingScreen';
 import routes from '~/config/routes';
 import Title from '~/components/Title';
+import { Spin } from 'antd';
 
 const UpdateRecruitment = () => {
     const { id } = useParams();
@@ -161,7 +162,7 @@ const UpdateRecruitment = () => {
                             </label>
                         </div>
                         <button type="submit" disabled={isSubmitting} className={styles.submitButton}>
-                            Cập Nhật Tuyển Dụng
+                            {isSubmitting ? <Spin size="small" /> : 'Cập Nhật'}
                         </button>
                     </Form>
                 )}

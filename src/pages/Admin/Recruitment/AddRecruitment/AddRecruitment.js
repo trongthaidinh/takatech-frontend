@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import Title from '~/components/Title';
 import { useDropzone } from 'react-dropzone';
 import classNames from 'classnames/bind';
+import { Spin } from 'antd';
 
 const AddRecruitment = () => {
     const [categories, setCategories] = useState([]);
@@ -155,7 +156,7 @@ const AddRecruitment = () => {
                             </label>
                         </div>
                         <button type="submit" disabled={isSubmitting} className={cx('submitButton')}>
-                            Thêm Tuyển Dụng
+                            {isSubmitting ? <Spin size="small" /> : 'Thêm Tuyển Dụng'}
                         </button>
                     </Form>
                 )}

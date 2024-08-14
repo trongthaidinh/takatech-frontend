@@ -64,7 +64,6 @@ function News() {
     };
 
     const getCategorySlug = (news) => {
-        console.log(news);
         const category = categories.find((cat) => cat._id === news.categoryId);
         return category ? category.slug : '';
     };

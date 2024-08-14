@@ -10,6 +10,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import LoadingScreen from '~/components/LoadingScreen';
 import routes from '~/config/routes';
 import Title from '~/components/Title';
+import { Spin } from 'antd';
 
 const UpdateService = () => {
     const { id } = useParams();
@@ -160,7 +161,7 @@ const UpdateService = () => {
                             </label>
                         </div>
                         <button type="submit" disabled={isSubmitting} className={styles.submitButton}>
-                            Cập Nhật Dịch Vụ
+                            {isSubmitting ? <Spin size="small" /> : 'Cập nhật'}
                         </button>
                     </Form>
                 )}

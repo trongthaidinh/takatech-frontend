@@ -10,6 +10,7 @@ import routes from '~/config/routes';
 import { useNavigate } from 'react-router-dom';
 import Title from '~/components/Title';
 import { useDropzone } from 'react-dropzone';
+import { Spin } from 'antd';
 
 const AddNews = () => {
     const [categories, setCategories] = useState([]);
@@ -153,7 +154,7 @@ const AddNews = () => {
                             </label>
                         </div>
                         <button type="submit" disabled={isSubmitting} className={styles.submitButton}>
-                            Thêm Tin Tức
+                            {isSubmitting ? <Spin size="small" /> : 'Thêm Tin Tức'}
                         </button>
                     </Form>
                 )}

@@ -82,6 +82,7 @@ const NavigationList = () => {
                             <th>Tiêu đề</th>
                             <th>Loại</th>
                             <th>Navigation Cha</th>
+                            <th>Vị trí hiển thị</th>
                             <th>Hành động</th>
                         </tr>
                     </thead>
@@ -93,6 +94,7 @@ const NavigationList = () => {
                                         <td>{nav.title}</td>
                                         <td>{nav.type}</td>
                                         <td>{nav.parent ? nav.parent : ''}</td>
+                                        <td>{nav.position}</td>
                                         <td>
                                             <Link
                                                 to={`/admin/edit-navigation/${nav._id}`}

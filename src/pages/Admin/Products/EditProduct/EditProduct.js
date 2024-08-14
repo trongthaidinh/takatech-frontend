@@ -12,6 +12,7 @@ import routes from '~/config/routes';
 import Title from '~/components/Title';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { Spin } from 'antd';
 
 const EditProduct = () => {
     const { id } = useParams();
@@ -172,7 +173,7 @@ const EditProduct = () => {
                                 <ErrorMessage name="content" component="div" className={styles.error} />
                             </div>
                             <button type="submit" disabled={isSubmitting} className={styles.submitButton}>
-                                Cập Nhật Sản Phẩm
+                                {isSubmitting ? <Spin size="small" /> : 'Cập Nhật'}
                             </button>
                         </Form>
                     )}

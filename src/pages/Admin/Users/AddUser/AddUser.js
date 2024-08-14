@@ -7,6 +7,7 @@ import styles from './AddUser.module.scss';
 import routes from '~/config/routes';
 import PushNotification from '~/components/PushNotification';
 import Title from '~/components/Title';
+import { Spin } from 'antd';
 
 const AddUser = () => {
     const navigate = useNavigate();
@@ -80,7 +81,7 @@ const AddUser = () => {
                             <ErrorMessage name="password" component="div" className={styles.error} />
                         </div>
                         <button type="submit" disabled={isSubmitting} className={styles.submitButton}>
-                            Thêm Người dùng
+                            {isSubmitting ? <Spin size="small" /> : 'Thêm Người Dùng'}
                         </button>
                     </Form>
                 )}

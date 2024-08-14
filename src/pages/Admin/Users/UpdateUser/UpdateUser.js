@@ -8,6 +8,7 @@ import routes from '~/config/routes';
 import LoadingScreen from '~/components/LoadingScreen';
 import PushNotification from '~/components/PushNotification';
 import Title from '~/components/Title';
+import { Spin } from 'antd';
 
 const UpdateUser = () => {
     const navigate = useNavigate();
@@ -78,7 +79,7 @@ const UpdateUser = () => {
                             <ErrorMessage name="fullName" component="div" className={styles.error} />
                         </div>
                         <button type="submit" disabled={isSubmitting} className={styles.submitButton}>
-                            Cập nhật người dùng
+                            {isSubmitting ? <Spin size="small" /> : 'Cập nhật'}
                         </button>
                     </Form>
                 )}

@@ -7,6 +7,7 @@ import { getNavigationLinks, createNavigationLink } from '~/services/navigationS
 import routes from '~/config/routes';
 import { Link, useNavigate } from 'react-router-dom';
 import PushNotification from '~/components/PushNotification';
+import { Spin } from 'antd';
 
 const AddNavigation = () => {
     const [isError, setIsError] = useState(false);
@@ -109,13 +110,13 @@ const AddNavigation = () => {
 
                             <div className={styles.formItem}>
                                 <label htmlFor="position">Vị trí</label>
-                                <Field name="position" type="number" />
+                                <Field name="position" type="number" placeholder="Nhập vị trí ( Ví dụ: 2 )" />
                                 <ErrorMessage name="position" component="div" className={styles.errorMessage} />
                             </div>
 
                             <div className={styles.buttonContainer}>
                                 <button type="submit" disabled={isSubmitting} className={styles.submitButton}>
-                                    {isSubmitting ? 'Đang gửi...' : 'Thêm Navigation'}
+                                    {isSubmitting ? <Spin size="small" /> : 'Thêm Navigation'}
                                 </button>
                                 <Link to={routes.navigationList} className={styles.backButton}>
                                     <button type="button" className={styles.cancelButton}>
