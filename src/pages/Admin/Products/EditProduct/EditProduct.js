@@ -27,6 +27,7 @@ const EditProduct = () => {
         content: '',
         updateCate: '',
         summary: '',
+        images: [],
     });
 
     const validationSchema = Yup.object({
@@ -75,9 +76,15 @@ const EditProduct = () => {
         const formData = new FormData();
 
         formData.append('updateName', values.updateName);
-        files.forEach((image) => {
-            formData.append('updateImage', image);
-        });
+
+        if (files.length > 0) {
+            files.forEach((image) => {
+                formData.append('updateImage', image);
+            });
+        } else {
+            formData.append('updateImage', product.image);
+        }
+
         formData.append('content', values.content);
         formData.append('updateCate', values.updateCate);
         formData.append('summary', values.summary);
