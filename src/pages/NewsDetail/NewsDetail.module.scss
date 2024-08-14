@@ -64,6 +64,26 @@
                 font-size: 2.4rem;
             }
         }
+
+        ol {
+            li {
+                list-style: decimal;
+                margin-left: 20px;
+                li {
+                    list-style: circle;
+                }
+            }
+        }
+
+        ul {
+            li {
+                list-style: disc;
+                margin-left: 20px;
+                li {
+                    list-style: circle;
+                }
+            }
+        }
     }
 
     .title {

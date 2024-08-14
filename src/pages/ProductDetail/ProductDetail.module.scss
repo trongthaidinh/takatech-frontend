@@ -240,10 +240,25 @@
             }
         }
 
-        li {
-            margin-left: 40px;
+        ol {
+            li {
+                list-style: decimal;
+                margin-left: 20px;
+                li {
+                    list-style: circle;
+                }
+            }
         }
 
+        ul {
+            li {
+                list-style: disc;
+                margin-left: 20px;
+                li {
+                    list-style: circle;
+                }
+            }
+        }
         em {
             display: block;
             margin: -32px 0 16px 0;
