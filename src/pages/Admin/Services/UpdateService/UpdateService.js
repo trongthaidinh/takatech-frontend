@@ -61,7 +61,6 @@ const UpdateService = () => {
         const file = event.target.files[0];
         setFieldValue('image', file);
     };
-
     const handleSubmit = async (values, { resetForm }) => {
         const formData = new FormData();
 

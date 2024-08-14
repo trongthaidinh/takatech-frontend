@@ -20,14 +20,14 @@ const useProvideAuth = () => {
 
     useEffect(() => {
         const tokenExp = localStorage.getItem('tokenExp');
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('user');
         if (tokenExp) {
             console.log(tokenExp, Date.now() / 1000);
             const isExpired = tokenExp < Date.now() / 1000;
             if (!isExpired) {
                 setUser(token);
             } else {
-                localStorage.removeItem('token');
+                localStorage.removeItem('user');
                 localStorage.removeItem('tokenExp');
                 localStorage.removeItem('userEmail');
             }
@@ -40,7 +40,7 @@ const useProvideAuth = () => {
         if (response.status) {
             const { data } = response;
             setUser(data);
-            localStorage.setItem('token', data.token);
+            localStorage.setItem('user', data.token);
             localStorage.setItem('tokenExp', data.decoded.exp);
             localStorage.setItem('userEmail', credentials.email);
             navigate('/admin/dashboard');
