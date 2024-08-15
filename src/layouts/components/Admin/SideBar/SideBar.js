@@ -22,7 +22,7 @@ import {
     faUsersLine,
 } from '@fortawesome/free-solid-svg-icons';
 import routes from '~/config/routes';
-import companyLogo from '~/assets/images/takatech-logo.png';
+import images from '~/assets/images';
 import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
@@ -58,7 +58,7 @@ const SideBar = () => {
         <div className={cx('sidebar', { collapsed: isCollapsed, expanded: !isCollapsed })}>
             <div className={cx('logoWrapper')}>
                 <Link to={routes.admin}>
-                    <img src={companyLogo} alt="Company Logo" className={cx('logo')} />
+                    <img src={images.logo} alt="Company Logo" className={cx('logo')} />
                 </Link>
                 <FontAwesomeIcon
                     icon={isCollapsed ? faCaretRight : faCaretLeft}
