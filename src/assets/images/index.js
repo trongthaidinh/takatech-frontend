@@ -1,5 +1,5 @@
 const images = {
-    logo: './takatech-logo.png',
+    logo: require('~/assets/images/takatech-logo.png'),
 };
 
 export default images;

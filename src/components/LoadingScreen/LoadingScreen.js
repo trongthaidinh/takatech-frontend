@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './LoadingScreen.module.scss';
-import logo from '~/assets/images/takatech-logo.png';
+import images from '~/assets/images';
 
 const LoadingScreen = ({ isLoading }) => {
     return (
         <div className={`${styles.loading} ${!isLoading ? styles.slideUp : ''}`}>
-            <img src={logo} alt="Logo" className={styles.logo} />
+            <img src={images.logo} alt="Logo" className={styles.logo} />
             <div className={styles.loadingWrapper}>
                 <div className={styles.spinnerContainer}>
                     <div className={styles.dot1}></div>

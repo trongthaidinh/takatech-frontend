@@ -21,7 +21,7 @@ import {
     faUsers,
     faEnvelope,
 } from '@fortawesome/free-solid-svg-icons';
-import logo from '~/assets/images/takatech-logo.png';
+import images from '~/assets/images';
 
 const iconsData = [
     { position: 1, icon: faInfoCircle },
@@ -112,7 +112,7 @@ function Navigation({ isFixed }) {
                     <FontAwesomeIcon icon={isMenuOpen ? faTimes : faBars} />
                 </div>
                 <Link to="/">
-                    <img src={logo} alt="Logo" className={cx('logo')} />
+                    <img src={images.logo} alt="Logo" className={cx('logo')} />
                 </Link>
                 <ul className={cx('navigation-links', { open: isMenuOpen })}>
                     <li onClick={handleLinkClick}>
