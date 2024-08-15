@@ -70,7 +70,7 @@ function PrivateRoute({ children }) {
     const { user, loading } = useAuth();
 
     if (loading) {
-        return <LoadingScreen />;
+        return <LoadingScreen isLoading={loading} />;
     }
 
     return user ? children : <Navigate to="/login" />;

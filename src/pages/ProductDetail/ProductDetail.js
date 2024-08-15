@@ -71,7 +71,7 @@ const ProductDetail = () => {
     }
 
     if (loading) {
-        return <LoadingScreen />;
+        return <LoadingScreen isLoading={loading} />;
     }
 
     return (

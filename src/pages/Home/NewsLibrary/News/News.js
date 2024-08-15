@@ -43,7 +43,7 @@ function News() {
     }
 
     if (loading) {
-        return <LoadingScreen />;
+        return <LoadingScreen isLoading={loading} />;
     }
 
     const filteredNews = (() => {

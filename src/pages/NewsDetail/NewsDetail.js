@@ -39,7 +39,7 @@ const NewsDetail = () => {
     }
 
     if (loading) {
-        return <LoadingScreen />;
+        return <LoadingScreen isLoading={loading} />;
     }
 
     return (

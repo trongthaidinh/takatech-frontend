@@ -43,7 +43,7 @@ const Introduction = () => {
     }
 
     if (loading) {
-        return <LoadingScreen />;
+        return <LoadingScreen isLoading={loading} />;
     }
 
     if (!pageContent) {

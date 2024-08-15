@@ -73,7 +73,7 @@ const Service = () => {
     }
 
     if (loading) {
-        return <LoadingScreen />;
+        return <LoadingScreen isLoading={loading} />;
     }
 
     const filteredServiceItems = serviceItems

@@ -12,24 +12,32 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { getCategoriesByType } from '~/services/categoryService';
 import { Link } from 'react-router-dom';
+import LoadingScreen from '~/components/LoadingScreen';
 
 const cx = classNames.bind(styles);
 
 const Services = () => {
     const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchCategories = async () => {
             try {
                 const fetchedCategories = await getCategoriesByType(3);
                 setCategories(fetchedCategories);
+                setLoading(false);
             } catch (error) {
                 console.error('Error fetching categories:', error);
+                setLoading(false);
             }
         };
 
         fetchCategories();
     }, []);
+
+    if (loading) {
+        return <LoadingScreen isLoading={loading} />;
+    }
 
     return (
         <div className={cx('wrapper')}>

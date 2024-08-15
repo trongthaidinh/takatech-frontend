@@ -76,7 +76,7 @@ const Search = () => {
     }
 
     if (loading) {
-        return <LoadingScreen />;
+        return <LoadingScreen isLoading={loading} />;
     }
 
     const filteredNews = news

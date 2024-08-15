@@ -72,7 +72,7 @@ const Recruitment = () => {
     }
 
     if (loading) {
-        return <LoadingScreen />;
+        return <LoadingScreen isLoading={loading} />;
     }
 
     const filteredRecruitmentItems = recruitmentItems

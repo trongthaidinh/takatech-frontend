@@ -11,6 +11,7 @@ import Card from '~/components/CardContent/CardContent';
 import { getCategoriesByType } from '~/services/categoryService';
 import routes from '~/config/routes';
 import { Helmet } from 'react-helmet';
+import LoadingScreen from '~/components/LoadingScreen';
 
 const cx = classNames.bind(styles);
 
@@ -20,6 +21,7 @@ function RecruitmentCategory() {
     const [categoryId, setCategoryId] = useState(null);
     const [categoryName, setCategoryName] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    const [isLoading, setIsLoading] = useState(true);
     const recruitmentPerPage = 12;
 
     const extractSlugFromPathname = (pathname) => {
@@ -50,6 +52,7 @@ function RecruitmentCategory() {
 
     useEffect(() => {
         async function fetchRecruitmentCategory() {
+            setIsLoading(true);
             if (categoryId) {
                 try {
                     const data = await getRecruitmentByCategory(categoryId);
@@ -58,6 +61,7 @@ function RecruitmentCategory() {
                     console.error('Error fetching recruitment:', error);
                 }
             }
+            setIsLoading(false);
         }
 
         fetchRecruitmentCategory();
@@ -120,8 +124,14 @@ function RecruitmentCategory() {
                 <meta name="keywords" content={`${categoryName}, tin tức, VNETC`} />
             </Helmet>
             <Title text={categoryName} />
-            <div className={cx('recruitmentGrid')}>{renderRecruitmentCategory()}</div>
-            {renderPagination()}
+            {isLoading ? (
+                <LoadingScreen isLoading={isLoading} />
+            ) : (
+                <>
+                    <div className={cx('recruitmentGrid')}>{renderRecruitmentCategory()}</div>
+                    {renderPagination()}
+                </>
+            )}
         </div>
     );
 }

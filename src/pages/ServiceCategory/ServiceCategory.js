@@ -11,6 +11,7 @@ import Card from '~/components/CardContent/CardContent';
 import { getCategoriesByType } from '~/services/categoryService';
 import routes from '~/config/routes';
 import { Helmet } from 'react-helmet';
+import LoadingScreen from '~/components/LoadingScreen';
 
 const cx = classNames.bind(styles);
 
@@ -20,6 +21,7 @@ function ServiceCategory() {
     const [categoryId, setCategoryId] = useState(null);
     const [categoryName, setCategoryName] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    const [loading, setLoading] = useState(true);
     const servicePerPage = 12;
 
     const extractSlugFromPathname = (pathname) => {
@@ -51,11 +53,14 @@ function ServiceCategory() {
     useEffect(() => {
         async function fetchServiceCategory() {
             if (categoryId) {
+                setLoading(true);
                 try {
                     const data = await getServiceByCategory(categoryId);
                     setService(data);
                 } catch (error) {
                     console.error('Error fetching service:', error);
+                } finally {
+                    setLoading(false);
                 }
             }
         }
@@ -119,9 +124,15 @@ function ServiceCategory() {
                 <meta name="description" content={`Xem các tin tức liên quan đến ${categoryName} trên VNETC.`} />
                 <meta name="keywords" content={`${categoryName}, tin tức, VNETC`} />
             </Helmet>
-            <Title text={categoryName} />
-            <div className={cx('serviceGrid')}>{renderServiceCategory()}</div>
-            {renderPagination()}
+            {loading ? (
+                <LoadingScreen isLoading={loading} />
+            ) : (
+                <>
+                    <Title text={categoryName} />
+                    <div className={cx('serviceGrid')}>{renderServiceCategory()}</div>
+                    {renderPagination()}
+                </>
+            )}
         </div>
     );
 }

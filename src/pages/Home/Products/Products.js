@@ -4,7 +4,6 @@ import { getProductsPagination } from '~/services/productService';
 import { getCategoriesByType } from '~/services/categoryService';
 import styles from './Products.module.scss';
 import Title from '~/components/Title';
-import LoadingScreen from '~/components/LoadingScreen';
 import PushNotification from '~/components/PushNotification';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
@@ -13,6 +12,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import routes from '~/config/routes';
 import { Link } from 'react-router-dom';
+import LoadingScreen from '~/components/LoadingScreen'; // Import the LoadingScreen component
 
 const cx = classNames.bind(styles);
 
@@ -29,10 +29,10 @@ function Products() {
                 const categoriesData = await getCategoriesByType(1);
                 setProducts(productsData);
                 setCategories(categoriesData);
-                setLoading(false);
+                setLoading(false); // Stop loading once data is fetched
             } catch (err) {
                 setError(err);
-                setLoading(false);
+                setLoading(false); // Stop loading even if there's an error
                 console.error('Error fetching data:', err);
             }
         };
@@ -40,12 +40,12 @@ function Products() {
         fetchProductsAndCategories();
     }, []);
 
-    if (error) {
-        return <PushNotification message={error.message} />;
+    if (loading) {
+        return <LoadingScreen isLoading={loading} />;
     }
 
-    if (loading) {
-        return <LoadingScreen />;
+    if (error) {
+        return <PushNotification message={error.message} />;
     }
 
     const getCategorySlug = (product) => {

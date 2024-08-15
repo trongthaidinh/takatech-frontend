@@ -39,7 +39,7 @@ const ServiceDetail = () => {
     }
 
     if (loading) {
-        return <LoadingScreen />;
+        return <LoadingScreen isLoading={loading} />;
     }
 
     return (

@@ -11,6 +11,7 @@ import Card from '~/components/CardContent/CardContent';
 import { getCategoriesByType } from '~/services/categoryService';
 import routes from '~/config/routes';
 import { Helmet } from 'react-helmet';
+import LoadingScreen from '~/components/LoadingScreen';
 
 const cx = classNames.bind(styles);
 
@@ -20,6 +21,7 @@ function NewsCategory() {
     const [categoryId, setCategoryId] = useState(null);
     const [categoryName, setCategoryName] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    const [loading, setLoading] = useState(true);
     const newsPerPage = 12;
 
     const extractSlugFromPathname = (pathname) => {
@@ -32,6 +34,7 @@ function NewsCategory() {
     useEffect(() => {
         async function fetchCategory() {
             try {
+                setLoading(true);
                 const categories = await getCategoriesByType(2);
                 const category = categories.find((cat) => cat.slug === slug);
                 if (category) {
@@ -40,6 +43,8 @@ function NewsCategory() {
                 }
             } catch (error) {
                 console.error('Error fetching categories:', error);
+            } finally {
+                setLoading(false);
             }
         }
 
@@ -52,10 +57,13 @@ function NewsCategory() {
         async function fetchNewsCategory() {
             if (categoryId) {
                 try {
+                    setLoading(true);
                     const data = await getNewsByCategory(categoryId);
                     setNews(data);
                 } catch (error) {
                     console.error('Error fetching news:', error);
+                } finally {
+                    setLoading(false);
                 }
             }
         }
@@ -119,9 +127,15 @@ function NewsCategory() {
                 <meta name="description" content={`Xem các tin tức liên quan đến ${categoryName} trên VNETC.`} />
                 <meta name="keywords" content={`${categoryName}, tin tức, VNETC`} />
             </Helmet>
-            <Title text={categoryName} />
-            <div className={cx('newsGrid')}>{renderNewsCategory()}</div>
-            {renderPagination()}
+            {loading ? (
+                <LoadingScreen isLoading={loading} />
+            ) : (
+                <>
+                    <Title text={categoryName} />
+                    <div className={cx('newsGrid')}>{renderNewsCategory()}</div>
+                    {renderPagination()}
+                </>
+            )}
         </div>
     );
 }

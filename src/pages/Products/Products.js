@@ -9,6 +9,7 @@ import { getProductsByCategory } from '~/services/productService';
 import { getCategoriesByType } from '~/services/categoryService';
 import Title from '~/components/Title';
 import { Helmet } from 'react-helmet';
+import LoadingScreen from '~/components/LoadingScreen';
 
 const cx = classNames.bind(styles);
 
@@ -19,6 +20,7 @@ function Products() {
     const [categories, setCategories] = useState([]);
     const [categoryName, setCategoryName] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    const [loading, setLoading] = useState(true);
     const productsPerPage = 12;
 
     const extractSlugFromPathname = (pathname) => {
@@ -36,6 +38,7 @@ function Products() {
     useEffect(() => {
         async function fetchCategory() {
             try {
+                setLoading(true);
                 const categories = await getCategoriesByType(1);
                 setCategories(categories);
                 const category = categories.find((cat) => cat.slug === slug);
@@ -45,6 +48,8 @@ function Products() {
                 }
             } catch (error) {
                 console.error('Error fetching categories:', error);
+            } finally {
+                setLoading(false);
             }
         }
 
@@ -57,10 +62,13 @@ function Products() {
         async function fetchProductsCategory() {
             if (categoryId) {
                 try {
+                    setLoading(true);
                     const data = await getProductsByCategory(categoryId);
                     setProducts(data);
                 } catch (error) {
                     console.error('Error fetching products:', error);
+                } finally {
+                    setLoading(false);
                 }
             }
         }
@@ -113,6 +121,10 @@ function Products() {
             </div>
         );
     };
+
+    if (loading) {
+        return <LoadingScreen isLoading={loading} />;
+    }
 
     return (
         <div className={cx('container')}>

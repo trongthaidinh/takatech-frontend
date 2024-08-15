@@ -39,7 +39,7 @@ const RecruitmentDetail = () => {
     }
 
     if (loading) {
-        return <LoadingScreen />;
+        return <LoadingScreen isLoading={loading} />;
     }
 
     return (
