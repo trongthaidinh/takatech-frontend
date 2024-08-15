@@ -13,6 +13,7 @@ import { getNews } from '~/services/newsService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { getCategories } from '~/services/categoryService';
+import { Empty } from 'antd';
 
 const cx = classNames.bind(styles);
 
@@ -65,7 +66,6 @@ const Search = () => {
 
     const handlePageChange = (pageNumber) => {
         if (pageNumber >= 1 && pageNumber <= totalPages) {
-            console.log(pageNumber);
             setCurrentPage(pageNumber);
         }
     };
@@ -92,6 +92,18 @@ const Search = () => {
         .slice(0, 5);
 
     const renderSearchResults = () => {
+        if (searchResults.length === 0) {
+            return (
+                <Empty
+                    description={
+                        <span>
+                            Không tìm thấy dữ liệu với từ khóa <strong>"{query}"</strong>
+                        </span>
+                    }
+                />
+            );
+        }
+
         return searchResults.map((item, index) => (
             <Link key={index} to={`${routes.news}/${getCategorySlug(item)}/${item._id}`}>
                 <Card
@@ -106,6 +118,9 @@ const Search = () => {
     };
 
     const renderPagination = () => {
+        if (searchResults.length === 0) {
+            return;
+        }
         const pages = [];
         for (let i = 1; i <= totalPages; i++) {
             pages.push(
