@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet';
 import Overview from './Overview';
 import Products from './Products';
 import Services from './Services';
-// import Projects from './Projects';
 import NewsLibrary from './NewsLibrary';
 import Banner from './Banner';
 import Partners from './Partners';
@@ -24,7 +23,6 @@ const Home = () => (
         <Overview />
         <Products />
         <Services />
-        {/* <Projects /> */}
         <NewsLibrary />
         <FAQs />
         <Partners />

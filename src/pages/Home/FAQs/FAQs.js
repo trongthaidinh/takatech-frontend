@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Title from '~/components/Title';
 import styles from './FAQs.module.scss';
 import classNames from 'classnames/bind';
@@ -56,7 +56,7 @@ const faqsData = [
             },
             {
                 question: 'Tôi có thể yêu cầu dịch vụ bào trì Server và Domain không?',
-                answer: `Vâng, có thể ạ. Khi server có phát sinh vấn để gì, chúng tôi sẽ nhanh chóng báo cáo cho khách hàng.`,
+                answer: `Vâng, có thể ạ. Khi server có phát sinh vấn đề gì, chúng tôi sẽ nhanh chóng báo cáo cho khách hàng.`,
             },
         ],
     },
@@ -65,6 +65,33 @@ const faqsData = [
 function FAQs() {
     const [expandedIndex, setExpandedIndex] = useState(0);
     const [expandedQuestions, setExpandedQuestions] = useState({ 0: 0 });
+    const [isVisible, setIsVisible] = useState(false);
+    const wrapperRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.disconnect(); // Ngắt kết nối observer sau khi đã visible
+                }
+            },
+            {
+                threshold: 0.1, // Khi 80% wrapper nằm trong viewport
+            },
+        );
+
+        if (wrapperRef.current) {
+            observer.observe(wrapperRef.current);
+        }
+
+        return () => {
+            if (wrapperRef.current) {
+                // eslint-disable-next-line react-hooks/exhaustive-deps
+                observer.unobserve(wrapperRef.current);
+            }
+        };
+    }, []);
 
     const toggleTitle = (index) => {
         setExpandedIndex(expandedIndex === index ? null : index);
@@ -82,7 +109,13 @@ function FAQs() {
 
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('inner')}>
+            <motion.div
+                className={cx('inner')}
+                ref={wrapperRef}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.5 }}
+            >
                 <Title text="FAQs" />
                 <div className={cx('section-grid')}>
                     <div className={cx('faqs')}>
@@ -91,7 +124,7 @@ function FAQs() {
                                 key={titleIndex}
                                 className={cx('faq-title')}
                                 initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
+                                animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 10 }}
                                 transition={{ duration: 0.5, delay: titleIndex * 0.1 }}
                             >
                                 <div
@@ -113,7 +146,7 @@ function FAQs() {
                                         transition={{ duration: 0.5 }}
                                     >
                                         {faq.questions.map((item, questionIndex) => (
-                                            <motion.div
+                                            <div
                                                 key={questionIndex}
                                                 className={cx('faq-item')}
                                                 initial={{ opacity: 0, y: 10 }}
@@ -155,7 +188,7 @@ function FAQs() {
                                                 >
                                                     <p>{item.answer}</p>
                                                 </motion.div>
-                                            </motion.div>
+                                            </div>
                                         ))}
                                     </motion.div>
                                 )}
@@ -167,7 +200,7 @@ function FAQs() {
                         <ContactForm />
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 }
