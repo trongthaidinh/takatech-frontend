@@ -1,5 +1,5 @@
 const images = {
-    logo: './takateach-logo.png',
+    logo: './takatech-logo.png',
 };
 
 export default images;
