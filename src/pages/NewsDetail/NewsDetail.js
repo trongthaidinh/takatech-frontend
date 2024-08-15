@@ -17,20 +17,22 @@ const NewsDetail = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchNewsDetail = async () => {
-            try {
-                const data = await getNewsById(id);
-                setNewsDetail(data);
-            } catch (error) {
-                setError(error);
-                console.error('Error fetching news detail:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
+    const fetchNewsDetail = async (id) => {
+        try {
+            setLoading(true);
+            const data = await getNewsById(id);
+            setNewsDetail(data);
+            setError(null);
+        } catch (error) {
+            setError(error);
+            console.error('Error fetching news detail:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-        fetchNewsDetail();
+    useEffect(() => {
+        fetchNewsDetail(id);
     }, [id]);
 
     if (error) {
@@ -50,7 +52,7 @@ const NewsDetail = () => {
                 <meta name="keywords" content="tin tức, VNETC, chi tiết tin tức" />
             </Helmet>
             <div className={cx('header')}>
-                <Title text={`${newsDetail.title}`} className={cx('title')} />
+                <Title text={newsDetail.title} className={cx('title')} />
             </div>
             <div className={cx('content')} dangerouslySetInnerHTML={{ __html: newsDetail.content }} />
             <DateTime
