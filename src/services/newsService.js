@@ -31,6 +31,10 @@ export const getNewsAll = async () => {
 };
 
 export const getNewsById = async (id) => {
+    if (!id) {
+        throw new Error('ID is required to fetch news detail.');
+    }
+
     try {
         const response = await httpRequest.get(`/news/${id}`);
         return response.data.data;

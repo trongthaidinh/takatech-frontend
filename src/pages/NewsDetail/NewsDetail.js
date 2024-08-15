@@ -32,7 +32,11 @@ const NewsDetail = () => {
     };
 
     useEffect(() => {
-        fetchNewsDetail(id);
+        if (id) {
+            fetchNewsDetail(id);
+        } else {
+            setError(new Error('Invalid news ID'));
+        }
     }, [id]);
 
     if (error) {
