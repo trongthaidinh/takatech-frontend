@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/autoplay';
+import Title from 'components/Title';
 
 const cx = classNames.bind(styles);
 
@@ -43,6 +44,8 @@ function Partners() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
+                <Title text="Đối tác" />
+
                 <Swiper
                     spaceBetween={20}
                     slidesPerView={4}
