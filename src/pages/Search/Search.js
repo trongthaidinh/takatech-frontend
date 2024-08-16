@@ -12,7 +12,7 @@ import routes from '~/config/routes';
 import { getNews } from '~/services/newsService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { getCategories } from '~/services/categoryService';
+import { getCategoriesByType } from 'services/categoryService';
 import { Empty } from 'antd';
 
 const cx = classNames.bind(styles);
@@ -36,7 +36,7 @@ const Search = () => {
             try {
                 setLoading(true);
                 const searchData = await searchItems(query, resultsPerPage, currentPage);
-                const [newsData, categoryData] = await Promise.all([getNews(), getCategories()]);
+                const [newsData, categoryData] = await Promise.all([getNews(), getCategoriesByType(2)]);
                 setSearchResults(searchData.results);
                 setNews(newsData);
                 setCurrentPage(searchData.currentPage);
@@ -166,7 +166,7 @@ const Search = () => {
                     <div className={cx('suggest-items')}>
                         {filteredNews &&
                             filteredNews.map((item, index) => (
-                                <Link key={index} to={`/news/${item._id}`}>
+                                <Link key={index} to={`${routes.news}/${getCategorySlug(item)}/${item._id}`}>
                                     <SuggestCard
                                         title={item.title}
                                         summary={item.summary}
