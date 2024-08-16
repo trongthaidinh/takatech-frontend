@@ -61,8 +61,8 @@ function Products() {
                     spaceBetween={10}
                     slidesPerView={2}
                     breakpoints={{
-                        1280: { slidesPerView: 2 },
-                        1024: { slidesPerView: 2 },
+                        1280: { slidesPerView: 3 },
+                        1024: { slidesPerView: 3 },
                         768: { slidesPerView: 1 },
                         0: { slidesPerView: 1 },
                     }}
