@@ -10,8 +10,8 @@ const About = () => (
     <article className={cx('wrapper')}>
         <Helmet>
             <title>Giới thiệu | TAKATECH</title>
-            <meta name="description" content={'Thông tin về trang giới thiệu của Takatech.'} />
-            <meta name="keywords" content="giới thiệu, VNETC, thông tin công ty" />
+            <meta name="description" content={'Thông tin giới thiệu về TakaTech.'} />
+            <meta name="keywords" content="giới thiệu, takatech, thông tin công ty" />
             <meta name="author" content="CÔNG TY TNHH CÔNG NGHỆ TAKATECH" />
         </Helmet>
         <div className={cx('inner')}>

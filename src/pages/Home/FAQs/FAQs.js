@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
 import ContactForm from '~/components/ContactForm';
+import PushNotification from '~/components/PushNotification';
 
 const cx = classNames.bind(styles);
 
@@ -66,6 +67,7 @@ function FAQs() {
     const [expandedIndex, setExpandedIndex] = useState(0);
     const [expandedQuestions, setExpandedQuestions] = useState({ 0: 0 });
     const [isVisible, setIsVisible] = useState(false);
+    const [notification, setNotification] = useState({ message: '', type: '' });
     const wrapperRef = useRef(null);
 
     useEffect(() => {
@@ -73,11 +75,11 @@ function FAQs() {
             ([entry]) => {
                 if (entry.isIntersecting) {
                     setIsVisible(true);
-                    observer.disconnect(); // Ngắt kết nối observer sau khi đã visible
+                    observer.disconnect();
                 }
             },
             {
-                threshold: 0.1, // Khi 80% wrapper nằm trong viewport
+                threshold: 0.1,
             },
         );
 
@@ -105,6 +107,14 @@ function FAQs() {
             ...prev,
             [titleIndex]: prev[titleIndex] === questionIndex ? null : questionIndex,
         }));
+    };
+
+    const handleSuccess = (message) => {
+        setNotification({ message, type: 'success' });
+    };
+
+    const handleError = (message) => {
+        setNotification({ message, type: 'error' });
     };
 
     return (
@@ -197,9 +207,10 @@ function FAQs() {
                     </div>
 
                     <div className={cx('formSection')}>
-                        <ContactForm />
+                        <ContactForm onSubmitSuccess={handleSuccess} onSubmitError={handleError} />
                     </div>
                 </div>
+                <PushNotification message={notification.message} type={notification.type} />
             </motion.div>
         </div>
     );

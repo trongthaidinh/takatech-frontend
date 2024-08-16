@@ -16,11 +16,12 @@ import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import { Helmet } from 'react-helmet';
+import { getNewsPagination } from 'services/newsService';
 
 const cx = classNames.bind(styles);
 
 const Recruitment = () => {
-    const [recruitmentItems, setRecruitmentItems] = useState([]);
+    const [news, setNews] = useState([]);
     const [categories, setCategories] = useState([]);
     const [groupedRecruitment, setGroupedRecruitment] = useState({});
     const [loading, setLoading] = useState(true);
@@ -31,7 +32,9 @@ const Recruitment = () => {
         const fetchCategoriesAndRecruitment = async () => {
             try {
                 const categoriesData = await getCategoriesByType(4);
+                const newsData = await getNewsPagination(1, 15);
                 setCategories(categoriesData);
+                setNews(newsData);
 
                 const groupedRecruitmentMap = {};
 
@@ -45,7 +48,6 @@ const Recruitment = () => {
                     }),
                 );
                 setGroupedRecruitment(groupedRecruitmentMap);
-                setRecruitmentItems(Object.values(groupedRecruitmentMap).flat());
             } catch (error) {
                 setError(error);
                 console.error('Error fetching recruitment:', error);
@@ -75,7 +77,7 @@ const Recruitment = () => {
         return <LoadingScreen isLoading={loading} />;
     }
 
-    const filteredRecruitmentItems = recruitmentItems
+    const filteredRecruitmentItems = news
         .filter((item) => {
             if (selectedSuggestion === 0) {
                 return item.isFeatured;
@@ -99,6 +101,7 @@ const Recruitment = () => {
             </Helmet>
             <div className={cx('recruitment-section')}>
                 <div className={cx('recruitment-column')}>
+                    <h2 className={cx('recruitment-title')}>Tuyển dụng</h2>
                     {categories.map((category) => {
                         const slides = groupedRecruitment[category._id]?.slice(0, 6) || [];
                         const shouldLoop = slides.length > 3;

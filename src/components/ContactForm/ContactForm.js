@@ -1,4 +1,3 @@
-// src/components/ContactForm.js
 import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -118,7 +117,7 @@ const ContactForm = () => {
                     </Form>
                 )}
             </Formik>
-            <PushNotification notification={notification} setNotification={setNotification} />
+            <PushNotification message={notification.message} type={notification.type} />
         </div>
     );
 };

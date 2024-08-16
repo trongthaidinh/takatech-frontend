@@ -58,8 +58,8 @@ const Introduction = () => {
                     name="description"
                     content={pageContent.description || 'Thông tin về trang giới thiệu của VNETC.'}
                 />
-                <meta name="keywords" content="giới thiệu, VNETC, thông tin công ty" />
-                <meta name="author" content="CÔNG TY CỔ PHẦN THÍ NGHIỆM CƠ ĐIỆN VIỆT NAM - VNETC" />
+                <meta name="keywords" content="giới thiệu, takatech, thông tin công ty" />
+                <meta name="author" content="CÔNG TY TNHH CÔNG NGHỆ TAKATECH" />
             </Helmet>
             <div className={cx('inner')}>
                 <Title text={pageContent.name} />

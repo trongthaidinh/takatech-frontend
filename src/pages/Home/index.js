@@ -14,10 +14,10 @@ const Home = () => (
             <title>Trang Chủ | TAKATECH </title>
             <meta
                 name="description"
-                content="VNETC cung cấp sản phẩm, dịch vụ cơ điện chất lượng hàng đầu và tin tức mới nhất ngành điện lực."
+                content="VNETC cung cấp sản phẩm, dịch vụ phần mềm, ứng dụng web chất lượng hàng đầu và tin tức mới nhất ngành công nghệ thông tin."
             />
-            <meta name="keywords" content="sản phẩm điện, dịch vụ điện, tin tức ngành điện lực, VNETC" />
-            <meta name="author" content="CÔNG TY CỔ PHẦN THÍ NGHIỆM CƠ ĐIỆN VIỆT NAM - VNETC" />
+            <meta name="keywords" content="sản phẩm, dịch vụ phần mềm, tin tức ngành công nghệ thông tin, takatech" />
+            <meta name="author" content="CÔNG TY TNHH CÔNG NGHỆ TAKATECH" />
         </Helmet>
         <Banner />
         <Overview />
