@@ -60,7 +60,7 @@ const ContactPage = () => {
                 <title>Liên Hệ | TAKATECH</title>
                 <meta
                     name="description"
-                    content="Trang Liên Hệ của TAKATECH. Hãy gửi tin nhắn cho chúng tôi nếu bạn có bất kỳ câu hỏi nào."
+                    content="Liên Hệ | TAKATECH. Hãy gửi tin nhắn cho chúng tôi nếu bạn có bất kỳ câu hỏi nào."
                 />
                 <meta name="keywords" content="liên hệ, TakaTech, gửi tin nhắn" />
                 <meta name="author" content="CÔNG TY TNHH CÔNG NGHỆ TAKATECH" />
@@ -192,7 +192,6 @@ const ContactPage = () => {
                                                 id="subject1"
                                                 value="Dịch vụ"
                                                 className={cx('customRadio')}
-                                                checked
                                             />
                                             <label htmlFor="subject1" className={cx('radioLabel')}>
                                                 Dịch vụ
@@ -241,7 +240,7 @@ const ContactPage = () => {
                     </div>
                 </div>
             </div>
-            <PushNotification notification={notification} setNotification={setNotification} />
+            <PushNotification message={notification.message} type={notification.type} />
         </div>
     );
 };
