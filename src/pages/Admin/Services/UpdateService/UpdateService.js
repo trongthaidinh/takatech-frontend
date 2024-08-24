@@ -50,7 +50,7 @@ const UpdateService = () => {
                     isFeatured: service.isFeatured,
                 });
             } catch (error) {
-                console.error('Lỗi khi tải tin tức:', error);
+                console.error('Lỗi khi tải dịch vụ:', error);
             }
         };
 
@@ -80,14 +80,14 @@ const UpdateService = () => {
 
         try {
             await updateService(id, formData);
-            setNotification({ message: 'Cập nhật tin tức thành công!', type: 'success' });
+            setNotification({ message: 'Cập nhật dịch vụ thành công!', type: 'success' });
             resetForm();
             setTimeout(() => {
                 navigate(routes.serviceList);
             }, 1000);
         } catch (error) {
-            setNotification({ message: 'Lỗi khi cập nhật tin tức.', type: 'error' });
-            console.error('Lỗi khi cập nhật tin tức:', error);
+            setNotification({ message: 'Lỗi khi cập nhật dịch vụ.', type: 'error' });
+            console.error('Lỗi khi cập nhật dịch vụ:', error);
         }
     };
 
@@ -97,7 +97,7 @@ const UpdateService = () => {
 
     return (
         <div className={styles.editService}>
-            <Title text="Cập nhật tin tức" />
+            <Title text="Cập nhật dịch vụ" />
             {notification.message && <PushNotification message={notification.message} type={notification.type} />}
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
                 {({ isSubmitting, setFieldValue, values }) => (
