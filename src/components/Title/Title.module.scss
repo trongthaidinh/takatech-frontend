@@ -18,11 +18,11 @@
     text-transform: uppercase;
 
     @include respond-to(lg) {
-        font-size: 2.6rem;
+        font-size: 2.4rem;
     }
 
     @include respond-to(sm) {
-        font-size: 2.4rem;
+        font-size: 1.8rem;
     }
 }
 
