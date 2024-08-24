@@ -23,6 +23,7 @@ const cx = classNames.bind(styles);
 const Recruitment = () => {
     const [news, setNews] = useState([]);
     const [categories, setCategories] = useState([]);
+    const [newsCategories, setNewsCategories] = useState([]);
     const [groupedRecruitment, setGroupedRecruitment] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -32,8 +33,10 @@ const Recruitment = () => {
         const fetchCategoriesAndRecruitment = async () => {
             try {
                 const categoriesData = await getCategoriesByType(4);
+                const newsCategoriesData = await getCategoriesByType(2);
                 const newsData = await getNewsPagination(1, 15);
                 setCategories(categoriesData);
+                setNewsCategories(newsCategoriesData);
                 setNews(newsData);
 
                 const groupedRecruitmentMap = {};
@@ -63,8 +66,8 @@ const Recruitment = () => {
         setSelectedSuggestion(index);
     };
 
-    const getCategorySlug = (categoryId) => {
-        const category = categories.find((category) => categoryId === category._id);
+    const getNewsCategorySlug = (categoryId) => {
+        const category = newsCategories.find((category) => categoryId === category._id);
         return category ? category.slug : '';
     };
 
@@ -157,10 +160,7 @@ const Recruitment = () => {
                     <ButtonGroup buttons={['Nổi bật', 'Xem nhiều']} onButtonClick={handleButtonClick} />
                     <div className={cx('suggest-items')}>
                         {filteredRecruitmentItems.map((item, index) => (
-                            <Link
-                                key={index}
-                                to={`${routes.recruitment}/${getCategorySlug(item.categoryId)}/${item._id}`}
-                            >
+                            <Link key={index} to={`${routes.news}/${getNewsCategorySlug(item.categoryId)}/${item._id}`}>
                                 <SuggestCard
                                     title={item.title}
                                     summary={item.summary}
