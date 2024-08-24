@@ -46,6 +46,8 @@
 
 .service-item {
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
     margin-bottom: 20px;
     cursor: pointer;
@@ -61,11 +63,11 @@
 }
 
 .image-container {
-    width: 260px;
-    height: 260px;
+    width: 228px;
+    height: 328px;
     background-size: cover;
     background-position: center;
-    border-radius: 50%;
+    border-radius: 8px;
     overflow: hidden;
     margin-top: 20px;
     transition: all 0.2s ease-in-out;
@@ -73,9 +75,9 @@
 
 .service-title {
     color: #000;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 32px;
     text-transform: uppercase;
     transition: all ease-in-out 0.2s;
 }
