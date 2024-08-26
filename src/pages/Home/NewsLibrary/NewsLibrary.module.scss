@@ -10,7 +10,8 @@
 
 .inner {
     display: flex;
-    gap: 22px;
+    flex-direction: column;
+    gap: 60px 0;
     width: var(--default-layout-width);
 
     @include respond-to(lg) {

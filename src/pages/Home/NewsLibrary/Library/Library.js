@@ -9,7 +9,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import styles from './Library.module.scss';
 import ButtonGroup from '~/components/ButtonGroup';
 import { motion } from 'framer-motion';
-import LoadingScreen from '~/components/LoadingScreen'; // Import the LoadingScreen component
+import LoadingScreen from '~/components/LoadingScreen';
 
 const cx = classNames.bind(styles);
 
@@ -91,82 +91,87 @@ function Library() {
             ) : (
                 <div className={cx('inner')}>
                     <Title text="Thư viện" />
-
-                    <ButtonGroup buttons={['Video']} isStatic={true} />
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        viewport={{ once: true }}
-                    >
-                        <div className={cx('library')}>
-                            {activeVideo && (
-                                <div className={cx('main-video')}>
-                                    <iframe
-                                        src={`https://www.youtube.com/embed/${activeVideo}`}
-                                        frameBorder="0"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen
-                                        title="Main Video"
-                                    />
+                    <div className={cx('library-wrapper')}>
+                        <div className={cx('library-videos')}>
+                            <ButtonGroup buttons={['Video']} isStatic={true} />
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.5, delay: 0.2 }}
+                                viewport={{ once: true }}
+                            >
+                                <div className={cx('library')}>
+                                    {activeVideo && (
+                                        <div className={cx('main-video')}>
+                                            <iframe
+                                                src={`https://www.youtube.com/embed/${activeVideo}`}
+                                                frameBorder="0"
+                                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                                allowFullScreen
+                                                title="Main Video"
+                                            />
+                                        </div>
+                                    )}
+                                    <Slider {...videoSettings}>
+                                        {videos.map((item, index) => (
+                                            <div
+                                                key={index}
+                                                className={cx('thumbnail')}
+                                                onClick={() => handleVideoClick(item.link)}
+                                            >
+                                                <img
+                                                    src={getThumbnailUrl(item.link)}
+                                                    alt={item.title}
+                                                    className={cx('thumbnail-image')}
+                                                />
+                                            </div>
+                                        ))}
+                                    </Slider>
                                 </div>
-                            )}
-                            <Slider {...videoSettings}>
-                                {videos.map((item, index) => (
-                                    <div
-                                        key={index}
-                                        className={cx('thumbnail')}
-                                        onClick={() => handleVideoClick(item.link)}
-                                    >
-                                        <img
-                                            src={getThumbnailUrl(item.link)}
-                                            alt={item.title}
-                                            className={cx('thumbnail-image')}
-                                        />
-                                    </div>
-                                ))}
-                            </Slider>
+                            </motion.div>
                         </div>
-                    </motion.div>
 
-                    <ButtonGroup buttons={['Hình ảnh']} isStatic={true} />
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        viewport={{ once: true }}
-                    >
-                        <div className={cx('library')}>
-                            {activeImage && (
-                                <div className={cx('main-image')}>
-                                    <img
-                                        src={activeImage}
-                                        alt="Main"
-                                        className={cx('main-image-content')}
-                                        onClick={() => {
-                                            setModalContentType('image');
-                                            setModalOpen(true);
-                                        }}
-                                    />
+                        <div className={cx('library-images')}>
+                            <ButtonGroup buttons={['Hình ảnh']} isStatic={true} />
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.5, delay: 0.2 }}
+                                viewport={{ once: true }}
+                            >
+                                <div className={cx('library')}>
+                                    {activeImage && (
+                                        <div className={cx('main-image')}>
+                                            <img
+                                                src={activeImage}
+                                                alt="Main"
+                                                className={cx('main-image-content')}
+                                                onClick={() => {
+                                                    setModalContentType('image');
+                                                    setModalOpen(true);
+                                                }}
+                                            />
+                                        </div>
+                                    )}
+                                    <Slider {...imageSettings}>
+                                        {images.map((image, index) => (
+                                            <div
+                                                key={index}
+                                                className={cx('thumbnail')}
+                                                onClick={() => handleImageClick(image.image)}
+                                            >
+                                                <img
+                                                    src={image.image}
+                                                    alt={`Thumbnail ${index + 1}`}
+                                                    className={cx('thumbnail-image')}
+                                                />
+                                            </div>
+                                        ))}
+                                    </Slider>
                                 </div>
-                            )}
-                            <Slider {...imageSettings}>
-                                {images.map((image, index) => (
-                                    <div
-                                        key={index}
-                                        className={cx('thumbnail')}
-                                        onClick={() => handleImageClick(image.image)}
-                                    >
-                                        <img
-                                            src={image.image}
-                                            alt={`Thumbnail ${index + 1}`}
-                                            className={cx('thumbnail-image')}
-                                        />
-                                    </div>
-                                ))}
-                            </Slider>
+                            </motion.div>
                         </div>
-                    </motion.div>
+                    </div>
                 </div>
             )}
             <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>

@@ -2,7 +2,7 @@
 @import '../../../../styles/variables';
 
 .wrapper {
-    width: calc(40% - 10px);
+    width: 100%;
     @include respond-to(lg) {
         width: 100%;
     }
@@ -13,10 +13,28 @@
         gap: 20px;
     }
 
+    .library-wrapper {
+        display: flex;
+        gap: 20px;
+        @include respond-to(lg) {
+            flex-direction: column;
+        }
+    }
+
+    .library-videos,
+    .library-images {
+        width: calc(50% - 10px);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        @include respond-to(lg) {
+            width: 100%;
+        }
+    }
+
     .wrapper-item {
         width: 100%;
         display: flex;
-        flex-direction: column;
         gap: 20px;
     }
 
@@ -27,11 +45,11 @@
 
         .main-video {
             width: 100%;
-            height: 270px;
+            height: 320px;
             iframe {
                 border-radius: 8px;
                 width: 100%;
-                height: 270px;
+                height: 320px;
 
                 @include respond-to(lg) {
                     height: 440px;
