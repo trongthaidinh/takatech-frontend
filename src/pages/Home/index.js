@@ -21,8 +21,8 @@ const Home = () => (
         </Helmet>
         <Banner />
         <Overview />
-        <Products />
         <Services />
+        <Products />
         <NewsLibrary />
         <FAQs />
         <Partners />

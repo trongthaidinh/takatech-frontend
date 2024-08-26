@@ -12,7 +12,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import routes from '~/config/routes';
 import { Link } from 'react-router-dom';
-import LoadingScreen from '~/components/LoadingScreen'; // Import the LoadingScreen component
+import LoadingScreen from '~/components/LoadingScreen';
 
 const cx = classNames.bind(styles);
 
@@ -29,10 +29,10 @@ function Products() {
                 const categoriesData = await getCategoriesByType(1);
                 setProducts(productsData);
                 setCategories(categoriesData);
-                setLoading(false); // Stop loading once data is fetched
+                setLoading(false);
             } catch (err) {
                 setError(err);
-                setLoading(false); // Stop loading even if there's an error
+                setLoading(false);
                 console.error('Error fetching data:', err);
             }
         };
@@ -80,7 +80,6 @@ function Products() {
                         slides.forEach((slide, index) => {
                             const isActive = index === swiper.activeIndex;
                             slide.style.transform = isActive ? 'scale(1.1)' : 'scale(0.9)';
-                            slide.style.opacity = isActive ? '1' : '0.5';
                         });
                     }}
                 >
