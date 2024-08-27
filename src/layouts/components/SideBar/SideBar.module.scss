@@ -2,7 +2,7 @@
 @import '../../../styles/variables';
 
 .wrapper {
-    width: 300px;
+    width: 280px;
     display: flex;
 
     @include respond-to(lg) {

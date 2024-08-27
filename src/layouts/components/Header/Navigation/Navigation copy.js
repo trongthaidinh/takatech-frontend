@@ -7,31 +7,8 @@ import Search from '~/layouts/components/Search';
 import PushNotification from '~/components/PushNotification';
 import LoadingScreen from '~/components/LoadingScreen';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faBars,
-    faTimes,
-    faChevronRight,
-    faChevronDown,
-    faHome,
-    faInfoCircle,
-    faBox,
-    faLayerGroup,
-    faProjectDiagram,
-    faNewspaper,
-    faUsers,
-    faEnvelope,
-} from '@fortawesome/free-solid-svg-icons';
-import images from '~/assets/images';
-
-const iconsData = [
-    { position: 1, icon: faInfoCircle },
-    { position: 2, icon: faBox },
-    { position: 3, icon: faLayerGroup },
-    { position: 4, icon: faProjectDiagram },
-    { position: 5, icon: faNewspaper },
-    { position: 6, icon: faUsers },
-    { position: 7, icon: faEnvelope },
-];
+import { faBars, faTimes, faChevronRight, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import images from 'assets/images';
 
 const cx = classNames.bind(styles);
 
@@ -144,23 +121,19 @@ function Navigation({ isFixed }) {
                     <li onClick={handleLinkClick}>
                         <div className={cx('menu-item')}>
                             <NavLink end to="/" className={({ isActive }) => cx({ 'active-link': isActive })}>
-                                <div className={cx('item-icon')}>
-                                    <FontAwesomeIcon icon={faHome} className={cx('nav-icon')} />
-                                    Trang Chủ
-                                </div>
+                                <div className={cx('item-icon')}>Trang Chủ</div>
                             </NavLink>
                         </div>
                     </li>
                     {navigationLinks.map((link) => {
-                        const iconData = iconsData.find((icon) => icon.position === link.position);
-                        const sortedChilds = link.childs.sort((a, b) => a.position - b.position);
+                        const sortedChilds = (link.childs || []).sort((a, b) => a.position - b.position);
                         return (
                             <li
                                 key={link._id}
-                                className={cx({ 'has-children': link.childs.length > 0 })}
-                                onMouseEnter={() => handleMouseEnter(link._id)} // Hover event
-                                onMouseLeave={() => handleMouseLeave(link._id)} // Leave event
-                                onClick={() => toggleSubMenu(link._id)} // Click event for mobile
+                                className={cx({ 'has-children': sortedChilds.length > 0 })}
+                                onMouseEnter={() => handleMouseEnter(link._id)}
+                                onMouseLeave={() => handleMouseLeave(link._id)}
+                                onClick={() => toggleSubMenu(link._id)}
                             >
                                 <div className={cx('menu-item')}>
                                     <NavLink
@@ -169,14 +142,9 @@ function Navigation({ isFixed }) {
                                         className={({ isActive }) => cx({ 'active-link': isActive })}
                                         onClick={handleLinkClick}
                                     >
-                                        <div className={cx('item-icon')}>
-                                            {iconData && (
-                                                <FontAwesomeIcon icon={iconData.icon} className={cx('nav-icon')} />
-                                            )}
-                                            {link.title}
-                                        </div>
+                                        <div className={cx('item-icon')}>{link.title}</div>
                                     </NavLink>
-                                    {link.childs.length > 0 && (
+                                    {sortedChilds.length > 0 && (
                                         <FontAwesomeIcon
                                             icon={openSubMenus[link._id] ? faChevronDown : faChevronRight}
                                             className={cx('submenu-icon')}

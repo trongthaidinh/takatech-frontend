@@ -12,7 +12,7 @@ import routes from '~/config/routes';
 const cx = classNames.bind(styles);
 
 const Footer = () => {
-    const [stats, setStats] = useState({ online: 0, total: 0 });
+    const [stats, setStats] = useState({ daily: 0, total: 0 });
 
     useEffect(() => {
         const socket = io(`${process.env.REACT_APP_HOST}`, {
@@ -34,6 +34,7 @@ const Footer = () => {
 
         return () => socket.disconnect();
     }, []);
+
     return (
         <footer className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -46,7 +47,7 @@ const Footer = () => {
                     <div className={cx('onlineStatus')}>
                         <span>
                             <FontAwesomeIcon className={cx('footer-icon-dot')} icon={faCircle} />
-                            Đang online: <span className={cx('online-number')}>{stats.online}</span>
+                            Truy cập hôm nay: <span className={cx('online-number')}>{stats.daily}</span>
                         </span>{' '}
                         |{' '}
                         <span>
