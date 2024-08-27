@@ -11,7 +11,13 @@ import Card from '~/components/CardContent/CardContent';
 import { getCategoriesByType } from '~/services/categoryService';
 import routes from '~/config/routes';
 import { Helmet } from 'react-helmet';
-import LoadingScreen from '~/components/LoadingScreen';
+import dayjs from 'dayjs';
+import { DatePicker, Space, Button, Empty } from 'antd';
+import { FilterOutlined } from '@ant-design/icons';
+import 'moment/locale/vi';
+import LoadingScreen from 'components/LoadingScreen';
+
+const { RangePicker } = DatePicker;
 
 const cx = classNames.bind(styles);
 
@@ -21,8 +27,11 @@ function NewsCategory() {
     const [categoryId, setCategoryId] = useState(null);
     const [categoryName, setCategoryName] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    const [filterDates, setFilterDates] = useState(null);
+    const [totalPages, setTotalPages] = useState(1);
+    const newsPerPage = 6;
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [loading, setLoading] = useState(true);
-    const newsPerPage = 12;
 
     const extractSlugFromPathname = (pathname) => {
         const parts = pathname.split('/');
@@ -58,8 +67,18 @@ function NewsCategory() {
             if (categoryId) {
                 try {
                     setLoading(true);
-                    const data = await getNewsByCategory(categoryId);
-                    setNews(data);
+                    const startDate = filterDates && filterDates[0] ? dayjs(filterDates[0]).format('YYYY-MM-DD') : '';
+                    const endDate = filterDates && filterDates[1] ? dayjs(filterDates[1]).format('YYYY-MM-DD') : '';
+
+                    const data = await getNewsByCategory(categoryId, startDate, endDate, currentPage, newsPerPage);
+
+                    setNews(
+                        data.news.map((newsItem) => ({
+                            ...newsItem,
+                            isNew: dayjs().diff(dayjs(newsItem.createdAt), 'day') <= 3,
+                        })),
+                    );
+                    setTotalPages(data.totalPages);
                 } catch (error) {
                     console.error('Error fetching news:', error);
                 } finally {
@@ -69,13 +88,19 @@ function NewsCategory() {
         }
 
         fetchNewsCategory();
-    }, [categoryId]);
+    }, [categoryId, filterDates, currentPage]);
 
-    const indexOfLastNews = currentPage * newsPerPage;
-    const indexOfFirstNews = indexOfLastNews - newsPerPage;
-    const currentNewsCategory = news.slice(indexOfFirstNews, indexOfLastNews);
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
 
-    const totalPages = Math.ceil(news.length / newsPerPage);
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const handlePageChange = (pageNumber) => {
         if (pageNumber >= 1 && pageNumber <= totalPages) {
@@ -83,16 +108,31 @@ function NewsCategory() {
         }
     };
 
+    const handleRangeChange = (dates) => {
+        setFilterDates(dates);
+        setCurrentPage(1);
+    };
+
     const renderNewsCategory = () => {
-        return currentNewsCategory.map((newsItem, index) => (
+        if (news.length === 0) {
+            return (
+                <>
+                    <div />
+                    <Empty description="Không có tin tức để hiển thị" />
+                    <div />
+                </>
+            );
+        }
+
+        return news.map((newsItem) => (
             <Link to={`${routes.news}/${slug}/${newsItem._id}`} key={newsItem._id}>
                 <Card
-                    key={index}
                     title={newsItem.title}
                     image={newsItem.images}
                     summary={newsItem.summary}
-                    createdAt={new Date(newsItem.createdAt).getTime()}
+                    createdAt={newsItem.createdAt}
                     views={newsItem.views}
+                    isNew={newsItem.isNew}
                 />
             </Link>
         ));
@@ -101,7 +141,10 @@ function NewsCategory() {
     const renderPagination = () => {
         return (
             <div className={cx('pagination')}>
-                <div className={cx('pageButton')} onClick={() => handlePageChange(currentPage - 1)}>
+                <div
+                    className={cx('pageButton', { disabled: currentPage === 1 })}
+                    onClick={() => handlePageChange(currentPage - 1)}
+                >
                     <FontAwesomeIcon icon={faArrowLeft} />
                 </div>
                 {Array.from({ length: totalPages }, (_, index) => (
@@ -113,29 +156,56 @@ function NewsCategory() {
                         {index + 1}
                     </div>
                 ))}
-                <div className={cx('pageButton')} onClick={() => handlePageChange(currentPage + 1)}>
+                <div
+                    className={cx('pageButton', { disabled: currentPage === totalPages })}
+                    onClick={() => handlePageChange(currentPage + 1)}
+                >
                     <FontAwesomeIcon icon={faArrowRight} />
                 </div>
             </div>
         );
     };
 
+    if (loading) {
+        return <LoadingScreen isLoading={loading} />;
+    }
+
     return (
         <div className={cx('container')}>
             <Helmet>
-                <title>{categoryName} | TAKATECH</title>
+                <title>{categoryName} | VNETC</title>
                 <meta name="description" content={`Xem các tin tức liên quan đến ${categoryName} trên VNETC.`} />
                 <meta name="keywords" content={`${categoryName}, tin tức, VNETC`} />
             </Helmet>
-            {loading ? (
-                <LoadingScreen isLoading={loading} />
-            ) : (
-                <>
-                    <Title text={categoryName} />
-                    <div className={cx('newsGrid')}>{renderNewsCategory()}</div>
-                    {renderPagination()}
-                </>
-            )}
+
+            <Title text={categoryName} />
+
+            <div className={cx('filter')}>
+                <Space direction="vertical" size={12}>
+                    <RangePicker
+                        value={filterDates}
+                        onChange={handleRangeChange}
+                        locale="vi"
+                        popupStyle={{
+                            width: windowWidth < 992 ? '100%' : 'auto',
+                            maxWidth: windowWidth < 992 ? '300px' : 'none',
+                            minWidth: '250px',
+                            overflow: 'hidden',
+                        }}
+                    />
+                </Space>
+                <Button
+                    className={cx('filter-button')}
+                    type="primary"
+                    icon={<FilterOutlined />}
+                    onClick={() => setCurrentPage(1)}
+                >
+                    Lọc
+                </Button>
+            </div>
+
+            <div className={cx('newsGrid')}>{renderNewsCategory()}</div>
+            {renderPagination()}
         </div>
     );
 }

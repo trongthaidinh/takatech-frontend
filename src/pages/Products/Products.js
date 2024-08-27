@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import styles from './Products.module.scss';
-import Product from '~/components/Product';
 import { getProductsByCategory } from '~/services/productService';
-import { getCategoriesByType } from '~/services/categoryService';
 import Title from '~/components/Title';
+import styles from './Products.module.scss';
+import { getCategoriesByType } from '~/services/categoryService';
+import routes from '~/config/routes';
 import { Helmet } from 'react-helmet';
-import LoadingScreen from '~/components/LoadingScreen';
+import { Empty } from 'antd';
+import Product from 'components/Product';
 
 const cx = classNames.bind(styles);
 
-function Products() {
+function ProductCategory() {
     const location = useLocation();
-    const [products, setProducts] = useState([]);
+    const [product, setProduct] = useState([]);
     const [categoryId, setCategoryId] = useState(null);
-    const [categories, setCategories] = useState([]);
+    const [subcategoryId, setSubcategoryId] = useState(null);
     const [categoryName, setCategoryName] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const [loading, setLoading] = useState(true);
-    const productsPerPage = 12;
+    const productPerPage = 6;
 
     const extractSlugFromPathname = (pathname) => {
         const parts = pathname.split('/');
@@ -30,26 +30,29 @@ function Products() {
 
     const slug = extractSlugFromPathname(location.pathname);
 
-    const getCategorySlug = (categoryId) => {
-        const category = categories.find((cat) => cat._id === categoryId);
-        return category ? category.slug : 'unknown';
-    };
-
     useEffect(() => {
         async function fetchCategory() {
             try {
-                setLoading(true);
                 const categories = await getCategoriesByType(1);
-                setCategories(categories);
-                const category = categories.find((cat) => cat.slug === slug);
-                if (category) {
+                let category = categories.find((cat) => cat.slug === slug);
+
+                if (!category) {
+                    for (const cat of categories) {
+                        const subcategory = cat.subcategories.find((subcat) => subcat.slug === slug);
+                        if (subcategory) {
+                            setCategoryId(cat._id);
+                            setSubcategoryId(subcategory._id);
+                            setCategoryName(subcategory.name);
+                            return;
+                        }
+                    }
+                } else {
                     setCategoryId(category._id);
+                    setSubcategoryId(null);
                     setCategoryName(category.name);
                 }
             } catch (error) {
                 console.error('Error fetching categories:', error);
-            } finally {
-                setLoading(false);
             }
         }
 
@@ -59,28 +62,50 @@ function Products() {
     }, [slug]);
 
     useEffect(() => {
-        async function fetchProductsCategory() {
-            if (categoryId) {
-                try {
-                    setLoading(true);
-                    const data = await getProductsByCategory(categoryId);
-                    setProducts(data);
-                } catch (error) {
-                    console.error('Error fetching products:', error);
-                } finally {
-                    setLoading(false);
+        async function fetchProductCategory() {
+            try {
+                let data = [];
+                if (subcategoryId) {
+                    data = await getProductsByCategory(subcategoryId);
+                } else if (categoryId) {
+                    data = await getProductsByCategory(categoryId);
+
+                    if (!Array.isArray(data) || data.message === 'No products found') {
+                        const categories = await getCategoriesByType(1);
+                        const parentCategory = categories.find((cat) => cat._id === categoryId);
+
+                        if (parentCategory && parentCategory.subcategories) {
+                            const subcategoryProducts = await Promise.all(
+                                parentCategory.subcategories.map(async (subcat) => {
+                                    const products = await getProductsByCategory(subcat._id);
+                                    if (Array.isArray(products) && products.length > 0) {
+                                        return products.filter((product) => product._id || product.name);
+                                    } else {
+                                        return null;
+                                    }
+                                }),
+                            );
+
+                            data = subcategoryProducts.filter(Boolean).flat();
+                        }
+                    }
                 }
+                setProduct(Array.isArray(data) ? data : []);
+            } catch (error) {
+                console.error('Error fetching product:', error);
             }
         }
 
-        fetchProductsCategory();
-    }, [categoryId]);
+        if (categoryId || subcategoryId) {
+            fetchProductCategory();
+        }
+    }, [categoryId, subcategoryId, slug]);
 
-    const indexOfLastProduct = currentPage * productsPerPage;
-    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-    const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+    const indexOfLastProduct = currentPage * productPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productPerPage;
+    const currentProductCategory = product.slice(indexOfFirstProduct, indexOfLastProduct);
 
-    const totalPages = Math.ceil(products.length / productsPerPage);
+    const totalPages = Math.ceil(product.length / productPerPage);
 
     const handlePageChange = (pageNumber) => {
         if (pageNumber >= 1 && pageNumber <= totalPages) {
@@ -88,15 +113,27 @@ function Products() {
         }
     };
 
-    const renderProducts = () => {
-        return currentProducts.map((product) => (
-            <Product
-                key={product._id}
-                image={product.image[0]}
-                name={product.name}
-                productId={product._id}
-                category={getCategorySlug(product.category_id)}
-            />
+    const renderProductCategory = () => {
+        if (currentProductCategory.length === 0) {
+            return (
+                <>
+                    <div />
+                    <Empty className={cx('empty-element')} description="Không có dịch vụ để hiển thị" />
+                    <div />
+                </>
+            );
+        }
+
+        return currentProductCategory.map((productItem) => (
+            <Link to={`${routes.products}/${slug}/${productItem._id}`} key={productItem._id}>
+                <Product
+                    key={productItem._id}
+                    image={productItem.image ? productItem.image[0] : ''}
+                    name={productItem.name}
+                    productId={productItem._id}
+                    category={slug}
+                />
+            </Link>
         ));
     };
 
@@ -122,22 +159,18 @@ function Products() {
         );
     };
 
-    if (loading) {
-        return <LoadingScreen isLoading={loading} />;
-    }
-
     return (
         <div className={cx('container')}>
             <Helmet>
-                <title>Sản Phẩm: {categoryName} | TAKATECH</title>
-                <meta name="description" content={`Khám phá các sản phẩm trong danh mục ${categoryName} tại VNETC.`} />
-                <meta name="keywords" content={`sản phẩm, ${categoryName}, VNETC`} />
+                <title>{categoryName} | VNETC</title>
+                <meta name="description" content={`Xem các dịch vụ liên quan đến ${categoryName} trên VNETC.`} />
+                <meta name="keywords" content={`${categoryName}, dịch vụ, VNETC`} />
             </Helmet>
             <Title text={categoryName} />
-            <div className={cx('productGrid')}>{renderProducts()}</div>
+            <div className={cx('productGrid')}>{renderProductCategory()}</div>
             {renderPagination()}
         </div>
     );
 }
 
-export default Products;
+export default ProductCategory;

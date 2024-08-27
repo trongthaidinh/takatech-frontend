@@ -26,7 +26,7 @@ function News() {
         const loadData = async () => {
             try {
                 const [newsData, categoryData] = await Promise.all([getNewsPagination(), getCategoriesByType(2)]);
-                setNews(newsData);
+                setNews(newsData.news);
                 setCategories(categoryData);
             } catch (error) {
                 setError(error);

@@ -9,12 +9,14 @@ const cx = classNames.bind(styles);
 function Card({
     title = 'Default Title',
     summary = 'Default Sumary',
-    image = 'https://res.cloudinary.com/ddmzboxzu/image/upload/v1720603061/znya9vwto7kxw8blwqwu.png',
+    image = 'https://res.cloudinary.com/ddmzboxzu/image/upload/v1724202469/cer_3_ldetgd.png',
     createdAt = Date.now(),
     views = 0,
+    isNew = false,
 }) {
     return (
         <div className={cx('card')}>
+            {isNew && <span className={cx('new-label')}>NEW</span>}
             <div className={cx('card_image-wrapper')}>
                 <img src={image} alt={title} className={cx('card_image')} />
             </div>

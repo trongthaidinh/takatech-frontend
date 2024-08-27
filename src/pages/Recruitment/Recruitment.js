@@ -37,7 +37,7 @@ const Recruitment = () => {
                 const newsData = await getNewsPagination(1, 15);
                 setCategories(categoriesData);
                 setNewsCategories(newsCategoriesData);
-                setNews(newsData);
+                setNews(newsData.news);
 
                 const groupedRecruitmentMap = {};
 

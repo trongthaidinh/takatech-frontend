@@ -120,7 +120,7 @@ function SideBar({ categoryType }) {
     return (
         <aside style={{ width: windowWidth < 1280 ? 0 : '100%', height: '100%', transition: 'width 0.3s ease' }}>
             {windowWidth >= 1280 && (
-                <Menu mode="inline" theme="light">
+                <Menu mode="inline" theme="light" style={{ border: 0 }}>
                     {renderMenuItems()}
                 </Menu>
             )}
