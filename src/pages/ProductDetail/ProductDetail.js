@@ -5,10 +5,7 @@ import styles from './ProductDetail.module.scss';
 import LoadingScreen from '~/components/LoadingScreen';
 import PushNotification from '~/components/PushNotification';
 import Title from '~/components/Title';
-// import Button from '~/components/Button';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faChevronUp, faChevronDown, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { getProductById } from '~/services/productService';
+import { getProductById, getProductBySlug } from '~/services/productService';
 import { Helmet } from 'react-helmet';
 
 const cx = classNames.bind(styles);
@@ -18,13 +15,18 @@ const ProductDetail = () => {
     const [productDetail, setProductDetail] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    // const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    // const [thumbnailStartIndex, setThumbnailStartIndex] = useState(0);
+    console.log(useParams());
 
     useEffect(() => {
-        const fetchProductDetail = async (productId) => {
+        const fetchProductDetail = async () => {
             try {
-                const data = await getProductById(productId);
+                let data;
+                if (id.length === 24) {
+                    data = await getProductById(id);
+                } else {
+                    data = await getProductBySlug(id);
+                }
+
                 setProductDetail(data);
                 console.log(data);
             } catch (error) {
@@ -35,35 +37,8 @@ const ProductDetail = () => {
             }
         };
 
-        fetchProductDetail(id);
+        fetchProductDetail();
     }, [id]);
-
-    // const handleThumbnailClick = (index) => {
-    //     setCurrentImageIndex(index);
-    // };
-
-    // const handlePrevClick = () => {
-    //     setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? productDetail.image.length - 1 : prevIndex - 1));
-    // };
-
-    // const handleNextClick = () => {
-    //     setCurrentImageIndex((prevIndex) => (prevIndex === productDetail.image.length - 1 ? 0 : prevIndex + 1));
-    // };
-
-    // const handleThumbnailPrevClick = () => {
-    //     setThumbnailStartIndex((prevIndex) => Math.max(0, prevIndex - 1));
-    // };
-
-    // const handleThumbnailNextClick = () => {
-    //     const totalImages = productDetail.image.length;
-    //     const remainingImages = totalImages - (thumbnailStartIndex + 1);
-    //     console.log(remainingImages);
-    //     if (remainingImages > 0) {
-    //         setThumbnailStartIndex((prevIndex) => prevIndex + 1);
-    //     } else {
-    //         setThumbnailStartIndex((prevIndex) => prevIndex + remainingImages);
-    //     }
-    // };
 
     if (error) {
         const errorMessage = error.response ? error.response.data.message : 'Network Error';

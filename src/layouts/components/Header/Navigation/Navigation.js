@@ -236,7 +236,7 @@ function Navigation({ isFixed }) {
                                                                 return (
                                                                     <li key={subChildLink._id}>
                                                                         <NavLink
-                                                                            to={`/${link.slug}/${subChildLink.slug}`}
+                                                                            to={`/${link.slug}/${childLink.slug}/${subChildLink.slug}`}
                                                                             className={({ isActive }) =>
                                                                                 cx({ 'active-link': isActive })
                                                                             }

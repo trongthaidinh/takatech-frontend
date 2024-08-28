@@ -40,6 +40,16 @@ export const getProductsByCategory = async (categoryId) => {
     }
 };
 
+export const getProductBySlug = async (slug) => {
+    try {
+        const response = await httpRequest.get(`/product/slug/${slug}`);
+        return response.data.data;
+    } catch (error) {
+        console.error(`Error fetching products with slug ${slug}:`, error);
+        throw error;
+    }
+};
+
 export const createProduct = async (productData) => {
     try {
         const response = await httpRequest.post('/product', productData);
