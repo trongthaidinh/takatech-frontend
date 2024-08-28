@@ -41,12 +41,33 @@ const NavigationList = () => {
         }
     };
 
-    const allNavigations = navigations.flatMap((nav) => {
-        return [
-            { ...nav, type: 'Navigation chính', parent: null },
-            ...nav.childs.map((child) => ({ ...child, type: 'Navigation phụ', parent: nav.title })),
-        ];
-    });
+    const flattenNavigations = (navs) => {
+        const result = [];
+
+        const processNav = (nav, parent = null) => {
+            if (!nav) return;
+            if (nav.title) {
+                result.push({
+                    ...nav,
+                    type: parent ? 'Navigation phụ' : 'Navigation chính',
+                    parent: parent ? parent.title : null,
+                });
+            }
+            if (nav.childs) {
+                nav.childs.forEach((child) => {
+                    if (child.child) {
+                        child.child.forEach((subChild) => processNav(subChild, child));
+                    }
+                    return processNav(child, nav);
+                });
+            }
+        };
+
+        navs.forEach((nav) => processNav(nav));
+        return result;
+    };
+
+    const allNavigations = flattenNavigations(navigations);
 
     const filteredNavigations = allNavigations.filter(
         (nav) =>
