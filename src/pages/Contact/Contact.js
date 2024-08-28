@@ -86,7 +86,7 @@ const ContactPage = () => {
                         <div className={cx('infoDetails')}>
                             <div className={cx('infoItem')}>
                                 <FontAwesomeIcon icon={faPhone} className={cx('icon')} />
-                                <a href="tel:02623977171">
+                                <a href="tel:0914586999">
                                     Số điện thoại: <span>0914 586 999</span>
                                 </a>
                             </div>
