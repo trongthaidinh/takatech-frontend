@@ -216,7 +216,7 @@ const ProductDetail = () => {
             </div>
 
             <div className={cx('info-section')}>
-                <Title text="Thông tin sản phẩm" />
+                <Title text="Mô tả chức năng" />
 
                 <div
                     className={cx('info-content')}
