@@ -210,7 +210,7 @@ const ProductDetail = () => {
                     </p> */}
                     <Button className={cx('contact-button')} primary>
                         <FontAwesomeIcon icon={faPhone} className={cx('icon')} />
-                        <a href="tel:0914586999">Liên hệ ngay</a>
+                        <a href="tel:0914586999">Liên hệ ngay (0914586999)</a>
                     </Button>
                 </div>
             </div>
