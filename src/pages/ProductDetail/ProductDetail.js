@@ -21,7 +21,7 @@ const ProductDetail = () => {
         const fetchProductDetail = async () => {
             try {
                 let data;
-                if (id.length === 24) {
+                if (id.length === 24 && /^[a-f\d]{24}$/i.test(id)) {
                     data = await getProductById(id);
                 } else {
                     data = await getProductBySlug(id);

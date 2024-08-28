@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { createProduct } from '~/services/productService';
 import { getCategoriesByType } from '~/services/categoryService';
+import { createNavigationLink } from '~/services/navigationService';
 import CustomEditor from '~/components/CustomEditor';
 import PushNotification from '~/components/PushNotification';
 import { useDropzone } from 'react-dropzone';
@@ -13,9 +14,11 @@ import Title from '~/components/Title';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { Spin } from 'antd';
+import { getNavigationById } from 'services/navigationService';
 
 const AddProduct = () => {
     const [categories, setCategories] = useState([]);
+    const [parentNavigations, setParentNavigations] = useState([]);
     const [notification, setNotification] = useState({ message: '', type: '' });
     const [files, setFiles] = useState([]);
     const navigate = useNavigate();
@@ -26,6 +29,7 @@ const AddProduct = () => {
         content: '',
         summary: '',
         categoryID: '',
+        parentNavId: '',
     };
 
     const validationSchema = Yup.object({
@@ -34,6 +38,7 @@ const AddProduct = () => {
         content: Yup.string().required('Nội dung là bắt buộc'),
         summary: Yup.string().required('Tóm tắt là bắt buộc'),
         categoryID: Yup.string().required('Danh mục là bắt buộc'),
+        parentNavId: Yup.string().required('Navigation cha là bắt buộc'),
     });
 
     useEffect(() => {
@@ -45,7 +50,19 @@ const AddProduct = () => {
                 console.error('Lỗi khi tải danh mục:', error);
             }
         };
+
+        const fetchParentNavigations = async () => {
+            try {
+                const fetchedParentNavigations = await getNavigationById('66b826d912bc125879e8e651');
+                setParentNavigations(fetchedParentNavigations.childs);
+                console.log(fetchedParentNavigations);
+            } catch (error) {
+                console.error('Lỗi khi tải navigation cha:', error);
+            }
+        };
+
         fetchCategories();
+        fetchParentNavigations();
     }, []);
 
     const { getRootProps, getInputProps } = useDropzone({
@@ -68,6 +85,13 @@ const AddProduct = () => {
 
         try {
             await createProduct(formData);
+            const navigationData = {
+                title: values.name,
+                parentNavId: values.parentNavId,
+                type: 1,
+            };
+            await createNavigationLink(navigationData);
+
             setNotification({ message: 'Thêm sản phẩm thành công!', type: 'success' });
             resetForm();
             setFiles([]);
@@ -75,8 +99,8 @@ const AddProduct = () => {
                 navigate(routes.productList);
             }, 1000);
         } catch (error) {
-            setNotification({ message: 'Lỗi khi thêm sản phẩm.', type: 'error' });
-            console.error('Lỗi khi tạo sản phẩm:', error);
+            setNotification({ message: 'Lỗi khi thêm sản phẩm hoặc navigation.', type: 'error' });
+            console.error('Lỗi khi tạo sản phẩm hoặc navigation:', error);
         }
     };
 
@@ -133,6 +157,18 @@ const AddProduct = () => {
                                 ))}
                             </Field>
                             <ErrorMessage name="categoryID" component="div" className={styles.error} />
+                        </div>
+                        <div className={styles.formGroup}>
+                            <label htmlFor="parentNavId">Navigation Cha</label>
+                            <Field as="select" name="parentNavId" className={styles.input}>
+                                <option value="">Chọn navigation cha</option>
+                                {parentNavigations.map((nav) => (
+                                    <option key={nav._id} value={nav._id}>
+                                        {nav.title}
+                                    </option>
+                                ))}
+                            </Field>
+                            <ErrorMessage name="parentNavId" component="div" className={styles.error} />
                         </div>
                         <div className={styles.formGroup}>
                             <label htmlFor="summary">Tóm Tắt</label>
