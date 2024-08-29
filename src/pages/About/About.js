@@ -18,7 +18,7 @@ const About = () => (
             <Title text="Tổng quan về TakaTech" />
             <div className={cx('content')}>
                 <img
-                    src="https://res.cloudinary.com/ddmzboxzu/image/upload/v1723285559/txmno0zljctzftory1rn.jpg"
+                    src="https://res.cloudinary.com/dxehzrouf/image/upload/v1724929251/3327b5b3-d1d3-4d19-b182-702c2ccd3e0f_sid9ne.jpg"
                     alt="Trụ sở công ty VNETC"
                 />
                 <p>
