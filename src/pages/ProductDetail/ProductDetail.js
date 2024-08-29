@@ -70,7 +70,6 @@ const ProductDetail = () => {
     const handleThumbnailNextClick = () => {
         const totalImages = productDetail.image.length;
         const remainingImages = totalImages - (thumbnailStartIndex + 1);
-        console.log(remainingImages);
         if (remainingImages > 0) {
             setThumbnailStartIndex((prevIndex) => prevIndex + 1);
         } else {
@@ -86,6 +85,8 @@ const ProductDetail = () => {
     if (loading) {
         return <LoadingScreen isLoading={loading} />;
     }
+
+    const features = productDetail.features ? JSON.parse(productDetail.features) : [];
 
     return (
         <article className={cx('wrapper')}>
@@ -110,9 +111,8 @@ const ProductDetail = () => {
                         style={{ transform: `translateY(-${thumbnailStartIndex * 155}px)` }}
                     >
                         {productDetail.image.slice(thumbnailStartIndex, thumbnailStartIndex + 4).map((image, index) => (
-                            <div className={cx('thumbnail-item')}>
+                            <div key={thumbnailStartIndex + index} className={cx('thumbnail-item')}>
                                 <img
-                                    key={thumbnailStartIndex + index}
                                     className={cx('thumbnail-image')}
                                     src={image}
                                     alt={`${productDetail.name} thumbnail ${thumbnailStartIndex + index + 1}`}
@@ -156,58 +156,12 @@ const ProductDetail = () => {
                     <h2 className={cx('product-name')}>{productDetail.name}</h2>
                     <ul className={cx('detail-function')}>
                         <h4 className={cx('title-function')}>CHỨC NĂNG:</h4>
-
-                        <li className={cx('txt-function')}>
-                            <FontAwesomeIcon className={cx('icon-function')} icon={faCircleDot} /> Hệ thống Admin
-                        </li>
-
-                        <li className={cx('txt-function')}>
-                            <FontAwesomeIcon className={cx('icon-function')} icon={faCircleDot} /> Website chuẩn SEO
-                        </li>
-
-                        <li className={cx('txt-function')}>
-                            <FontAwesomeIcon className={cx('icon-function')} icon={faCircleDot} /> Tối ưu tốc độ tải
-                            nhanh nhất
-                        </li>
-
-                        <li className={cx('txt-function')}>
-                            <FontAwesomeIcon className={cx('icon-function')} icon={faCircleDot} /> Giao diện di động
-                            thân thiện
-                        </li>
-
-                        <li className={cx('txt-function')}>
-                            <FontAwesomeIcon className={cx('icon-function')} icon={faCircleDot} /> Tìm kiếm và xem nhanh
-                        </li>
-
-                        <li className={cx('txt-function')}>
-                            <FontAwesomeIcon className={cx('icon-function')} icon={faCircleDot} /> Danh mục sản phẩm rõ
-                            ràng
-                        </li>
-
-                        <li className={cx('txt-function')}>
-                            <FontAwesomeIcon className={cx('icon-function')} icon={faCircleDot} /> Quản lý tài khoản
-                        </li>
+                        {features.map((feature, index) => (
+                            <li key={index} className={cx('txt-function')}>
+                                <FontAwesomeIcon className={cx('icon-function')} icon={faCircleDot} /> {feature}
+                            </li>
+                        ))}
                     </ul>
-                    {/* <p className={cx('product-info')}>
-                        <span className={cx('label')}>Thương hiệu</span>
-                        <span>:</span>
-                        <span>{productDetail.detail[0].brand}</span>
-                    </p>
-                    <p className={cx('product-info')}>
-                        <span className={cx('label')}>Kích cỡ:</span>
-                        <span>:</span>
-                        <span>{productDetail.detail[0].size === 'large' ? 'Lớn' : 'Nhỏ'}</span>
-                    </p>
-                    <p className={cx('product-info')}>
-                        <span className={cx('label')}>Trọng lượng:</span>
-                        <span>:</span>
-                        <span>{productDetail.detail[0].weight}</span>
-                    </p>
-                    <p className={cx('product-info')}>
-                        <span className={cx('label')}>Bảo hành</span>
-                        <span>:</span>
-                        <span>{productDetail.detail[0].warranty}</span>
-                    </p> */}
                     <Button className={cx('contact-button')} primary>
                         <FontAwesomeIcon icon={faPhone} className={cx('icon')} />
                         <a href="tel:0914586999">Liên hệ ngay (0914586999)</a>
@@ -217,10 +171,9 @@ const ProductDetail = () => {
 
             <div className={cx('info-section')}>
                 <Title text="Mô tả chức năng" />
-
                 <div
                     className={cx('info-content')}
-                    dangerouslySetInnerHTML={{ __html: productDetail.detail[0].content }}
+                    dangerouslySetInnerHTML={{ __html: productDetail.detail?.[0]?.content || '' }}
                 />
             </div>
         </article>

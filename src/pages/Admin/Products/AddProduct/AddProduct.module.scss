@@ -115,3 +115,31 @@
         cursor: pointer;
     }
 }
+
+.addButton {
+    margin-top: 8px;
+}
+
+.removeButtonFeat {
+    padding: 8px;
+    margin: 4px 4px 4px 10px;
+    background-color: var(--secondary);
+    border: none;
+    border-radius: 4px;
+    color: var(--white);
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.featureItem {
+    padding: 8px;
+}
+
+.featureTitle {
+    display: inline-block;
+    min-width: 240px;
+}

@@ -15,12 +15,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { Spin } from 'antd';
 import { getNavigationById } from 'services/navigationService';
+import Button from 'components/Button';
 
 const AddProduct = () => {
     const [categories, setCategories] = useState([]);
     const [parentNavigations, setParentNavigations] = useState([]);
     const [notification, setNotification] = useState({ message: '', type: '' });
     const [files, setFiles] = useState([]);
+    const [featureInput, setFeatureInput] = useState('');
+    const [features, setFeatures] = useState([]);
     const navigate = useNavigate();
 
     const initialValues = {
@@ -30,6 +33,7 @@ const AddProduct = () => {
         summary: '',
         categoryID: '',
         parentNavId: '',
+        features: [],
     };
 
     const validationSchema = Yup.object({
@@ -39,6 +43,7 @@ const AddProduct = () => {
         summary: Yup.string().required('Tóm tắt là bắt buộc'),
         categoryID: Yup.string().required('Danh mục là bắt buộc'),
         parentNavId: Yup.string().required('Navigation cha là bắt buộc'),
+        features: Yup.array().of(Yup.string().required('Chức năng không được bỏ trống')),
     });
 
     useEffect(() => {
@@ -82,6 +87,7 @@ const AddProduct = () => {
         formData.append('content', values.content);
         formData.append('summary', values.summary);
         formData.append('categoryID', values.categoryID);
+        formData.append('features', JSON.stringify(features));
 
         try {
             await createProduct(formData);
@@ -95,6 +101,7 @@ const AddProduct = () => {
             setNotification({ message: 'Thêm sản phẩm thành công!', type: 'success' });
             resetForm();
             setFiles([]);
+            setFeatures([]);
             setTimeout(() => {
                 navigate(routes.productList);
             }, 1000);
@@ -106,6 +113,17 @@ const AddProduct = () => {
 
     const removeFile = (index) => {
         setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+    };
+
+    const addFeature = () => {
+        if (featureInput.trim()) {
+            setFeatures([...features, featureInput.trim()]);
+            setFeatureInput('');
+        }
+    };
+
+    const removeFeature = (index) => {
+        setFeatures((prevFeatures) => prevFeatures.filter((_, i) => i !== index));
     };
 
     return (
@@ -176,6 +194,38 @@ const AddProduct = () => {
                             <ErrorMessage name="summary" component="div" className={styles.error} />
                         </div>
                         <div className={styles.formGroup}>
+                            <label>Chức Năng</label>
+                            <div className={styles.featuresInput}>
+                                <input
+                                    type="text"
+                                    value={featureInput}
+                                    onChange={(e) => setFeatureInput(e.target.value)}
+                                    className={styles.input}
+                                    placeholder="Nhập chức năng và nhấn nút thêm"
+                                />
+                                <Button type="button" primary onClick={addFeature} className={styles.addButton}>
+                                    Thêm
+                                </Button>
+                            </div>
+                            <div className={styles.featuresList}>
+                                {features.map((feature, index) => (
+                                    <div key={index} className={styles.featureItem}>
+                                        <span className={styles.featureTitle}>
+                                            {index + 1}. {feature}
+                                        </span>
+                                        <button
+                                            primary
+                                            type="button"
+                                            onClick={() => removeFeature(index)}
+                                            className={styles.removeButtonFeat}
+                                        >
+                                            <FontAwesomeIcon icon={faClose} />
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className={styles.formGroup}>
                             <label htmlFor="content">Nội Dung</label>
                             <CustomEditor
                                 onChange={(content) => setFieldValue('content', content)}
@@ -184,7 +234,7 @@ const AddProduct = () => {
                             <ErrorMessage name="content" component="div" className={styles.error} />
                         </div>
                         <button type="submit" disabled={isSubmitting} className={styles.submitButton}>
-                            {isSubmitting ? <Spin size="small" /> : 'Thêm Sản Phẩm'}
+                            {isSubmitting ? <Spin /> : 'Thêm sản phẩm'}
                         </button>
                     </Form>
                 )}

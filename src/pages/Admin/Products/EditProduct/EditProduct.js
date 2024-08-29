@@ -13,6 +13,7 @@ import Title from '~/components/Title';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { Spin } from 'antd';
+import Button from 'components/Button';
 
 const EditProduct = () => {
     const { id } = useParams();
@@ -20,7 +21,8 @@ const EditProduct = () => {
     const [categories, setCategories] = useState([]);
     const [product, setProduct] = useState(null);
     const [notification, setNotification] = useState({ message: '', type: '' });
-
+    const [featureInput, setFeatureInput] = useState('');
+    const [features, setFeatures] = useState([]);
     const [files, setFiles] = useState([]);
 
     const [initialValues] = useState({
@@ -36,6 +38,7 @@ const EditProduct = () => {
         content: Yup.string().required('Nội dung là bắt buộc'),
         updateCate: Yup.string().required('Danh mục là bắt buộc'),
         summary: Yup.string().required('Tóm tắt là bắt buộc'),
+        features: Yup.array().of(Yup.string().required('Chức năng không được bỏ trống')),
     });
 
     useEffect(() => {
@@ -52,6 +55,9 @@ const EditProduct = () => {
             try {
                 const productData = await getProductById(id);
                 setProduct(productData);
+                setFeatures(JSON.parse(productData.features) || []);
+                setFiles(productData.image || []);
+
                 initialValues.updateName = productData.name;
                 initialValues.content = productData.detail[0].content;
                 initialValues.updateCate = productData.category_id;
@@ -89,12 +95,14 @@ const EditProduct = () => {
         formData.append('content', values.content);
         formData.append('updateCate', values.updateCate);
         formData.append('summary', values.summary);
+        formData.append('features', JSON.stringify(features)); // Use the current features state
 
         try {
             await updateProduct(id, formData);
             setNotification({ message: 'Cập nhật sản phẩm thành công!', type: 'success' });
             resetForm();
             setFiles([]);
+            setFeatures([]);
             setTimeout(() => {
                 navigate(routes.productList);
             }, 1000);
@@ -106,6 +114,17 @@ const EditProduct = () => {
 
     const removeFile = (index) => {
         setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+    };
+
+    const addFeature = () => {
+        if (featureInput.trim()) {
+            setFeatures([...features, featureInput.trim()]);
+            setFeatureInput('');
+        }
+    };
+
+    const removeFeature = (index) => {
+        setFeatures((prevFeatures) => prevFeatures.filter((_, i) => i !== index));
     };
 
     return (
@@ -163,6 +182,38 @@ const EditProduct = () => {
                                 <label htmlFor="summary">Tóm Tắt</label>
                                 <Field name="summary" type="text" className={styles.input} />
                                 <ErrorMessage name="summary" component="div" className={styles.error} />
+                            </div>
+                            <div className={styles.formGroup}>
+                                <label>Chức Năng</label>
+                                <div className={styles.featuresInput}>
+                                    <input
+                                        type="text"
+                                        value={featureInput}
+                                        onChange={(e) => setFeatureInput(e.target.value)}
+                                        className={styles.input}
+                                        placeholder="Nhập chức năng và nhấn nút thêm"
+                                    />
+                                    <Button type="button" primary onClick={addFeature} className={styles.addButton}>
+                                        Thêm
+                                    </Button>
+                                </div>
+                                <div className={styles.featuresList}>
+                                    {features.map((feature, index) => (
+                                        <div key={index} className={styles.featureItem}>
+                                            <span className={styles.featureTitle}>
+                                                {index + 1}. {feature}
+                                            </span>
+                                            <button
+                                                primary
+                                                type="button"
+                                                onClick={() => removeFeature(index)}
+                                                className={styles.removeButtonFeat}
+                                            >
+                                                <FontAwesomeIcon icon={faClose} />
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                             <div className={styles.formGroup}>
                                 <label htmlFor="content">Nội Dung</label>
