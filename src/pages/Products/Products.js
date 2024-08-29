@@ -125,15 +125,14 @@ function ProductCategory() {
         }
 
         return currentProductCategory.map((productItem) => (
-            <Link to={`${routes.products}/${slug}/${productItem._id}`} key={productItem._id}>
-                <Product
-                    key={productItem._id}
-                    image={productItem.image ? productItem.image[0] : ''}
-                    name={productItem.name}
-                    productId={productItem._id}
-                    category={slug}
-                />
-            </Link>
+            <Product
+                key={productItem._id}
+                image={productItem.image ? productItem.image[0] : ''}
+                name={productItem.name}
+                productId={productItem._id}
+                category={slug}
+                link={`${routes.products}/${slug}/${productItem._id}`}
+            />
         ));
     };
 
