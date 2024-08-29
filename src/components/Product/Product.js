@@ -7,17 +7,13 @@ import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
-function Product({ image, name, productId, category }) {
-    const getProductLink = (category, productId) => {
-        return `/san-pham/${category}/${productId}`;
-    };
-
+function Product({ image, name, link }) {
     return (
         <div className={cx('product-item')}>
             <img className={cx('product-item-image')} src={image} alt={name} />
             <div className={cx('product-item-details')}>
                 <h2 className={cx('product-item-name')}>{name}</h2>
-                <Link to={getProductLink(category, productId)}>
+                <Link to={link}>
                     <Button outline className={cx('product-item-button')}>
                         Xem chi tiết
                     </Button>
@@ -30,8 +26,7 @@ function Product({ image, name, productId, category }) {
 Product.propTypes = {
     image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    productId: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
 };
 
 export default Product;

@@ -6,20 +6,11 @@
     justify-content: center;
     gap: 20px;
     margin-top: 60px;
-    background: url('../../../assets/images/background-section.png');
-    background-repeat: no-repeat;
-    background-clip: border-box;
-    background-size: cover;
-    padding: 80px 20px;
-
-    @include respond-to(sm) {
-        padding: 40px 20px;
-    }
+    padding: 0 20px;
 }
 
 .inner {
     width: var(--default-layout-width);
-    max-width: 100%;
     margin: 0 auto;
     text-align: center;
 
@@ -33,78 +24,5 @@
 }
 
 .slide {
-    margin: 60px 0 20px 0;
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-    padding: 0 0 40px 0;
-
-    @include respond-to(sm) {
-        margin: 30px 0px 0px 0px;
-        padding: 16px 16px 60px 16px;
-    }
-}
-
-.product {
-    height: 100%;
-    background: transparent;
-    border-radius: 8px;
-    padding: 8px;
-    text-align: center;
-
-    .product-image {
-        width: 380px;
-        height: 380px;
-        border-radius: 8px;
-        object-fit: contain;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        transition: all ease-in-out 0.3s;
-        border: 8px solid var(--white);
-
-        @include respond-to(lg) {
-            width: 320px;
-            height: 320px;
-            box-shadow: none;
-        }
-        @include respond-to(md) {
-            width: 540px;
-            height: 540px;
-            box-shadow: none;
-        }
-
-        @include respond-to(sm) {
-            width: 320px;
-            height: 320px;
-        }
-
-        &:hover {
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-
-            @include respond-to(md) {
-                box-shadow: none;
-            }
-        }
-    }
-
-    .product-name {
-        margin-bottom: 16px;
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: var(--primary);
-        overflow: hidden;
-        min-height: 50px;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        @include respond-to(sm) {
-            min-height: 20px;
-        }
-    }
-
-    .product-des {
-        margin-top: 16px;
-        font-size: 1.6rem;
-        font-weight: 500;
-        color: var(--black);
-        text-align: center;
-        padding: 0 20px;
-    }
+    margin: 30px 0 20px 0;
 }
