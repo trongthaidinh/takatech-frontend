@@ -79,6 +79,7 @@ function Products() {
                                 name={product.name}
                                 productId={product._id}
                                 category={getCategorySlug(product.category_id)}
+                                link={`${routes.products}/${getCategorySlug(product)}/${product._id}`}
                             />
                         </SwiperSlide>
                     ))}

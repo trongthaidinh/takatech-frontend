@@ -119,6 +119,7 @@ const Products = () => {
                                                 views={item.views}
                                                 productId={item._id}
                                                 category={getCategorySlug(item.category_id)}
+                                                link={`${routes.products}/${getCategorySlug(item)}/${item._id}`}
                                             />
                                         </SwiperSlide>
                                     ))}
