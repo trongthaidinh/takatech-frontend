@@ -12,6 +12,7 @@ import { getCategoriesByType } from '~/services/categoryService';
 import routes from '~/config/routes';
 import { Helmet } from 'react-helmet';
 import LoadingScreen from '~/components/LoadingScreen';
+import { Empty } from 'antd';
 
 const cx = classNames.bind(styles);
 
@@ -81,6 +82,15 @@ function ServiceCategory() {
     };
 
     const renderServiceCategory = () => {
+        if (currentServiceCategory.length === 0) {
+            return (
+                <>
+                    <div />
+                    <Empty className={cx('empty-element')} description="Đang cập nhật..." />
+                    <div />
+                </>
+            );
+        }
         return currentServiceCategory.map((serviceItem, index) => (
             <Link to={`${routes.services}/${slug}/${serviceItem._id}`} key={serviceItem._id}>
                 <Card
