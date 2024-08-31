@@ -58,6 +58,7 @@ import RecruitmentDetail from '~/pages/RecruitmentDetail';
 import RecruitmentList from '~/pages/Admin/Recruitment/RecruitmentList';
 import AddRecruitment from '~/pages/Admin/Recruitment/AddRecruitment';
 import UpdateRecruitment from '~/pages/Admin/Recruitment/UpdateRecruitment';
+import UpdateCategory from 'pages/Admin/Category/UpdateCategory';
 
 // Public Routes
 const publicRoutes = [
@@ -162,6 +163,7 @@ const privateRoutes = [
     { path: config.routes.updatePage, component: UpdatePage, layout: AdminLayout },
     { path: config.routes.categoryList, component: CategoryList, layout: AdminLayout },
     { path: config.routes.addCategory, component: AddCategory, layout: AdminLayout },
+    { path: config.routes.updateCategory, component: UpdateCategory, layout: AdminLayout },
 ];
 
 export { publicRoutes, privateRoutes };

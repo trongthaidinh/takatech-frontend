@@ -1,27 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router-dom';
-import { addCategory } from '~/services/categoryService';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getCategoryById, updateCategory } from '~/services/categoryService';
 import PushNotification from '~/components/PushNotification';
-import styles from './AddCategory.module.scss';
+import styles from './UpdateCategory.module.scss';
 import routes from '~/config/routes';
 import CATEGORY_TYPES from '~/constants/CategoryType/CategoryType';
 import Title from '~/components/Title';
-import { Spin } from 'antd';
 import Button from '~/components/Button';
 
-const AddCategory = () => {
+const UpdateCategory = () => {
     const navigate = useNavigate();
+    const { id } = useParams();
     const [isError, setIsError] = useState(false);
     const [notificationMessage, setNotificationMessage] = useState('');
+    const [categoryData, setCategoryData] = useState(null);
     const [subcategories, setSubcategories] = useState([]);
     const [currentSubcategory, setCurrentSubcategory] = useState('');
 
+    useEffect(() => {
+        const fetchCategoryData = async () => {
+            try {
+                const data = await getCategoryById(id);
+                setCategoryData(data);
+                const subcategoryNames = data.subcategories.map((subcategory) => subcategory.name);
+                setSubcategories(subcategoryNames);
+            } catch (error) {
+                setIsError(true);
+                setNotificationMessage('Lỗi khi tải danh mục.');
+                console.error('Lỗi khi lấy thông tin danh mục:', error);
+            }
+        };
+        fetchCategoryData();
+    }, [id]);
+
     const initialValues = {
-        name: '',
-        type: '',
-        image: null,
+        name: categoryData?.name || '',
+        type: categoryData?.type || '',
     };
 
     const validationSchema = Yup.object({
@@ -32,26 +48,19 @@ const AddCategory = () => {
             .max(Object.keys(CATEGORY_TYPES).length, 'Giá trị không hợp lệ'),
     });
 
-    const handleSubmit = async (values, { resetForm, setSubmitting }) => {
-        const formData = new FormData();
-        formData.append('name', values.name);
-        formData.append('type', values.type);
-        formData.append('image', values.image);
-
+    const handleSubmit = async (values, { setSubmitting }) => {
         try {
-            const categoryData = { ...values, subcategories };
-            await addCategory(categoryData);
-            resetForm();
-            setSubcategories([]);
-            setNotificationMessage('Thêm danh mục thành công!');
+            const updatedCategoryData = { ...values, subcategories };
+            await updateCategory(id, updatedCategoryData);
+            setNotificationMessage('Cập nhật danh mục thành công!');
             setIsError(false);
             setTimeout(() => {
                 navigate(routes.categoryList);
             }, 1000);
         } catch (error) {
             setIsError(true);
-            setNotificationMessage('Lỗi khi thêm danh mục.');
-            console.error('Lỗi khi tạo danh mục:', error);
+            setNotificationMessage('Lỗi khi cập nhật danh mục.');
+            console.error('Lỗi khi cập nhật danh mục:', error);
         } finally {
             setSubmitting(false);
         }
@@ -69,15 +78,17 @@ const AddCategory = () => {
         setSubcategories(updatedSubcategories);
     };
 
+    if (!categoryData) return <div>Loading...</div>;
+
     return (
-        <div className={styles.addCategory}>
-            <Title text="Thêm Danh Mục"></Title>
+        <div className={styles.updateCategory}>
+            <Title text="Chỉnh sửa Danh Mục"></Title>
             {notificationMessage && (
                 <PushNotification message={notificationMessage} type={isError ? 'error' : 'success'} />
             )}
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-                {({ isSubmitting, setFieldValue }) => (
-                    <Form className={styles.addForm}>
+                {({ isSubmitting }) => (
+                    <Form className={styles.updateForm}>
                         <div className={styles.formGroup}>
                             <label htmlFor="name">Tên Danh mục</label>
                             <Field name="name" type="text" className={styles.input} />
@@ -102,7 +113,7 @@ const AddCategory = () => {
                                     type="text"
                                     value={currentSubcategory}
                                     onChange={(e) => setCurrentSubcategory(e.target.value)}
-                                    placeholder="Nhập danh mục con và nhấn nút Thêm"
+                                    placeholder="Nhập danh mục con"
                                     className={styles.input}
                                 />
                                 <Button
@@ -111,7 +122,7 @@ const AddCategory = () => {
                                     onClick={handleAddSubcategory}
                                     className={styles.addButton}
                                 >
-                                    Thêm
+                                    Thêm danh mục con
                                 </Button>
                             </div>
                             <div className={styles.subcategoriesList}>
@@ -129,22 +140,8 @@ const AddCategory = () => {
                                 ))}
                             </div>
                         </div>
-                        <div className={styles.formGroup}>
-                            <label htmlFor="image">Chọn Ảnh</label>
-                            <input
-                                id="image"
-                                name="image"
-                                type="file"
-                                accept="image/*"
-                                onChange={(event) => {
-                                    setFieldValue('image', event.currentTarget.files[0]);
-                                }}
-                                className={styles.input}
-                            />
-                            <ErrorMessage name="image" component="div" className={styles.error} />
-                        </div>
                         <button type="submit" disabled={isSubmitting} className={styles.submitButton}>
-                            {isSubmitting ? <Spin size="small" /> : 'Thêm Danh Mục'}
+                            Cập nhật Danh mục
                         </button>
                     </Form>
                 )}
@@ -153,4 +150,4 @@ const AddCategory = () => {
     );
 };
 
-export default AddCategory;
+export default UpdateCategory;
