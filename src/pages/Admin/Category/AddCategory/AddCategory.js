@@ -36,11 +36,19 @@ const AddCategory = () => {
         const formData = new FormData();
         formData.append('name', values.name);
         formData.append('type', values.type);
-        formData.append('image', values.image);
+
+        // Kiểm tra nếu image tồn tại và là file trước khi thêm vào formData
+        if (values.image) {
+            formData.append('image', values.image);
+        }
+
+        // Thêm các danh mục con vào formData nếu cần thiết
+        if (subcategories.length > 0) {
+            formData.append('subcategories', JSON.stringify(subcategories));
+        }
 
         try {
-            const categoryData = { ...values, subcategories };
-            await addCategory(categoryData);
+            await addCategory(formData);
             resetForm();
             setSubcategories([]);
             setNotificationMessage('Thêm danh mục thành công!');
@@ -137,10 +145,12 @@ const AddCategory = () => {
                                 type="file"
                                 accept="image/*"
                                 onChange={(event) => {
-                                    setFieldValue('image', event.currentTarget.files[0]);
+                                    const file = event.currentTarget.files[0];
+                                    setFieldValue('image', file ? file : null);
                                 }}
                                 className={styles.input}
                             />
+
                             <ErrorMessage name="image" component="div" className={styles.error} />
                         </div>
                         <button type="submit" disabled={isSubmitting} className={styles.submitButton}>
