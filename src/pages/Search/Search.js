@@ -38,7 +38,7 @@ const Search = () => {
                 const searchData = await searchItems(query, resultsPerPage, currentPage);
                 const [newsData, categoryData] = await Promise.all([getNews(), getCategoriesByType(2)]);
                 setSearchResults(searchData.results);
-                setNews(newsData);
+                setNews(newsData.news);
                 setCurrentPage(searchData.currentPage);
                 setCategories(categoryData);
                 setTotalPages(searchData.totalPages);
