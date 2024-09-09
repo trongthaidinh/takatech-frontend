@@ -94,8 +94,11 @@ const News = () => {
         <article className={cx('wrapper')}>
             <Helmet>
                 <title>Tin Tức | VNETC</title>
-                <meta name="description" content="Cập nhật những tin tức mới nhất về ngành điện lực." />
-                <meta name="keywords" content="tin tức, cập nhật, VNETC" />
+                <meta
+                    name="description"
+                    content="Công ty TNHH Công nghệ TakaTech cung cấp sản phẩm, dịch vụ xây dựng, phát triển phần mềm, ứng dụng di động - mobile app, website."
+                />
+                <meta name="keywords" content="tin tức, cập nhật, takatech" />
             </Helmet>
             <div className={cx('news-section')}>
                 <div className={cx('news-column')}>

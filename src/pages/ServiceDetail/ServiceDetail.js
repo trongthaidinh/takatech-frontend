@@ -47,7 +47,7 @@ const ServiceDetail = () => {
             <Helmet>
                 <title>{`${serviceDetail.title} | TAKATECH`}</title>
                 <meta name="description" content={serviceDetail.summary} />
-                <meta name="keywords" content={`dịch vụ, ${serviceDetail.title}, VNETC`} />
+                <meta name="keywords" content={`dịch vụ, ${serviceDetail.title}, takatech`} />
             </Helmet>
             <div className={cx('header')}>
                 <Title text={`${serviceDetail.title}`} className={cx('title')} />

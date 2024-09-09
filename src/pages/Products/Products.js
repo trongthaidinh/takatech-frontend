@@ -161,9 +161,9 @@ function ProductCategory() {
     return (
         <div className={cx('container')}>
             <Helmet>
-                <title>{categoryName} | VNETC</title>
-                <meta name="description" content={`Xem các dịch vụ liên quan đến ${categoryName} trên VNETC.`} />
-                <meta name="keywords" content={`${categoryName}, dịch vụ, VNETC`} />
+                <title>{categoryName} | TAKATECH</title>
+                <meta name="description" content={`Xem các dịch vụ liên quan đến ${categoryName} trên Taktech.`} />
+                <meta name="keywords" content={`${categoryName}, dịch vụ, takatech`} />
             </Helmet>
             <Title text={categoryName} />
             <div className={cx('productGrid')}>{renderProductCategory()}</div>

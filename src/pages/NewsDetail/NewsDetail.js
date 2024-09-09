@@ -53,7 +53,7 @@ const NewsDetail = () => {
             <Helmet>
                 <title>{newsDetail.title} | TAKATECH</title>
                 <meta name="description" content={newsDetail.summary} />
-                <meta name="keywords" content="tin tức, VNETC, chi tiết tin tức" />
+                <meta name="keywords" content="tin tức, takatech, chi tiết tin tức" />
             </Helmet>
             <div className={cx('header')}>
                 <Title text={newsDetail.title} className={cx('title')} />

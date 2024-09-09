@@ -96,10 +96,7 @@ const Recruitment = () => {
         <article className={cx('wrapper')}>
             <Helmet>
                 <title>Tuyển dụng | TAKATECH</title>
-                <meta
-                    name="description"
-                    content="Cập nhật những thông tin tuyển dụng mới nhất về ngành công nghệ thông tin."
-                />
+                <meta name="description" content="Cập nhật những thông tin tuyển dụng mới nhất của Takatech." />
                 <meta name="keywords" content="tuyển dụng, công nghệ thông tin, Takatech" />
             </Helmet>
             <div className={cx('recruitment-section')}>

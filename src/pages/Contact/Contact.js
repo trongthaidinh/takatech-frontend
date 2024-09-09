@@ -58,10 +58,7 @@ const ContactPage = () => {
         <div className={cx('contactPage')}>
             <Helmet>
                 <title>Liên Hệ | TAKATECH</title>
-                <meta
-                    name="description"
-                    content="Liên Hệ | TAKATECH. Hãy gửi tin nhắn cho chúng tôi nếu bạn có bất kỳ câu hỏi nào."
-                />
+                <meta name="description" content="Hãy gửi tin nhắn cho chúng tôi nếu bạn có bất kỳ câu hỏi nào." />
                 <meta name="keywords" content="liên hệ, TakaTech, gửi tin nhắn" />
                 <meta name="author" content="CÔNG TY TNHH CÔNG NGHỆ TAKATECH" />
             </Helmet>

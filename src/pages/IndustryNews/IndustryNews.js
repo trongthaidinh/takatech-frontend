@@ -174,8 +174,8 @@ function NewsCategory() {
         <div className={cx('container')}>
             <Helmet>
                 <title>{categoryName} | VNETC</title>
-                <meta name="description" content={`Xem các tin tức liên quan đến ${categoryName} trên VNETC.`} />
-                <meta name="keywords" content={`${categoryName}, tin tức, VNETC`} />
+                <meta name="description" content={`Xem các tin tức liên quan đến ${categoryName} trên TAKATECH.`} />
+                <meta name="keywords" content={`${categoryName}, tin tức, takatech`} />
             </Helmet>
 
             <Title text={categoryName} />

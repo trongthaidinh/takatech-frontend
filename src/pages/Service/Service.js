@@ -92,8 +92,11 @@ const Service = () => {
         <article className={cx('wrapper')}>
             <Helmet>
                 <title>Dịch Vụ | TAKATECH</title>
-                <meta name="description" content="Cập nhật những dịch vụ mới nhất về ngành công nghệ thông tin." />
-                <meta name="keywords" content="dịch vụ, cập nhật, Takatech" />
+                <meta
+                    name="description"
+                    content="Công ty TNHH Công nghệ TakaTech cung cấp sản phẩm, dịch vụ xây dựng, phát triển phần mềm, ứng dụng di động - mobile app, website."
+                />
+                <meta name="keywords" content="dịch vụ thiết kế website, lập trình website, mobile-app, Takatech" />
             </Helmet>
             <div className={cx('service-section')}>
                 <div className={cx('service-column')}>

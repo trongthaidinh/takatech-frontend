@@ -56,7 +56,10 @@ const Introduction = () => {
                 <title>{pageContent.name} | TAKATECH</title>
                 <meta
                     name="description"
-                    content={pageContent.description || 'Thông tin về trang giới thiệu của VNETC.'}
+                    content={
+                        pageContent.description ||
+                        'Công ty TNHH Công nghệ TakaTech cung cấp sản phẩm, dịch vụ xây dựng, phát triển phần mềm, ứng dụng di động - mobile app, website..'
+                    }
                 />
                 <meta name="keywords" content="giới thiệu, takatech, thông tin công ty" />
                 <meta name="author" content="CÔNG TY TNHH CÔNG NGHỆ TAKATECH" />

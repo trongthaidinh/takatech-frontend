@@ -11,12 +11,15 @@ import FAQs from './FAQs';
 const Home = () => (
     <article>
         <Helmet>
-            <title>Trang Chủ | TAKATECH </title>
+            <title>TAKATECH</title>
             <meta
                 name="description"
-                content="VNETC cung cấp sản phẩm, dịch vụ phần mềm, ứng dụng web chất lượng hàng đầu và tin tức mới nhất ngành công nghệ thông tin."
+                content="TakaTech cung cấp sản phẩm, dịch vụ xây dựng, phát triển phần mềm, ứng dụng di động - mobile app, website."
             />
-            <meta name="keywords" content="sản phẩm, dịch vụ phần mềm, tin tức ngành công nghệ thông tin, takatech" />
+            <meta
+                name="keywords"
+                content="sản phẩm, dịch vụ phần mềm, thiết kế website, tin tức ngành công nghệ thông tin, takatech"
+            />
             <meta name="author" content="CÔNG TY TNHH CÔNG NGHỆ TAKATECH" />
         </Helmet>
         <Banner />

@@ -131,8 +131,8 @@ function ServiceCategory() {
         <div className={cx('container')}>
             <Helmet>
                 <title>{categoryName} | TAKATECH</title>
-                <meta name="description" content={`Xem các tin tức liên quan đến ${categoryName} trên VNETC.`} />
-                <meta name="keywords" content={`${categoryName}, tin tức, VNETC`} />
+                <meta name="description" content={`Xem các dịch vụ liên quan đến ${categoryName} trên Taktech.`} />
+                <meta name="keywords" content={`${categoryName}, dịch vụ, takatech`} />
             </Helmet>
             {loading ? (
                 <LoadingScreen isLoading={loading} />

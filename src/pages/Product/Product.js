@@ -71,8 +71,11 @@ const Products = () => {
         <article className={cx('wrapper')}>
             <Helmet>
                 <title>Sản Phẩm | TAKATECH</title>
-                <meta name="description" content="Xem các sản phẩm điện lực chất lượng cao tại VNETC." />
-                <meta name="keywords" content="sản phẩm điện lực, kiểm thử, VNETC, chất lượng cao" />
+                <meta
+                    name="description"
+                    content="Công ty TNHH Công nghệ TakaTech cung cấp sản phẩm, dịch vụ xây dựng, phát triển phần mềm, ứng dụng di động - mobile app, website."
+                />
+                <meta name="keywords" content="dịch vụ thiết kế website, lập trình website, mobile-app, takatech" />
             </Helmet>
             <div className={cx('products-section')}>
                 <div className={cx('products-column')}>
