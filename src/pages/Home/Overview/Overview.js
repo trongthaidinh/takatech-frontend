@@ -30,15 +30,14 @@ function Overview() {
                 >
                     <h2 className={cx('title')}>CÔNG TY TNHH CÔNG NGHỆ TAKATECH</h2>
                     <p className={cx('text')}>
-                        Công ty TNHH Công nghệ Taka Tech hoạt động trong lĩnh vực: xây dựng phần mềm và ứng dụng di
-                        động, thiết kế cổng thông tin điện tử và trang thông tin điện tử, cùng với tư vấn và triển khai
-                        các giải pháp chuyển đổi số cho tổ chức và doanh nghiệp.
+                        Công ty TNHH Công Nghệ Takatech là một đơn vị phát triển phần mềm chuyên nghiệp 5 tỉnh Tây
+                        Nguyên và trên toàn quốc, gồm các sản phẩm Phần mềm, Website, App android, App IOS, công cụ AI
+                        và IoT - kết nối các đồ vật và thiết bị thông qua cảm biến.
                     </p>
                     <p className={cx('text')}>
-                        TakaTech đã khẳng định vị thế trong ngành công nghệ thông tin và cam kết cung cấp những giải
-                        pháp tốt nhất cho khách hàng. Với đội ngũ chuyên gia giàu kinh nghiệm và luôn cập nhật các xu
-                        hướng công nghệ mới nhất, TakaTech mang lại không chỉ sản phẩm chất lượng mà còn sự nhiệt huyết
-                        và đam mê công nghệ.
+                        Công ty TNHH Công Nghệ Takatech là một đơn vị phát triển phần mềm chuyên nghiệp 5 tỉnh Tây
+                        Nguyên và trên toàn quốc, gồm các sản phẩm Phần mềm, Website, App android, App IOS, công cụ AI
+                        và IoT - kết nối các đồ vật và thiết bị thông qua cảm biến.
                     </p>
                     <Link to={routes.about}>
                         <Button className={cx('button')} primary rightIcon={<FontAwesomeIcon icon={faArrowRight} />}>
