@@ -39,7 +39,7 @@ function Overview() {
                         Công ty cam kết mang đến sản phẩm và dịch vụ chất lượng cao, giúp khách hàng tối ưu hóa hiệu
                         suất kinh doanh và tối ưu hóa trải nghiệm người dùng.
                     </p>
-                    <Link to={routes.about}>
+                    <Link to={`${routes.about}/tong-quan`}>
                         <Button className={cx('button')} primary rightIcon={<FontAwesomeIcon icon={faArrowRight} />}>
                             Tìm hiểu thêm
                         </Button>
