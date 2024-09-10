@@ -84,7 +84,7 @@ const Footer = () => {
                     <h4>Thông tin doanh nghiệp</h4>
                     <ul>
                         <li>
-                            <Link to={routes.about}>
+                            <Link to={`${routes.about}/tong-quan`}>
                                 <FontAwesomeIcon className={cx('footer-chevon-icon')} icon={faChevronRight} />
                                 Tổng quan về TakaTech
                             </Link>
