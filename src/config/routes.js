@@ -57,6 +57,7 @@ const routes = {
     recruitmentCategory: '/tuyen-dung/:slug',
     error404: '/404',
     contact: '/lien-he',
+    privacy: '/dieu-khoan-chinh-sach',
 };
 
 export default routes;

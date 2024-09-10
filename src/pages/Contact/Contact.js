@@ -19,7 +19,15 @@ import { createMessage } from '~/services/contactService';
 import PushNotification from '~/components/PushNotification';
 import { Helmet } from 'react-helmet';
 import styles from './Contact.module.scss';
-import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import {
+    faFacebook,
+    faInstagram,
+    faSkype,
+    faTelegram,
+    faTwitter,
+    faViber,
+    faWhatsapp,
+} from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
@@ -59,7 +67,7 @@ const ContactPage = () => {
             <Helmet>
                 <title>Liên Hệ | TAKATECH</title>
                 <meta name="description" content="Hãy gửi tin nhắn cho chúng tôi nếu bạn có bất kỳ câu hỏi nào." />
-                <meta name="keywords" content="liên hệ, TakaTech, gửi tin nhắn" />
+                <meta name="keywords" content="liên hệ, takatech, gửi tin nhắn" />
                 <meta name="author" content="CÔNG TY TNHH CÔNG NGHỆ TAKATECH" />
             </Helmet>
             <div className={cx('mapContainer')}>
@@ -84,60 +92,45 @@ const ContactPage = () => {
                             <div className={cx('infoItem')}>
                                 <FontAwesomeIcon icon={faPhone} className={cx('icon')} />
                                 <a href="tel:0914586999">
-                                    Số điện thoại: <span>0914 586 999</span>
+                                    Mobile/Zalo: <span>0914 586 999</span>
                                 </a>
                             </div>
-                            {/* <div className={cx('infoItem')}>
-                                <span>
-                                    <FontAwesomeIcon icon={faMobileAlt} className={cx('icon')} />
-                                    Hotline theo mảng phụ trách:
-                                    <ul className={cx('contact-list')}>
-                                        <li>
-                                            <FontAwesomeIcon icon={faWrench} className={cx('icon')} />
-                                            <a href="tel:0931951140">
-                                                Đội Thí nghiệm - Kiểm định, thí nghiệm lần đầu thiết bị điện; QLVH ĐD &
-                                                TBA: <span>093 1951 140</span> (Mr. Phi)
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <FontAwesomeIcon icon={faCogs} className={cx('icon')} />
-                                            <a href="tel:0911711933">
-                                                Đội Dịch vụ - Xử lý sự cố điện và Thí nghiệm; Kiểm định định kỳ các TBA:{' '}
-                                                <span>091 1711 933</span> (Mr. Phước)
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <FontAwesomeIcon icon={faChartLine} className={cx('icon')} />
-                                            <a href="tel:0982064747">
-                                                Phòng Kinh doanh - Lập dự toán thí nghiệm: <span>098 2064 747</span>{' '}
-                                                (Ms. Ngọc)
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <FontAwesomeIcon icon={faFileAlt} className={cx('icon')} />
-                                            <a href="tel:0932585866">
-                                                {' '}
-                                                Phòng Tài chính - Tổng hợp: <span>093 2585 866</span> (Ms. Mai)
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <FontAwesomeIcon icon={faFileAlt} className={cx('icon')} />
-                                            <a href="tel:0971787996">
-                                                Bộ phần Hồ sơ pháp lý kỹ thuật: <span>097 1787 996</span> (Mr. Kiệt)
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </span>
-                            </div> */}
+                            <div className={cx('infoItem')}>
+                                <FontAwesomeIcon icon={faTelegram} className={cx('icon')} />
+                                <a href="tel:+84914586999">
+                                    Telegram: <span>+84 914 586 999</span>
+                                </a>
+                            </div>
+                            <div className={cx('infoItem')}>
+                                <FontAwesomeIcon icon={faViber} className={cx('icon')} />
+                                <a href="tel:+84914586999">
+                                    Viber: <span>+84 914 586 999</span>
+                                </a>
+                            </div>
+                            <div className={cx('infoItem')}>
+                                <FontAwesomeIcon icon={faWhatsapp} className={cx('icon')} />
+                                <a href="https://wa.me/84914586999">
+                                    WhatsApp: <span>+84 91 458 69 99</span>
+                                </a>
+                            </div>
+                            <div className={cx('infoItem')}>
+                                <FontAwesomeIcon icon={faSkype} className={cx('icon')} />
+                                <a href="skype:taka.techsoft@gmail.com">
+                                    Skype: <span>taka.techsoft@gmail.com</span>
+                                </a>
+                            </div>
                             <div className={cx('infoItem')}>
                                 <FontAwesomeIcon icon={faEnvelope} className={cx('icon')} />
-                                <a href="mailto:vietnam.etc.ltd@gmail.com">Email: taka.techsoft@gmail.com</a>
+                                <a href="mailto:taka.techsoft@gmail.com">
+                                    Email: <span>taka.techsoft@gmail.com</span>
+                                </a>
                             </div>
                             <div className={cx('infoItem')}>
                                 <FontAwesomeIcon icon={faMapMarkerAlt} className={cx('icon')} />
                                 <span>Địa chỉ: 200 Hà Huy Tập, Phường Tân Lợi, Tp. Buôn Ma Thuột, Tỉnh Đắk Lắk</span>
                             </div>
                         </div>
+
                         <div className={cx('socialLinks')}>
                             <Link to="https://www.facebook.com/takatechsoft/">
                                 <FontAwesomeIcon icon={faFacebook} className={cx('socialIcon')} />

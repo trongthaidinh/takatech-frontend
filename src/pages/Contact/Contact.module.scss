@@ -113,13 +113,12 @@
         .infoDetails {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
             margin-top: 20px;
 
             .infoItem {
                 display: flex;
                 align-items: center;
-                margin-bottom: 10px;
 
                 .icon {
                     width: 16px;

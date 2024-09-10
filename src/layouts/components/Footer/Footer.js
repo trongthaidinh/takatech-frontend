@@ -101,22 +101,10 @@ const Footer = () => {
                                 Sơ đồ tổ chức
                             </Link>
                         </li>
-                        <li>
-                            <Link to={`${routes.about}/muc-tieu-chat-luong`}>
-                                <FontAwesomeIcon className={cx('footer-chevon-icon')} icon={faChevronRight} />
-                                Mục tiêu chất lượng
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to={routes.about}>
-                                <FontAwesomeIcon className={cx('footer-chevon-icon')} icon={faChevronRight} />
-                                Hồ sơ năng lực
-                            </Link>
-                        </li>
                     </ul>
                 </div>
                 <div className={cx('footerColumn')}>
-                    <h4>Lĩnh vực hoạt động</h4>
+                    <h4>Danh mục</h4>
                     <ul>
                         <li>
                             <Link to={routes.products}>
@@ -131,15 +119,15 @@ const Footer = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to={routes.projects}>
+                            <Link to={routes.news}>
                                 <FontAwesomeIcon className={cx('footer-chevon-icon')} icon={faChevronRight} />
-                                Dự án
+                                Tin Tức
                             </Link>
                         </li>
                         <li>
-                            <Link to={routes.contact}>
+                            <Link to={routes.recruitment}>
                                 <FontAwesomeIcon className={cx('footer-chevon-icon')} icon={faChevronRight} />
-                                Hợp tác
+                                Tuyển dụng
                             </Link>
                         </li>
                     </ul>
@@ -147,12 +135,6 @@ const Footer = () => {
                 <div className={cx('footerColumn')}>
                     <h4>Các thông tin khác</h4>
                     <ul>
-                        <li>
-                            <Link to="/privacy">
-                                <FontAwesomeIcon className={cx('footer-chevon-icon')} icon={faChevronRight} />
-                                Điều khoản và chính sách
-                            </Link>
-                        </li>
                         <li>
                             <Link to={routes.contact}>
                                 <FontAwesomeIcon className={cx('footer-chevon-icon')} icon={faChevronRight} />
@@ -164,7 +146,7 @@ const Footer = () => {
             </div>
             <div className={cx('bottomBar')}>
                 <p>
-                    Copyright 2024 &copy;{' '}
+                    Copyright 2022 &copy;{' '}
                     <a href="https://www.takatech.com.vn/" className={cx('company-name')}>
                         TakaTech
                     </a>

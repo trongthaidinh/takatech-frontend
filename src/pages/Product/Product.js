@@ -101,7 +101,7 @@ const Products = () => {
                                     spaceBetween={10}
                                     slidesPerView={4}
                                     breakpoints={{
-                                        1280: { slidesPerView: 4 },
+                                        1280: { slidesPerView: 3 },
                                         1024: { slidesPerView: 3 },
                                         768: { slidesPerView: 2 },
                                         0: { slidesPerView: 1 },
