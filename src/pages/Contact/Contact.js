@@ -103,7 +103,7 @@ const ContactPage = () => {
                             </div>
                             <div className={cx('infoItem')}>
                                 <FontAwesomeIcon icon={faViber} className={cx('icon')} />
-                                <a href="tel:+84914586999">
+                                <a href="viber://add?number=84914586999">
                                     Viber: <span>+84 914 586 999</span>
                                 </a>
                             </div>
