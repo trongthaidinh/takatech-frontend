@@ -97,7 +97,7 @@ const ContactPage = () => {
                             </div>
                             <div className={cx('infoItem')}>
                                 <FontAwesomeIcon icon={faTelegram} className={cx('icon')} />
-                                <a href="tel:+84914586999">
+                                <a href="https://t.me/+84914586999">
                                     Telegram: <span>+84 914 586 999</span>
                                 </a>
                             </div>
@@ -115,7 +115,7 @@ const ContactPage = () => {
                             </div>
                             <div className={cx('infoItem')}>
                                 <FontAwesomeIcon icon={faSkype} className={cx('icon')} />
-                                <a href="skype:taka.techsoft@gmail.com">
+                                <a href="skype:live:.cid.1651d5b9576b5bea?chat">
                                     Skype: <span>taka.techsoft@gmail.com</span>
                                 </a>
                             </div>
