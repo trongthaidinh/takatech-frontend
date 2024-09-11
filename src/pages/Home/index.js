@@ -5,7 +5,7 @@ import Products from './Products';
 import Services from './Services';
 import NewsLibrary from './NewsLibrary';
 import Banner from './Banner';
-import Partners from './Partners';
+// import Partners from './Partners';
 import FAQs from './FAQs';
 
 const Home = () => (
@@ -28,7 +28,7 @@ const Home = () => (
         <Products />
         <NewsLibrary />
         <FAQs />
-        <Partners />
+        {/* <Partners /> */}
     </article>
 );
 
