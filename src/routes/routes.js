@@ -1,4 +1,4 @@
-// src/routes/routes.js
+
 import config from '~/config';
 
 // Layouts
