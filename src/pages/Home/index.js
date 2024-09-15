@@ -11,7 +11,7 @@ import FAQs from './FAQs';
 const Home = () => (
     <article>
         <Helmet>
-            <title>TAKATECH</title>
+            <title>CÔNG TY TNHH CÔNG NGHỆ TAKA TECH</title>
             <meta
                 name="description"
                 content="TakaTech cung cấp sản phẩm, dịch vụ xây dựng, phát triển phần mềm, ứng dụng di động - mobile app, website."
