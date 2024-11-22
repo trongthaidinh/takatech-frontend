@@ -21,6 +21,23 @@ const Home = () => (
                 content="sản phẩm, dịch vụ phần mềm, thiết kế website, tin tức ngành công nghệ thông tin, takatech"
             />
             <meta name="author" content="CÔNG TY TNHH CÔNG NGHỆ TAKATECH" />
+             <script type="application/ld+json">
+                {`
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "Organization",
+                        "name": "Công Ty Công Nghệ TakaTech",
+                        "url": "https://takatech.com.vn",
+                        "logo": "https://www.takatech.com.vn/static/media/takatech-logo.764b8f03065219c38a1b.png",
+                        "description": "TakaTech cung cấp sản phẩm, dịch vụ xây dựng, phát triển phần mềm, ứng dụng di động - mobile app, website.",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "addressLocality": "Buon Ma Thuot City",
+                            "addressCountry": "VN"
+                        }
+                    }
+                `}
+            </script>
         </Helmet>
         <Banner />
         <Overview />
