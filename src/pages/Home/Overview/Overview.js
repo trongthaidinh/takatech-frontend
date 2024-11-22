@@ -28,7 +28,7 @@ function Overview() {
                     whileInView={{ y: 0 }}
                     transition={{ duration: 0.3 }}
                 >
-                    <h2 className={cx('title')}>CÔNG TY TNHH CÔNG NGHỆ TAKATECH</h2>
+                    <h1 className={cx('title')}>CÔNG TY TNHH CÔNG NGHỆ TAKATECH</h1>
                     <p className={cx('text')}>
                         Công ty TNHH Công Nghệ Takatech là đơn vị phát triển phần mềm, ứng dụng di động và digital
                         marketing. Với đội ngũ lập trình viên chuyên nghiệp và chuyên gia marketing giàu kinh nghiệm,
